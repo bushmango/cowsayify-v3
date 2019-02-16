@@ -1,1 +1,1 @@
-cowsayify-v3
+next-react-typescript-sass
