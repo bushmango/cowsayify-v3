@@ -11,6 +11,8 @@
     "@zeit/next-typescript": "^1.1.1",
     "cowsay-browser": "^1.1.8",
     "fork-ts-checker-webpack-plugin": "^0.5.2",
+    "grommet": "^2.4.0",
+    "grommet-icons": "^4.2.0",
     "next": "^8.0.1",
     "next-sass": "^1.0.3",
     "node-sass": "^4.11.0",
