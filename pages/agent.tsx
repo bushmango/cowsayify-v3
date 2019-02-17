@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import Layout from '../components/Layout'
 import Header from '../components/Header'
 
 class Agent extends React.Component<{ userAgent: string }> {
@@ -10,10 +11,10 @@ class Agent extends React.Component<{ userAgent: string }> {
 
   render() {
     return (
-      <div>
+      <Layout title="agent">
         <Header />
         Hello World {this.props.userAgent}
-      </div>
+      </Layout>
     )
   }
 }

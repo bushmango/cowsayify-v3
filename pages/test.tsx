@@ -1,6 +1,7 @@
-import cowsay from 'cowsay-browser'
 
 import Layout from '../components/Layout'
+
+import cowsay from 'cowsay-browser'
 
 function CowsayHi() {
   return (
