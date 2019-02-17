@@ -10,12 +10,7 @@ class Agent extends React.Component<{ userAgent: string }> {
   }
 
   render() {
-    return (
-      <Layout title="agent">
-        <Header />
-        Hello World {this.props.userAgent}
-      </Layout>
-    )
+    return <Layout title="agent">Hello World {this.props.userAgent}</Layout>
   }
 }
 

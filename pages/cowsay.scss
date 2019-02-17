@@ -4,3 +4,26 @@ $font-size: 50px;
   font-size: $font-size;
   border: solid 2px greenyellow;
 }
+
+.cowForm {
+  display: flex;
+  justify-content: center;
+}
+.cowFormRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cowFormLabel {
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+.cowFormItem {
+  width: 300px;
+}
+
+.cowBox {
+  display: flex;
+  justify-content: center;
+}

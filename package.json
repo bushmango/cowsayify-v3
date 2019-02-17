@@ -10,6 +10,7 @@
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "antd": "^3.13.2",
+    "cowsay": "^1.4.0",
     "cowsay-browser": "^1.1.8",
     "fork-ts-checker-webpack-plugin": "^0.5.2",
     "grommet": "^2.4.0",
