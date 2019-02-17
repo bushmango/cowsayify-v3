@@ -135,7 +135,9 @@ class Cowsay extends React.Component<{ userAgent: string }> {
                   onChange={this._onChange_mode}
                 >
                   {modes.map(c => (
-                    <Option value={c.key}>{c.label}</Option>
+                    <Option key={c.key} value={c.key}>
+                      {c.label}
+                    </Option>
                   ))}
                 </Select>
               </div>
