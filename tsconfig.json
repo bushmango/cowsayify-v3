@@ -1,19 +1,20 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "preserve",
-    "lib": ["dom", "es2017"],
+    "target": "esnext",
     "module": "esnext",
+    "jsx": "preserve",
+    "allowJs": true,
     "moduleResolution": "node",
-    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "preserveConstEnums": true,
     "removeComments": false,
-    "skipLibCheck": true,
+    "preserveConstEnums": true,
     "sourceMap": true,
-    "strict": false,
-    "target": "esnext"
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types"],
+    "lib": ["dom", "es2015", "es2016"]
   }
 }
