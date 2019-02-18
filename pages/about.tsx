@@ -26,7 +26,7 @@ const keywords = [
 class About extends React.Component<{}> {
   render() {
     return (
-      <Layout title="agent">
+      <Layout title="about">
         <div>
           <h1>About cowsayify</h1>
           <div className={aboutStyles.section}>
