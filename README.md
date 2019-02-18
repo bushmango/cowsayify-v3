@@ -1,10 +1,15 @@
 cowsay on the web!
 
 serverless frontend
+
 serverless backend
+
 dynamodb data store
+
 amazon lambda
+
 react + typescript + sass
+
 and more!
 
 Demo:
