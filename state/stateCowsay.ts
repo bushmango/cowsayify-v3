@@ -16,6 +16,7 @@ interface IStateCowsay {
   eyes: string
   tongue: string
   template: string
+  action: 'say' | 'think'
 }
 
 let state: IStateCowsay = {
@@ -24,6 +25,7 @@ let state: IStateCowsay = {
   eyes: '',
   tongue: '',
   template: '',
+  action: 'say',
 }
 
 export function getState() {
@@ -102,7 +104,7 @@ export function doShare() {
     body: JSON.stringify({
       key: key,
       text: text,
-      options: JSON.stringify(this._calcOptions()),
+      options: JSON.stringify(calcOptions()),
     }),
   }).then(r => {
     console.log('finished!')
@@ -127,4 +129,13 @@ export function calcOptions() {
     options[mode] = true
   }
   return options
+}
+
+export async function fetchCow(key) {
+  const res = await fetch(host + '/cows/' + key)
+  const data = await res.json()
+
+  console.log('key', key)
+  console.log('data', data)
+  return { data }
 }

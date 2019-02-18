@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import styles from './cowsay.scss'
+import styles from './cowsay.scss'import styles from './cowsay.scss'
+import DisplayCow from '../components/DisplayCow'
+import DisplayCow from '../components/DisplayCow'
 // const styles = require('./cowsay.scss')
-
-import cowsay from 'cowsay-browser'
 
 import Layout from '../components/Layout'
 
@@ -112,9 +112,7 @@ class Cowsay extends React.Component<{ userAgent: string }> {
           </div>
         </div>
 
-        <div className={styles.cowBox}>
-          <pre>{cowsay.say(options)}</pre>
-        </div>
+        <DisplayCow options={options} />
 
         {/* <div className={styles.cowBox}>
           <pre>{JSON.stringify(state, null, 2)}</pre>

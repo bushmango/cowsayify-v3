@@ -10,18 +10,16 @@ import fetch from 'isomorphic-unfetch'
 
 const host = process.env.host
 
+import * as stateCowsay from '../state/stateCowsay'
+
 class Cowsaid extends React.Component<{ data: any }> {
   static async getInitialProps({ query, req }) {
     // const queryParams = { key: req.query.key }
     console.log('query', query)
     const { key } = query
 
-    const res = await fetch(host + '/cows/' + key)
-    const data = await res.json()
+    return await stateCowsay.fetchCow(key)
 
-    console.log('key', key)
-    console.log('data', data)
-    return { data }
   }
 
   render() {
@@ -43,9 +41,7 @@ class Cowsaid extends React.Component<{ data: any }> {
 
     return (
       <Layout title="cowsaid">
-        <div className={styles.cowBox}>
-          <pre>{cowsay.say(options)}</pre>
-        </div>
+        
         {/* <div className={styles.cowBox}>
           <pre>{JSON.stringify(state, null, 2)}</pre>
         </div> */}
