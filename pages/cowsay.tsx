@@ -17,6 +17,7 @@ import Form from 'antd/lib/form'
 import fetch from 'isomorphic-unfetch'
 
 const uuidv4 = require('uuid/v4')
+const shortid = require('shortid')
 import Router from 'next/router'
 
 const host = process.env.host
@@ -80,7 +81,8 @@ class Cowsay extends React.Component<{ userAgent: string }> {
   _onClick_share = () => {
     let { state } = this
 
-    let key = uuidv4()
+    // let key = uuidv4()
+    let key = shortid.generate()
     fetch(host + '/cows', {
       method: 'POST',
       headers: {
