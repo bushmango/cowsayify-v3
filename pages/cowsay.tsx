@@ -33,6 +33,12 @@ class Cowsay extends React.Component<{ userAgent: string }> {
   _onChange_action = val => {
     stateCowsay.setState({ action: val })
   }
+  _onChange_eyes = ev => {
+    stateCowsay.setState({ eyes: ev.target.value })
+  }
+  _onChange_tongue = ev => {
+    stateCowsay.setState({ tongue: ev.target.value })
+  }
   _onSubmit = () => {}
 
   _onClick_share = () => {
@@ -117,6 +123,29 @@ class Cowsay extends React.Component<{ userAgent: string }> {
                     </Option>
                   ))}
                 </Select>
+              </div>
+            </div>
+
+            <div className={styles.cowFormRow}>
+              <div className={styles.cowFormLabel}>Eyes</div>
+              <div className={styles.cowFormItem}>
+                <Input
+                  placeholder="Custom Eyes i.e. **"
+                  maxLength={2}
+                  value={state.eyes}
+                  onChange={this._onChange_eyes}
+                />
+              </div>
+            </div>
+            <div className={styles.cowFormRow}>
+              <div className={styles.cowFormLabel}>Tongue</div>
+              <div className={styles.cowFormItem}>
+                <Input
+                  placeholder="Custom Tongue i.e. ()"
+                  maxLength={2}
+                  value={state.tongue}
+                  onChange={this._onChange_tongue}
+                />
               </div>
             </div>
 

@@ -142,6 +142,18 @@ export function calcOptions() {
     text,
     action: state.action,
   }
+  if (state.eyes) {
+    options.e = state.eyes
+    if (options.e.length === 1) {
+      options.e += ' '
+    }
+  }
+  if (state.tongue) {
+    options.T = state.tongue
+    if (options.T.length === 1) {
+      options.T += ' '
+    }
+  }
   if (mode) {
     options[mode] = true
   }
