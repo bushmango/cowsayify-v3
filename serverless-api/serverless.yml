@@ -2,11 +2,45 @@
 
 service: my-express-application
 
+plugins:
+  # - serverless-dynamodb-local
+  - serverless-domain-manager
+  - serverless-offline
+
+custom:
+  tableName_cow: 'cow-${self:provider.stage}'
+  serverless-offline:
+    port: 4000
+  # dynamodb:
+  #   # If you only want to use DynamoDB Local in some stages, declare them here
+  #   stages:
+  #     - dev
+  #   start:
+  #     port: 4001
+  customDomain:
+    domainName: api.cowsayify.com
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
 provider:
   name: aws
   runtime: nodejs8.10
   stage: dev
   region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { 'Fn::GetAtt': ['UsersDynamoDBTable', 'Arn'] }
+  environment:
+    COWS_TABLE: ${self:custom.tableName_cow}
 
 functions:
   app:
@@ -14,3 +48,19 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+
+resources:
+  Resources:
+    UsersDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: key
+            AttributeType: S
+        KeySchema:
+          - AttributeName: key
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName_cow}

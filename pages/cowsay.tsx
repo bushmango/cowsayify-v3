@@ -13,6 +13,8 @@ import Select from 'antd/lib/select'
 const Option = Select.Option
 import Form from 'antd/lib/form'
 
+import fetch from 'isomorphic-unfetch'
+
 interface IMode {
   key: string
   label: string
@@ -68,6 +70,23 @@ class Cowsay extends React.Component<{ userAgent: string }> {
     this.setState({ mode: val })
   }
   _onSubmit = () => {}
+
+  _onClick_share = () => {
+    fetch('http://localhost:4000/cows', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        key: 'test-key',
+        text: 'moooo hello',
+        options: '{}',
+      }),
+    }).then(r => {
+      console.log('finished!')
+      console.log(r.json())
+    })
+  }
 
   render() {
     let { state } = this
@@ -146,7 +165,9 @@ class Cowsay extends React.Component<{ userAgent: string }> {
             <div className={styles.cowFormRow}>
               <div className={styles.cowFormLabel} />
               <div className={styles.cowFormItem}>
-                <Button type="primary">Share!</Button>
+                <Button type="primary" onClick={this._onClick_share}>
+                  Share!
+                </Button>
               </div>
             </div>
           </div>

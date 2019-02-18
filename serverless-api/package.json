@@ -9,7 +9,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.404.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "serverless-http": "^1.9.0"
+  },
+  "devDependencies": {
+    "serverless-domain-manager": "^2.6.13",
+    "serverless-dynamodb-local": "^0.2.36",
+    "serverless-offline": "^4.4.2"
   }
 }
