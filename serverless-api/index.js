@@ -4,6 +4,7 @@ const serverless = require('serverless-http')
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const AWS = require('aws-sdk')
 
 //const USERS_TABLE = process.env.USERS_TABLE
@@ -23,6 +24,7 @@ const COWS_TABLE = process.env.COWS_TABLE
 
 dynamoDb = new AWS.DynamoDB.DocumentClient()
 
+app.use(cors())
 app.use(bodyParser.json({ strict: false }))
 
 app.get('/', function(req, res) {

@@ -1,10 +1,3 @@
-$font-size: 50px;
-
-.testSassCow {
-  font-size: $font-size;
-  border: solid 2px greenyellow;
-}
-
 .cowForm {
   display: flex;
   justify-content: center;
@@ -26,8 +19,4 @@ $font-size: 50px;
 .cowBox {
   display: flex;
   justify-content: center;
-  background-color: black;
-  color: white;
-  border-radius: 8px;
-  margin: 20px;
 }

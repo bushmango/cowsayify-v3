@@ -9,11 +9,17 @@ import Layout from '../components/Layout'
 
 import Button from 'antd/lib/button'
 import Input from 'antd/lib/input'
+const { TextArea } = Input
 import Select from 'antd/lib/select'
 const Option = Select.Option
 import Form from 'antd/lib/form'
 
 import fetch from 'isomorphic-unfetch'
+
+const uuidv4 = require('uuid/v4')
+import Router from 'next/router'
+
+const host = process.env.host
 
 interface IMode {
   key: string
@@ -72,23 +78,27 @@ class Cowsay extends React.Component<{ userAgent: string }> {
   _onSubmit = () => {}
 
   _onClick_share = () => {
-    fetch('http://localhost:4000/cows', {
+    let { state } = this
+
+    let key = uuidv4()
+    fetch(host + '/cows', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        key: 'test-key',
-        text: 'moooo hello',
-        options: '{}',
+        key: key,
+        text: state.text,
+        options: JSON.stringify(this._calcOptions()),
       }),
     }).then(r => {
       console.log('finished!')
       console.log(r.json())
+      Router.push('/cowsaid?key=' + key)
     })
   }
 
-  render() {
+  _calcOptions = () => {
     let { state } = this
     let { text, mode } = state
 
@@ -102,6 +112,12 @@ class Cowsay extends React.Component<{ userAgent: string }> {
     if (mode) {
       options[mode] = true
     }
+    return options
+  }
+
+  render() {
+    let { state } = this
+    let options = this._calcOptions()
 
     return (
       <Layout title="cowsay">
@@ -137,9 +153,10 @@ class Cowsay extends React.Component<{ userAgent: string }> {
             <div className={styles.cowFormRow}>
               <div className={styles.cowFormLabel}>Text</div>
               <div className={styles.cowFormItem}>
-                <Input
+                <TextArea
                   placeholder="What should the cow say?"
                   value={state.text}
+                  autosize
                   onChange={this._onChange_text}
                 />
               </div>
@@ -149,7 +166,7 @@ class Cowsay extends React.Component<{ userAgent: string }> {
               <div className={styles.cowFormLabel}>Mode</div>
               <div className={styles.cowFormItem}>
                 <Select
-                  defaultValue="b"
+                  defaultValue=""
                   style={{ width: 120 }}
                   onChange={this._onChange_mode}
                 >

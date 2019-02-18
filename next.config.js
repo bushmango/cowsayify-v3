@@ -64,9 +64,20 @@ module.exports = (phase, { defaultConfig }) => {
   )
 
   if (phase === PHASE_DEVELOPMENT_SERVER) {
+    config.env = {
+      // host: 'http://localhost:4000',
+      host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
+    }
+
     return config
   } else {
     config.target = 'serverless'
+
+    config.env = {
+      //host: 'https://api.cowsayify.com',
+      host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
+    }
+
     return config
   }
 }

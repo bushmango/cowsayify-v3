@@ -8,10 +8,18 @@ import Layout from '../components/Layout'
 
 import fetch from 'isomorphic-unfetch'
 
+const host = process.env.host
+
 class Cowsaid extends React.Component<{ data: any }> {
-  static async getInitialProps({ req }) {
-    const res = await fetch('http://localhost:4000/cows/test-key')
+  static async getInitialProps({ query, req }) {
+    // const queryParams = { key: req.query.key }
+    console.log('query', query)
+    const { key } = query
+
+    const res = await fetch(host + '/cows/' + key)
     const data = await res.json()
+
+    console.log('key', key)
     console.log('data', data)
     return { data }
   }
@@ -20,15 +28,21 @@ class Cowsaid extends React.Component<{ data: any }> {
     let { data } = this.props
     let { key, text, options } = data
 
-    if (text.length === 0) {
+    if (!text || text.length === 0) {
       text = 'Moo'
     }
-    options = JSON.parse(options)
-    options.text = text
+
+    if (data.error || !options) {
+      text = '404 cow not found!'
+      options = { d: true }
+      options.text = text
+    } else {
+      options = JSON.parse(options || {})
+      options.text = text
+    }
 
     return (
       <Layout title="cowsaid">
-        The cow said... {key}
         <div className={styles.cowBox}>
           <pre>{cowsay.say(options)}</pre>
         </div>

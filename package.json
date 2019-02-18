@@ -25,17 +25,19 @@
     "serverless-http": "^1.9.0",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.3",
-    "typings-for-css-modules-loader": "^1.7.0"
+    "typings-for-css-modules-loader": "^1.7.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {},
   "scripts": {
     "_dev": "next",
     "dev": "nodemon",
-    "_build": "next build",
-    "build": "next build && tsc --project tsconfig.server.json",
+    "_build": "next build && tsc --project tsconfig.server.json",
+    "build": "next build",
     "_start": "next start -p 8000",
     "start": "cross-env NODE_ENV=production node dist/index.js",
-    "now-build": "next build && tsc --project tsconfig.server.json"
+    "now-build": "next build",
+    "now-deploy": "npm run build && now"
   },
   "repository": {
     "type": "git",
