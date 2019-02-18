@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import styles from './cowsay.scss'import styles from './cowsay.scss'
-import DisplayCow from '../components/DisplayCow'
+import styles from './cowsay.scss'
 import DisplayCow from '../components/DisplayCow'
 // const styles = require('./cowsay.scss')
 
@@ -17,7 +16,7 @@ import Form from 'antd/lib/form'
 import fetch from 'isomorphic-unfetch'
 
 import * as stateCowsay from '../state/stateCowsay'
-import { modes } from '../state/stateCowsay'
+import { modes, actions } from '../state/stateCowsay'
 
 class Cowsay extends React.Component<{ userAgent: string }> {
   subscriptionToken = stateCowsay.subscribe(this)
@@ -30,6 +29,9 @@ class Cowsay extends React.Component<{ userAgent: string }> {
   }
   _onChange_mode = val => {
     stateCowsay.setState({ mode: val })
+  }
+  _onChange_action = val => {
+    stateCowsay.setState({ action: val })
   }
   _onSubmit = () => {}
 
@@ -85,10 +87,27 @@ class Cowsay extends React.Component<{ userAgent: string }> {
             </div>
 
             <div className={styles.cowFormRow}>
+              <div className={styles.cowFormLabel}>Action</div>
+              <div className={styles.cowFormItem}>
+                <Select
+                  value={state.action}
+                  style={{ width: 120 }}
+                  onChange={this._onChange_action}
+                >
+                  {actions.map(c => (
+                    <Option key={c.key} value={c.key}>
+                      {c.label}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
+            </div>
+
+            <div className={styles.cowFormRow}>
               <div className={styles.cowFormLabel}>Mode</div>
               <div className={styles.cowFormItem}>
                 <Select
-                  defaultValue=""
+                  value={state.mode}
                   style={{ width: 120 }}
                   onChange={this._onChange_mode}
                 >

@@ -8,6 +8,8 @@ import Layout from '../components/Layout'
 
 import fetch from 'isomorphic-unfetch'
 
+import DisplayCow from '../components/DisplayCow'
+
 const host = process.env.host
 
 import * as stateCowsay from '../state/stateCowsay'
@@ -19,7 +21,6 @@ class Cowsaid extends React.Component<{ data: any }> {
     const { key } = query
 
     return await stateCowsay.fetchCow(key)
-
   }
 
   render() {
@@ -41,7 +42,7 @@ class Cowsaid extends React.Component<{ data: any }> {
 
     return (
       <Layout title="cowsaid">
-        
+        <DisplayCow options={options} />
         {/* <div className={styles.cowBox}>
           <pre>{JSON.stringify(state, null, 2)}</pre>
         </div> */}

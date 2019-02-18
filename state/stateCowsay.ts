@@ -46,6 +46,22 @@ export function unSubscribe(token) {
   PubSub.unsubscribe(token)
 }
 
+export interface IAction {
+  key: string
+  label: string
+}
+const actions: IMode[] = [
+  {
+    key: 'say',
+    label: 'Say',
+  },
+  {
+    key: 'think',
+    label: 'Think',
+  },
+]
+export { actions }
+
 export interface IMode {
   key: string
   label: string
@@ -124,6 +140,7 @@ export function calcOptions() {
 
   let options: any = {
     text,
+    action: state.action,
   }
   if (mode) {
     options[mode] = true

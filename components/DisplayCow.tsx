@@ -1,7 +1,8 @@
 import cowsay from 'cowsay-browser'
 import styles from '../pages/cowsay.scss'
 
-export default function render(options) {
+const DisplayCow = (props: { options }) => {
+  const { options } = props
   return (
     <div className={styles.cowBox}>
       <pre>
@@ -12,3 +13,5 @@ export default function render(options) {
     </div>
   )
 }
+
+export default DisplayCow
