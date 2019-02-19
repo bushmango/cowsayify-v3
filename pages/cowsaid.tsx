@@ -43,9 +43,6 @@ class Cowsaid extends React.Component<{ data: any }> {
     return (
       <Layout title="cowsaid">
         <DisplayCow options={options} />
-        {/* <div className={styles.cowBox}>
-          <pre>{JSON.stringify(state, null, 2)}</pre>
-        </div> */}
       </Layout>
     )
   }
