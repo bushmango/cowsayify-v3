@@ -33,9 +33,13 @@ export function getState() {
   return _.clone(state)
 }
 
-export function setState(changes: Partial<IStateCowsay>) {
+export function setState(changes: Partial<IStateCowsay>, sync = false) {
   state = _.assign({}, state, changes)
-  PubSub.publish(stateKey)
+  if (sync) {
+    PubSub.publishSync(stateKey)
+  } else {
+    PubSub.publish(stateKey) // With a frame delay
+  }
 }
 
 export function subscribe(component: React.Component) {

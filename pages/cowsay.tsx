@@ -17,7 +17,7 @@ class Cowsay extends React.Component<{}> {
   }
 
   _onChange_text = ev => {
-    stateCowsay.setState({ text: ev.target.value })
+    stateCowsay.setState({ text: ev.target.value }, true)
   }
   _onChange_mode = val => {
     stateCowsay.setState({ mode: val })
@@ -26,10 +26,10 @@ class Cowsay extends React.Component<{}> {
     stateCowsay.setState({ action: val })
   }
   _onChange_eyes = ev => {
-    stateCowsay.setState({ eyes: ev.target.value })
+    stateCowsay.setState({ eyes: ev.target.value }, true)
   }
   _onChange_tongue = ev => {
-    stateCowsay.setState({ tongue: ev.target.value })
+    stateCowsay.setState({ tongue: ev.target.value }, true)
   }
   _onSubmit = () => {}
 
