@@ -65,7 +65,7 @@ class About extends React.Component<{}> {
             <pre>
               {cowsay.say({
                 text:
-                  'Copyright 2018 Steve Bushman.\nMIT License\nhttps://github.com/bushmango/cowsayify-v3',
+                  'Copyright 2018 Steve Bushman\nMIT License\nhttps://github.com/bushmango/cowsayify-v3',
               })}
             </pre>
           </div>
