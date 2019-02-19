@@ -72,7 +72,7 @@ export default class CowsayOptions extends React.Component<{}> {
           </div>
 
           <div className={styles.cowFormRow}>
-            <div className={styles.cowFormLabel}>Mode</div>
+            <div className={styles.cowFormLabel}>MOOd</div>
             <div className={styles.cowFormItem}>
               <Select
                 value={state.mode}
