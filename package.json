@@ -20,6 +20,7 @@
     "next-sass": "^1.0.3",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
+    "pubsub-js": "^1.7.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "serverless-http": "^1.9.0",
