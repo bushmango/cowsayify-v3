@@ -3,7 +3,8 @@ import * as React from 'react'
 const stateKey = 'cowsay'
 export { stateKey }
 
-const uuidv4 = require('uuid/v4')
+import fetch from 'isomorphic-unfetch'
+// const uuidv4 = require('uuid/v4')
 const shortid = require('shortid')
 import Router from 'next/router'
 import * as PubSub from 'pubsub-js'
@@ -123,9 +124,8 @@ export function doShare() {
       options: JSON.stringify(calcOptions()),
     }),
   }).then(r => {
-    console.log('finished!')
-    console.log(r.json())
-    Router.push('/cowsaid?key=' + key)
+    //Router.push('/cowsaid?key=' + key)
+    Router.push('/cowsaid/' + key)
   })
 }
 
@@ -164,7 +164,5 @@ export async function fetchCow(key) {
   const res = await fetch(host + '/cows/' + key)
   const data = await res.json()
 
-  console.log('key', key)
-  console.log('data', data)
   return { data }
 }

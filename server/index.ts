@@ -13,20 +13,8 @@ console.log(`> Starting Port: ${port} Dev: ${'' + dev}`)
 app.prepare().then(() => {
   const server = express()
 
-  // server.get('/a', (req, res) => {
-  //   return app.render(req, res, '/b', req.query)
-  // })
-
-  // server.get('/b', (req, res) => {
-  //   return app.render(req, res, '/a', req.query)
-  // })
-
-  server.get('/posts/:id', (req, res) => {
-    return app.render(req, res, '/posts', { id: req.params.id })
-  })
-
-  server.get('/api/save', (req, res: express.Response) => {
-    return res.send('api ok')
+  server.get('/cowsaid/:key', (req, res) => {
+    return app.render(req, res, '/cowsaid', { key: req.params.key })
   })
 
   server.get('*', (req, res) => {
@@ -37,20 +25,4 @@ app.prepare().then(() => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
   })
-
-  // createServer((req, res) => {
-  //   const parsedUrl = parse(req.url, true)
-  //   const { pathname, query } = parsedUrl
-
-  //   if (pathname === '/a') {
-  //     app.render(req, res, '/a', query)
-  //   } else if (pathname === '/b') {
-  //     app.render(req, res, '/b', query)
-  //   } else {
-  //     handle(req, res, parsedUrl)
-  //   }
-  // }).listen(port, err => {
-  //   if (err) throw err
-  //   console.log(`> Ready on http://localhost:${port}`)
-  // })
 })

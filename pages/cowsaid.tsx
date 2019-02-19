@@ -2,22 +2,14 @@ import styles from './cowsay.scss'
 
 import * as React from 'react'
 
-import cowsay from 'cowsay-browser'
-
 import Layout from '../components/Layout'
 
-import fetch from 'isomorphic-unfetch'
-
 import DisplayCow from '../components/DisplayCow'
-
-const host = process.env.host
 
 import * as stateCowsay from '../state/stateCowsay'
 
 class Cowsaid extends React.Component<{ data: any }> {
-  static async getInitialProps({ query, req }) {
-    // const queryParams = { key: req.query.key }
-    console.log('query', query)
+  static async getInitialProps({ query }) {
     const { key } = query
 
     return await stateCowsay.fetchCow(key)
