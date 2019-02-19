@@ -1,5 +1,5 @@
 {
   "version": 2,
   "builds": [{ "src": "package.json", "use": "@now/next" }],
-  "routes": [{ "src": "/cowsaid/(?<key>[^/]+)$", "dest": "/product?key=$key" }]
+  "routes": [{ "src": "/cowsaid/(?<key>[^/]+)$", "dest": "/cowsaid?key=$key" }]
 }
