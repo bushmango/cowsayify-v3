@@ -48,6 +48,11 @@ export function subscribe(component: React.Component) {
     component.forceUpdate()
   })
 }
+export function subscribeHook(callback: (state: IStateCowsay) => any) {
+  return PubSub.subscribe(stateKey, () => {
+    callback(getState())
+  })
+}
 export function unSubscribe(token) {
   PubSub.unsubscribe(token)
 }

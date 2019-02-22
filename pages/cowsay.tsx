@@ -1,4 +1,5 @@
 import * as React from 'react'
+const { useState, useEffect } = React
 
 import styles from './cowsay.scss'
 import DisplayCow from '../components/DisplayCow'
@@ -10,31 +11,41 @@ import Layout from '../components/Layout'
 import * as stateCowsay from '../state/stateCowsay'
 import { modes, actions } from '../state/stateCowsay'
 
+function useSubscriptionHook(key) {
+  const [state, setState] = useState(stateCowsay.getState())
+
+  function handleStatusChange(status) {
+    setState(status)
+  }
+
+  useEffect(() => {
+    let subscriptionToken = stateCowsay.subscribeHook(handleStatusChange)
+    return () => {
+      stateCowsay.unSubscribe(subscriptionToken)
+    }
+  })
+
+  return state
+}
+
+0
+const CowsayWithHooks = (props: any) => {
+  // const cowsay = useSubscriptionHook('cowsay')
+  let options = stateCowsay.calcOptions()
+
+  return (
+    <Layout title="cowsay">
+      {/* {cowsay.text} */}
+      <CowsayOptions />
+      <DisplayCow options={options} />
+    </Layout>
+  )
+}
+
 class Cowsay extends React.Component<{}> {
   subscriptionToken = stateCowsay.subscribe(this)
   componentWillUnmount() {
     stateCowsay.unSubscribe(this.subscriptionToken)
-  }
-
-  _onChange_text = ev => {
-    stateCowsay.setState({ text: ev.target.value }, true)
-  }
-  _onChange_mode = val => {
-    stateCowsay.setState({ mode: val })
-  }
-  _onChange_action = val => {
-    stateCowsay.setState({ action: val })
-  }
-  _onChange_eyes = ev => {
-    stateCowsay.setState({ eyes: ev.target.value }, true)
-  }
-  _onChange_tongue = ev => {
-    stateCowsay.setState({ tongue: ev.target.value }, true)
-  }
-  _onSubmit = () => {}
-
-  _onClick_share = () => {
-    stateCowsay.doShare()
   }
 
   render() {
@@ -43,6 +54,8 @@ class Cowsay extends React.Component<{}> {
 
     return (
       <Layout title="cowsay">
+        <CowsayWithHooks />
+
         <CowsayOptions />
 
         <DisplayCow options={options} />
@@ -51,4 +64,4 @@ class Cowsay extends React.Component<{}> {
   }
 }
 
-export default Cowsay
+export default CowsayWithHooks
