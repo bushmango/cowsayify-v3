@@ -1,5 +1,4 @@
 import * as React from 'react'
-const { useState, useEffect } = React
 
 import styles from './cowsay.scss'
 import DisplayCow from '../components/DisplayCow'
@@ -8,29 +7,12 @@ import CowsayOptions from '../components/CowsayOptions'
 
 import Layout from '../components/Layout'
 
+import * as stateUtil from '../state/stateUtil'
 import * as stateCowsay from '../state/stateCowsay'
 import { modes, actions } from '../state/stateCowsay'
 
-function useSubscriptionHook(key) {
-  const [state, setState] = useState(stateCowsay.getState())
-
-  function handleStatusChange(status) {
-    setState(status)
-  }
-
-  useEffect(() => {
-    let subscriptionToken = stateCowsay.subscribeHook(handleStatusChange)
-    return () => {
-      stateCowsay.unSubscribe(subscriptionToken)
-    }
-  })
-
-  return state
-}
-
-0
 const CowsayWithHooks = (props: any) => {
-  // const cowsay = useSubscriptionHook('cowsay')
+  const cowsay = stateUtil.useSubscription(stateCowsay.stateManager)
   let options = stateCowsay.calcOptions()
 
   return (
@@ -38,27 +20,30 @@ const CowsayWithHooks = (props: any) => {
       {/* {cowsay.text} */}
       <CowsayOptions />
       <DisplayCow options={options} />
+      {/* Hooks version! */}
     </Layout>
   )
 }
 
-class Cowsay extends React.Component<{}> {
-  subscriptionToken = stateCowsay.subscribe(this)
-  componentWillUnmount() {
-    stateCowsay.unSubscribe(this.subscriptionToken)
-  }
+export default CowsayWithHooks
 
-  render() {
-    let state = stateCowsay.getState()
-    let options = stateCowsay.calcOptions()
+// class Cowsay extends React.Component<{}> {
+//   subscriptionToken = stateCowsay.subscribe(this)
+//   componentWillUnmount() {
+//     stateCowsay.unSubscribe(this.subscriptionToken)
+//   }
 
-    return (
-      <Layout title="cowsay">
-        <CowsayOptions />
-        <DisplayCow options={options} />
-      </Layout>
-    )
-  }
-}
+//   render() {
+//     let state = stateCowsay.getState()
+//     let options = stateCowsay.calcOptions()
 
-export default Cowsay
+//     return (
+//       <Layout title="cowsay">
+//         <CowsayOptions />
+//         <DisplayCow options={options} />
+//       </Layout>
+//     )
+//   }
+// }
+
+// export default Cowsay

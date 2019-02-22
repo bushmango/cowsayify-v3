@@ -1,15 +1,15 @@
-import { _ } from '../imports/lodash'
-import moment from 'moment'
-import * as React from 'react'
+import * as stateUtil from './stateUtil'
 const stateKey = 'cowsay'
 export { stateKey }
+
+import { _ } from '../imports/lodash'
+import moment from 'moment'
 
 import cowsay from 'cowsay-browser'
 import fetch from 'isomorphic-unfetch'
 // const uuidv4 = require('uuid/v4')
 const shortid = require('shortid')
 import Router from 'next/router'
-import * as PubSub from 'pubsub-js'
 
 const host = process.env.host
 
@@ -24,7 +24,7 @@ interface IStateCowsay {
   cowList: string[]
 }
 
-let state: IStateCowsay = {
+let initialState: IStateCowsay = {
   text: '',
   mode: '',
   eyes: '',
@@ -35,40 +35,16 @@ let state: IStateCowsay = {
   cowList: [],
 }
 
+const stateManager = stateUtil.createStateManager(stateKey, initialState)
+export { stateManager }
+
 function init() {
   // Get our list of cows
   cowsay.list((err, result) => {
-    setState({ cowList: result })
+    stateManager.setState({ cowList: result })
   })
 }
 init()
-
-export function getState() {
-  return _.clone(state)
-}
-
-export function setState(changes: Partial<IStateCowsay>, sync = false) {
-  state = _.assign({}, state, changes)
-  if (sync) {
-    PubSub.publishSync(stateKey)
-  } else {
-    PubSub.publish(stateKey) // With a frame delay
-  }
-}
-
-export function subscribe(component: React.Component) {
-  return PubSub.subscribe(stateKey, () => {
-    component.forceUpdate()
-  })
-}
-export function subscribeHook(callback: (state: IStateCowsay) => any) {
-  return PubSub.subscribe(stateKey, () => {
-    callback(getState())
-  })
-}
-export function unSubscribe(token) {
-  PubSub.unsubscribe(token)
-}
 
 export interface IAction {
   key: string
@@ -131,7 +107,7 @@ const modes: IMode[] = [
 export { modes }
 
 export function doShare() {
-  let state = getState()
+  let state = stateManager.getState()
   let { text } = state
 
   // let key = uuidv4()
@@ -155,7 +131,7 @@ export function doShare() {
 
 // Convert our internal options into cowsay-specific options
 export function calcOptions() {
-  let state = getState()
+  let state = stateManager.getState()
   let { text, mode } = state
 
   if (text.length === 0) {

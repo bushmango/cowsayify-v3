@@ -14,24 +14,25 @@ import Form from 'antd/lib/form'
 import * as stateCowsay from '../state/stateCowsay'
 import { modes, actions } from '../state/stateCowsay'
 
+const stateManager = stateCowsay.stateManager
 export default class CowsayOptions extends React.Component<{}> {
   _onChange_text = ev => {
-    stateCowsay.setState({ text: ev.target.value })
+    stateManager.setState({ text: ev.target.value })
   }
   _onChange_mode = val => {
-    stateCowsay.setState({ mode: val })
+    stateManager.setState({ mode: val })
   }
   _onChange_action = val => {
-    stateCowsay.setState({ action: val })
+    stateManager.setState({ action: val })
   }
   _onChange_eyes = ev => {
-    stateCowsay.setState({ eyes: ev.target.value })
+    stateManager.setState({ eyes: ev.target.value })
   }
   _onChange_tongue = ev => {
-    stateCowsay.setState({ tongue: ev.target.value })
+    stateManager.setState({ tongue: ev.target.value })
   }
   _onChange_cow = val => {
-    stateCowsay.setState({ cow: val })
+    stateManager.setState({ cow: val })
   }
   _onSubmit = () => {}
 
@@ -40,7 +41,7 @@ export default class CowsayOptions extends React.Component<{}> {
   }
 
   render() {
-    let state = stateCowsay.getState()
+    let state = stateManager.getState()
 
     return (
       <div className={styles.cowForm}>
