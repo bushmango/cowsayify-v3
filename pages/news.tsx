@@ -22,8 +22,12 @@ class About extends React.Component<{}> {
       <Layout title="news / changelog">
         <div>
           <h1>Cowsayify news!</h1>
-          {news.map(c => (
-            <div className={cowStyles.cowBox} style={{ marginBottom: '20px' }}>
+          {news.map((c, cIdx) => (
+            <div
+              key={cIdx}
+              className={cowStyles.cowBox}
+              style={{ marginBottom: '20px' }}
+            >
               <pre>
                 {cowsay.say({
                   text: c,
