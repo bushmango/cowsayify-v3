@@ -3,6 +3,11 @@ import styles from '../pages/cowsay.scss'
 
 const DisplayCow = (props: { options }) => {
   const { options } = props
+
+  if (!options || !options.text) {
+    return <div>whomp</div>
+  }
+
   return (
     <div className={styles.cowBox}>
       <pre>

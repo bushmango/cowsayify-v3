@@ -170,3 +170,10 @@ export async function fetchCow(key) {
 
   return { data }
 }
+
+export async function fetchHistory() {
+  const res = await fetch(host + '/cows-list')
+  const data = await res.json()
+
+  return { data: data }
+}

@@ -21,7 +21,9 @@ const COWS_TABLE = process.env.COWS_TABLE || 'cow-dev'
 //   dynamoDb = new AWS.DynamoDB.DocumentClient()
 // }
 
-let dynamoDb = new AWS.DynamoDB.DocumentClient()
+let dynamoDb = new AWS.DynamoDB.DocumentClient({
+  region: 'us-east-1',
+})
 
 app.use(cors())
 app.use(bodyParser.json({ strict: false }))
@@ -94,7 +96,8 @@ app.get('/cows/:key', function(req, res) {
 app.get('/cows-list', function(req, res) {
   const params = {
     TableName: COWS_TABLE,
-    ProjectionExpression: 'key, text, options',
+    ProjectionExpression: '#k, #t, options',
+    ExpressionAttributeNames: { '#k': 'Key', '#t': 'Text' },
     // ExpressionAttributeValues: {
     //     ':s': { N: '2' },
     //     ':e': { N: '09' },
@@ -108,9 +111,9 @@ app.get('/cows-list', function(req, res) {
       res.status(400).json({ errorMessage: 'Could not list cows', error })
     } else {
       //console.log("Success", data.Items);
-      data.Items.forEach(function(element, index, array) {
-        console.log(element.Title.S + ' (' + element.Subtitle.S + ')')
-      })
+      // data.Items.forEach(function(element, index, array) {
+      //   console.log(element.Title.S + ' (' + element.Subtitle.S + ')')
+      // })
       res.json({ data })
     }
   })

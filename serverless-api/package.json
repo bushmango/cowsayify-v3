@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --project tsconfig.json",
     "watch": "tsc --project tsconfig.json --watch",
-    "dev": "ts-node index2.ts"
+    "dev": "ts-node-dev start-dev.ts"
   },
   "author": "",
   "license": "MIT",
@@ -22,6 +22,8 @@
   "devDependencies": {
     "serverless-domain-manager": "^2.6.13",
     "serverless-dynamodb-local": "^0.2.36",
-    "serverless-offline": "^4.4.2"
+    "serverless-offline": "^4.4.2",
+    "ts-node": "^8.0.2",
+    "ts-node-dev": "^1.0.0-pre.32"
   }
 }
