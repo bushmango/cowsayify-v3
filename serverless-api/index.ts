@@ -2,7 +2,8 @@ const serverless = require('serverless-http')
 const bodyParser = require('body-parser')
 // const express = require('express')
 import * as express from 'express'
-import moment from 'moment'
+import * as moment from 'moment'
+import { createDebuggerStatement } from 'typescript'
 const app = express()
 const cors = require('cors')
 const AWS = require('aws-sdk')
@@ -44,13 +45,17 @@ app.post('/cows', function(req, res) {
     res.status(400).json({ error: '"options" must be a string' })
   }
 
+  let created = moment().format()
+  let item = {
+    key,
+    text,
+    options,
+    created,
+  }
+
   const params = {
     TableName: COWS_TABLE,
-    Item: {
-      key: key,
-      text: text,
-      options: options,
-    },
+    Item: item,
   }
 
   dynamoDb.put(params, error => {
@@ -58,12 +63,8 @@ app.post('/cows', function(req, res) {
       console.log(error)
       res.status(400).json({ error: 'Could not create cow' })
     }
-    res.json({
-      key,
-      text,
-      options,
-      created: moment().format(),
-    })
+
+    res.json(item)
   })
 })
 
@@ -100,7 +101,7 @@ app.get('/cows-list', function(req, res) {
   const params = {
     TableName: COWS_TABLE,
     ProjectionExpression: '#k, #t, options, created',
-    ExpressionAttributeNames: { '#k': 'Key', '#t': 'Text' },
+    ExpressionAttributeNames: { '#k': 'key', '#t': 'text' },
     // ExpressionAttributeValues: {
     //     ':s': { N: '2' },
     //     ':e': { N: '09' },

@@ -33,7 +33,10 @@ class History extends React.Component<{ data: any }> {
 
     let items = _.map(data.data.Items, c => {
       try {
-        return JSON.parse(c.options)
+        return {
+          created: c.created || 'Before history',
+          options: JSON.parse(c.options),
+        }
       } catch {
         return { text: 'JSON error' }
       }
@@ -41,13 +44,15 @@ class History extends React.Component<{ data: any }> {
 
     return (
       <Layout title="history">
-        {_.map(items, c => (
-          <div>
+        <div className="page_history" />
+        {_.map(items, (c, cIdx) => (
+          <div key={cIdx}>
             {/* item{c.text} {c.action} */}
-            <DisplayCow options={c} />
+            <div className="date">{c.created}</div>
+            <DisplayCow options={c.options} />
           </div>
         ))}
-        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+        <pre>{JSON.stringify(data, null, 2)}</pre>
       </Layout>
     )
   }

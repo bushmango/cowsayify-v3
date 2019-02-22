@@ -1,4 +1,4 @@
-import { app } from './index2'
+import { app } from './index'
 
 app.listen(3005, () => {
   console.log('serverless dev server listening on 3005')
