@@ -4,6 +4,7 @@ import * as React from 'react'
 const stateKey = 'cowsay'
 export { stateKey }
 
+import cowsay from 'cowsay-browser'
 import fetch from 'isomorphic-unfetch'
 // const uuidv4 = require('uuid/v4')
 const shortid = require('shortid')
@@ -19,6 +20,8 @@ interface IStateCowsay {
   tongue: string
   template: string
   action: 'say' | 'think'
+  cow: string
+  cowList: string[]
 }
 
 let state: IStateCowsay = {
@@ -28,7 +31,17 @@ let state: IStateCowsay = {
   tongue: '',
   template: '',
   action: 'say',
+  cow: 'default',
+  cowList: [],
 }
+
+function init() {
+  // Get our list of cows
+  cowsay.list((err, result) => {
+    setState({ cowList: result })
+  })
+}
+init()
 
 export function getState() {
   return _.clone(state)
@@ -152,6 +165,9 @@ export function calcOptions() {
   let options: any = {
     text,
     action: state.action,
+  }
+  if (state.cow && state.cow !== 'default') {
+    options.f = state.cow
   }
   if (state.eyes) {
     options.e = state.eyes

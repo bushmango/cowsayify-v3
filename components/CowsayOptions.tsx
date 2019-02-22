@@ -30,6 +30,9 @@ export default class CowsayOptions extends React.Component<{}> {
   _onChange_tongue = ev => {
     stateCowsay.setState({ tongue: ev.target.value })
   }
+  _onChange_cow = val => {
+    stateCowsay.setState({ cow: val })
+  }
   _onSubmit = () => {}
 
   _onClick_share = () => {
@@ -108,6 +111,23 @@ export default class CowsayOptions extends React.Component<{}> {
                 value={state.tongue}
                 onChange={this._onChange_tongue}
               />
+            </div>
+          </div>
+
+          <div className={styles.cowFormRow}>
+            <div className={styles.cowFormLabel}>Cow</div>
+            <div className={styles.cowFormItem}>
+              <Select
+                value={state.cow}
+                style={{ width: 120 }}
+                onChange={this._onChange_cow}
+              >
+                {state.cowList.map(c => (
+                  <Option key={c} value={c}>
+                    {c}
+                  </Option>
+                ))}
+              </Select>
             </div>
           </div>
 

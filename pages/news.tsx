@@ -10,6 +10,7 @@ const aboutStyles = require('./about.scss')
 const cowStyles = require('./cowsay.scss')
 
 const news = [
+  'Feb 22, 2019\nAdded different cows!',
   'Feb 22, 2019\nAdded history',
   'Feb 18, 2019\nAdded friendly urls, eyes, tongue, and the ability to think!',
   'Feb 17, 2019\nLaunched the cow',
