@@ -21,7 +21,7 @@ const Cows = (props: any) => {
 
   return (
     <Layout title="cows">
-      Cows
+      <h1>Cows</h1>
       {_.map(cows, c => (
         <div key={c}>
           {/* <div> {c} </div> */}
