@@ -2,6 +2,7 @@ const serverless = require('serverless-http')
 const bodyParser = require('body-parser')
 // const express = require('express')
 import * as express from 'express'
+import moment from 'moment'
 const app = express()
 const cors = require('cors')
 const AWS = require('aws-sdk')
@@ -58,9 +59,10 @@ app.post('/cows', function(req, res) {
       res.status(400).json({ error: 'Could not create cow' })
     }
     res.json({
-      key: key,
-      text: text,
-      options: options,
+      key,
+      text,
+      options,
+      created: moment().format(),
     })
   })
 })
@@ -80,11 +82,12 @@ app.get('/cows/:key', function(req, res) {
       res.status(400).json({ error: 'Could not get cow' })
     }
     if (result.Item) {
-      const { key, text, options } = result.Item
+      const { key, text, options, created } = result.Item
       res.json({
-        key: key,
-        text: text,
-        options: options,
+        key,
+        text,
+        options,
+        created,
       })
     } else {
       res.status(404).json({ error: 'Cow not found' })
@@ -96,7 +99,7 @@ app.get('/cows/:key', function(req, res) {
 app.get('/cows-list', function(req, res) {
   const params = {
     TableName: COWS_TABLE,
-    ProjectionExpression: '#k, #t, options',
+    ProjectionExpression: '#k, #t, options, created',
     ExpressionAttributeNames: { '#k': 'Key', '#t': 'Text' },
     // ExpressionAttributeValues: {
     //     ':s': { N: '2' },

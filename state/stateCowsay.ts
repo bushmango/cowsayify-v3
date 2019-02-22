@@ -1,4 +1,5 @@
 import { _ } from '../imports/lodash'
+import moment from 'moment'
 import * as React from 'react'
 const stateKey = 'cowsay'
 export { stateKey }
@@ -126,6 +127,7 @@ export function doShare() {
       key: key,
       text: text,
       options: JSON.stringify(calcOptions()),
+      created: moment().format(),
     }),
   }).then(r => {
     //Router.push('/cowsaid?key=' + key)
