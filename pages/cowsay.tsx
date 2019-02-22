@@ -54,14 +54,11 @@ class Cowsay extends React.Component<{}> {
 
     return (
       <Layout title="cowsay">
-        <CowsayWithHooks />
-
         <CowsayOptions />
-
         <DisplayCow options={options} />
       </Layout>
     )
   }
 }
 
-export default CowsayWithHooks
+export default Cowsay

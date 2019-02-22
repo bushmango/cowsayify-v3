@@ -69,7 +69,7 @@ app.post('/cows', function(req, res) {
 })
 
 // Get cow
-app.get('/cows/:key', function(req, res) {
+app.get('/cows/:key', async (req, res) => {
   const params = {
     TableName: COWS_TABLE,
     Key: {
@@ -77,11 +77,9 @@ app.get('/cows/:key', function(req, res) {
     },
   }
 
-  dynamoDb.get(params, (error, result) => {
-    if (error) {
-      console.log(error)
-      res.status(400).json({ error: 'Could not get cow' })
-    }
+  // Async await
+  try {
+    let result = await dynamoDb.get(params).promise()
     if (result.Item) {
       const { key, text, options, created } = result.Item
       res.json({
@@ -93,11 +91,33 @@ app.get('/cows/:key', function(req, res) {
     } else {
       res.status(404).json({ error: 'Cow not found' })
     }
-  })
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({ error: 'Could not get cow' })
+  }
+
+  // Was
+  // dynamoDb.get(params, (error, result) => {
+  //   if (error) {
+  //     console.log(error)
+  //     res.status(400).json({ error: 'Could not get cow' })
+  //   }
+  //   if (result.Item) {
+  //     const { key, text, options, created } = result.Item
+  //     res.json({
+  //       key,
+  //       text,
+  //       options,
+  //       created,
+  //     })
+  //   } else {
+  //     res.status(404).json({ error: 'Cow not found' })
+  //   }
+  // })
 })
 
 // List cows
-app.get('/cows-list', function(req, res) {
+app.get('/cows-list', async (req, res) => {
   const params = {
     TableName: COWS_TABLE,
     ProjectionExpression: '#k, #t, options, created',
@@ -109,18 +129,13 @@ app.get('/cows-list', function(req, res) {
     //   },
   }
 
-  dynamoDb.scan(params, (error, data) => {
-    if (error) {
-      console.log(error)
-      res.status(400).json({ errorMessage: 'Could not list cows', error })
-    } else {
-      //console.log("Success", data.Items);
-      // data.Items.forEach(function(element, index, array) {
-      //   console.log(element.Title.S + ' (' + element.Subtitle.S + ')')
-      // })
-      res.json({ data })
-    }
-  })
+  try {
+    let data = await dynamoDb.scan(params).promise()
+    res.json({ data })
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({ errorMessage: 'Could not list cows', error })
+  }
 })
 
 const handler = serverless(app)
