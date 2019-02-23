@@ -8,7 +8,7 @@ const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 module.exports = (phase, { defaultConfig }) => {
   let config = withTypescript(
     withSass({
-      webpack (config, options) {
+      webpack(config, options) {
         // Do not run type checking twice:
         if (options.isServer) {
           config.plugins.push(new ForkTsCheckerWebpackPlugin())
@@ -58,8 +58,8 @@ module.exports = (phase, { defaultConfig }) => {
       cssModules: true,
       cssLoaderOptions: {
         camelCase: true,
-        namedExport: true
-      }
+        namedExport: true,
+      },
     })
   )
 
@@ -67,7 +67,8 @@ module.exports = (phase, { defaultConfig }) => {
     config.env = {
       // host: 'http://localhost:4000',
       // host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
-      host: 'http://localhost:3005'
+      host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
+      // host: 'http://localhost:3005'
     }
 
     return config
@@ -76,7 +77,7 @@ module.exports = (phase, { defaultConfig }) => {
 
     config.env = {
       // host: 'https://api.cowsayify.com',
-      host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev'
+      host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
     }
 
     return config

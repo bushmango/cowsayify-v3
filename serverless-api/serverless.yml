@@ -4,8 +4,17 @@ service: my-express-application
 
 plugins:
   # - serverless-dynamodb-local
+  # - serverless-plugin-typescript
+  - serverless-webpack
   - serverless-domain-manager
   - serverless-offline
+
+package:
+  exclude:
+    - '**/*.ts'
+    - 'test/**'
+    - 'scripts/**'
+    - '.vscode/**'
 
 custom:
   tableName_cow: 'cow-${self:provider.stage}'
@@ -43,13 +52,32 @@ provider:
     COWS_TABLE: ${self:custom.tableName_cow}
 
 functions:
-  app:
-    handler: index.handler
+  http:
+    handler: src/lambda.http
+    timeout: 2
     events:
       - http: ANY /
         cors: true
-      - http: 'ANY {proxy+}'
+      - http: ANY /{proxy+}
         cors: true
+
+# functions:
+#   hello:
+#     handler: handler.hello
+#     events:
+#       - http:
+#           method: get
+#           path: hello
+#           integration: lambda
+#           cors: true
+# functions:
+#   app:
+#     handler: index.handler
+#     events:
+#       - http: ANY /
+#         cors: true
+#       - http: 'ANY {proxy+}'
+#         cors: true
 
 resources:
   Resources:

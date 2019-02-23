@@ -10,6 +10,13 @@
 // const cors = require('cors')
 // const AWS = require('aws-sdk')
 
+// export const hello = (event, context, cb) =>
+//   cb(null, {
+//     message:
+//       'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
+//     event,
+//   })
+
 // //const USERS_TABLE = process.env.USERS_TABLE
 // const COWS_TABLE = process.env.COWS_TABLE || 'cow-dev'
 
