@@ -10,8 +10,10 @@ const aboutStyles = require('./about.scss')
 const cowStyles = require('./cowsay.scss')
 
 const news = [
-  'Feb 2, 2019\nAdded friendly urls, eyes, tongue, and the ability to think!',
-  'Feb 1, 2019\nLaunched the cow',
+  'Feb 22, 2019\nAdded different cows!',
+  'Feb 22, 2019\nAdded history',
+  'Feb 18, 2019\nAdded friendly urls, eyes, tongue, and the ability to think!',
+  'Feb 17, 2019\nLaunched the cow',
 ]
 
 class About extends React.Component<{}> {
@@ -20,8 +22,12 @@ class About extends React.Component<{}> {
       <Layout title="news / changelog">
         <div>
           <h1>Cowsayify news!</h1>
-          {news.map(c => (
-            <div className={cowStyles.cowBox} style={{ marginBottom: '20px' }}>
+          {news.map((c, cIdx) => (
+            <div
+              key={cIdx}
+              className={cowStyles.cowBox}
+              style={{ marginBottom: '20px' }}
+            >
               <pre>
                 {cowsay.say({
                   text: c,

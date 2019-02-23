@@ -1,13 +1,15 @@
-import { _ } from '../imports/lodash'
-import * as React from 'react'
+import * as stateUtil from './stateUtil'
 const stateKey = 'cowsay'
 export { stateKey }
 
+import { _ } from '../imports/lodash'
+import moment from 'moment'
+
+import cowsay from 'cowsay-browser'
 import fetch from 'isomorphic-unfetch'
 // const uuidv4 = require('uuid/v4')
 const shortid = require('shortid')
 import Router from 'next/router'
-import * as PubSub from 'pubsub-js'
 
 const host = process.env.host
 
@@ -18,34 +20,31 @@ interface IStateCowsay {
   tongue: string
   template: string
   action: 'say' | 'think'
+  cow: string
+  cowList: string[]
 }
 
-let state: IStateCowsay = {
+let initialState: IStateCowsay = {
   text: '',
   mode: '',
   eyes: '',
   tongue: '',
   template: '',
   action: 'say',
+  cow: 'default',
+  cowList: [],
 }
 
-export function getState() {
-  return _.clone(state)
-}
+const stateManager = stateUtil.createStateManager(stateKey, initialState)
+export { stateManager }
 
-export function setState(changes: Partial<IStateCowsay>) {
-  state = _.assign({}, state, changes)
-  PubSub.publish(stateKey)
-}
-
-export function subscribe(component: React.Component) {
-  return PubSub.subscribe(stateKey, () => {
-    component.forceUpdate()
+function init() {
+  // Get our list of cows
+  cowsay.list((err, result) => {
+    stateManager.setState({ cowList: result })
   })
 }
-export function unSubscribe(token) {
-  PubSub.unsubscribe(token)
-}
+init()
 
 export interface IAction {
   key: string
@@ -108,7 +107,7 @@ const modes: IMode[] = [
 export { modes }
 
 export function doShare() {
-  let state = getState()
+  let state = stateManager.getState()
   let { text } = state
 
   // let key = uuidv4()
@@ -122,6 +121,7 @@ export function doShare() {
       key: key,
       text: text,
       options: JSON.stringify(calcOptions()),
+      created: moment().format(),
     }),
   }).then(r => {
     //Router.push('/cowsaid?key=' + key)
@@ -131,7 +131,7 @@ export function doShare() {
 
 // Convert our internal options into cowsay-specific options
 export function calcOptions() {
-  let state = getState()
+  let state = stateManager.getState()
   let { text, mode } = state
 
   if (text.length === 0) {
@@ -141,6 +141,9 @@ export function calcOptions() {
   let options: any = {
     text,
     action: state.action,
+  }
+  if (state.cow && state.cow !== 'default') {
+    options.f = state.cow
   }
   if (state.eyes) {
     options.e = state.eyes
@@ -165,4 +168,11 @@ export async function fetchCow(key) {
   const data = await res.json()
 
   return { data }
+}
+
+export async function fetchHistory() {
+  const res = await fetch(host + '/cows-list')
+  const data = await res.json()
+
+  return { data: data }
 }
