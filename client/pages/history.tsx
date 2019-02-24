@@ -52,7 +52,7 @@ class History extends React.Component<{ data: any }> {
             <DisplayCow options={c.options} />
           </div>
         ))}
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </Layout>
     )
   }
