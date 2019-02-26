@@ -8,36 +8,33 @@ import DisplayCow from '../components/DisplayCow'
 
 import * as stateCowsay from '../state/stateCowsay'
 
-class Cowsaid extends React.Component<{ data: any }> {
-  static async getInitialProps({ query }) {
-    const { key } = query
+function CowsaidPage(props: { data: any }) {
+  let { data } = props
+  let { key, text, options } = data
 
-    return await stateCowsay.fetchCow(key)
+  if (!text || text.length === 0) {
+    text = 'Moo'
   }
 
-  render() {
-    let { data } = this.props
-    let { key, text, options } = data
-
-    if (!text || text.length === 0) {
-      text = 'Moo'
-    }
-
-    if (data.error || !options) {
-      text = '404 cow not found!'
-      options = { d: true }
-      options.text = text
-    } else {
-      options = JSON.parse(options || {})
-      options.text = text
-    }
-
-    return (
-      <Layout title="cowsaid">
-        <DisplayCow options={options} />
-      </Layout>
-    )
+  if (data.error || !options) {
+    text = '404 cow not found!'
+    options = { d: true }
+    options.text = text
+  } else {
+    options = JSON.parse(options || {})
+    options.text = text
   }
+
+  return (
+    <Layout title="cowsaid">
+      <DisplayCow options={options} />
+    </Layout>
+  )
 }
 
-export default Cowsaid
+CowsaidPage.getInitialProps = async ({ query }) => {
+  const { key } = query
+  return await stateCowsay.fetchCow(key)
+}
+
+export default CowsaidPage

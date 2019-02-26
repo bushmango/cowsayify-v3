@@ -17,10 +17,8 @@ const CowsayWithHooks = (props: any) => {
 
   return (
     <Layout title="cowsay">
-      {/* {cowsay.text} */}
       <CowsayOptions />
       <DisplayCow options={options} />
-      {/* Hooks version! */}
     </Layout>
   )
 }
