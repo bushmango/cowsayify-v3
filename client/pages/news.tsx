@@ -5,6 +5,8 @@ import Header from '../components/Header'
 
 import cowsay from 'cowsay-browser'
 
+import DisplayCow from '../components/DisplayCow'
+
 //import styles from './about.scss'
 const aboutStyles = require('./about.scss')
 const cowStyles = require('./cowsay.scss')
@@ -22,18 +24,12 @@ class About extends React.Component<{}> {
       <Layout title="news / changelog">
         <div>
           <h1>Cowsayify news!</h1>
-          {news.map((c, cIdx) => (
-            <div
-              key={cIdx}
-              className={cowStyles.cowBox}
-              style={{ marginBottom: '20px' }}
-            >
-              <pre>
-                {cowsay.say({
-                  text: c,
-                })}
-              </pre>
-            </div>
+          {news.map((newsItem, cIdx) => (
+            <DisplayCow
+              options={{
+                text: newsItem,
+              }}
+            />
           ))}
         </div>
       </Layout>
