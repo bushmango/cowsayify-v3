@@ -1,4 +1,4 @@
-import styles from './cowsay.scss'
+import historyStyles from './history.scss'
 
 import * as React from 'react'
 import { _ } from '../imports/lodash'
@@ -39,14 +39,16 @@ function HistoryPage(props: { data: any }) {
 
   return (
     <Layout title="history">
-      <div className="page_history" />
-      {_.map(items, (c, cIdx) => (
-        <div key={cIdx}>
-          {/* item{c.text} {c.action} */}
-          <div className="date">{c.created}</div>
-          <DisplayCow options={c.options} />
-        </div>
-      ))}
+      <h1>Messages sent with cowsayify</h1>
+      <div className={historyStyles.page_history}>
+        {_.map(items, (c, cIdx) => (
+          <div key={cIdx}>
+            {/* item{c.text} {c.action} */}
+            <div className={historyStyles.date}>{c.created}</div>
+            <DisplayCow options={c.options} />
+          </div>
+        ))}
+      </div>
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </Layout>
   )

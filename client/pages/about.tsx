@@ -1,9 +1,8 @@
 import * as React from 'react'
 
 import Layout from '../components/Layout'
-import Header from '../components/Header'
 
-import cowsay from 'cowsay-browser'
+import DisplayCow from '../components/DisplayCow'
 
 //import styles from './about.scss'
 const aboutStyles = require('./about.scss')
@@ -23,56 +22,54 @@ const keywords = [
   'sass',
 ]
 
-class About extends React.Component<{}> {
-  render() {
-    return (
-      <Layout title="about">
-        <div>
-          <h1>About cowsayify</h1>
-          <div className={aboutStyles.section}>
-            Originally made by Tony Monroe, cowsay is an iconic lunux command to
-            send messages
-          </div>
-          <div className={aboutStyles.section}>
-            <a href="https://en.wikipedia.org/wiki/Cowsay">Wikipedia: Cowsay</a>
-          </div>
-          <div className={aboutStyles.section}>
-            Converted for the web by Steve Bushman
-          </div>
-          <div className={aboutStyles.section}>
-            Demonstrates these technologies:
-            <br />
-            {keywords.map(c => (
-              <div key={c} className={aboutStyles.keyword}>
-                {c}
-              </div>
-            ))}
-          </div>
-          <div className={aboutStyles.section}>
-            Source available on github!
-            <br />
-            <a href="https://github.com/bushmango/cowsayify-v3">
-              https://github.com/bushmango/cowsayify-v3
-            </a>
-          </div>
-
-          <div className={aboutStyles.section}>
-            More good stuff at <br />
-            <a href="https://stevebushman.com">https://stevebushman.com</a>
-          </div>
-
-          <div className={cowStyles.cowBox}>
-            <pre>
-              {cowsay.say({
-                text:
-                  'Copyright 2018 Steve Bushman\nMIT License\nhttps://github.com/bushmango/cowsayify-v3',
-              })}
-            </pre>
-          </div>
-        </div>
-      </Layout>
-    )
-  }
+function Section(props: any) {
+  return <div className={aboutStyles.section}>{props.children}</div>
 }
 
-export default About
+function AboutPage(props: { data: any }) {
+  return (
+    <Layout title="about">
+      <div>
+        <h1>About cowsayify</h1>
+        <Section>
+          Originally made by Tony Monroe, cowsay is an iconic lunux command to
+          send messages
+        </Section>
+        <Section>
+          <a href="https://en.wikipedia.org/wiki/Cowsay">Wikipedia: Cowsay</a>
+        </Section>
+        <Section>Converted for the web by Steve Bushman</Section>
+        <Section>
+          Demonstrates these technologies:
+          <br />
+          {keywords.map(c => (
+            <div key={c} className={aboutStyles.keyword}>
+              {c}
+            </div>
+          ))}
+        </Section>
+        <Section>
+          Source available on github!
+          <br />
+          <a href="https://github.com/bushmango/cowsayify-v3">
+            https://github.com/bushmango/cowsayify-v3
+          </a>
+        </Section>
+
+        <Section>
+          More good stuff at <br />
+          <a href="https://stevebushman.com">https://stevebushman.com</a>
+        </Section>
+
+        <DisplayCow
+          options={{
+            text:
+              'Copyright 2018 Steve Bushman\nMIT License\nhttps://github.com/bushmango/cowsayify-v3',
+          }}
+        />
+      </div>
+    </Layout>
+  )
+}
+
+export default AboutPage
