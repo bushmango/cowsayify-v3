@@ -9,6 +9,7 @@ import Header from '../components/Header'
 
 class Index extends React.Component<{ data: any }> {
   componentDidMount() {
+    // Simple redirect
     window.location.href = '/cowsay'
   }
 
