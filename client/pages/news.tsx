@@ -18,23 +18,22 @@ const news = [
   'Feb 17, 2019\nLaunched the cow',
 ]
 
-class About extends React.Component<{}> {
-  render() {
-    return (
-      <Layout title="news / changelog">
-        <div>
-          <h1>Cowsayify news!</h1>
-          {news.map((newsItem, cIdx) => (
-            <DisplayCow
-              options={{
-                text: newsItem,
-              }}
-            />
-          ))}
-        </div>
-      </Layout>
-    )
-  }
+const NewsPage = (props: any) => {
+  return (
+    <Layout title="news / changelog">
+      <div>
+        <h1>Cowsayify news!</h1>
+        {news.map((newsItem, cIdx) => (
+          <DisplayCow
+            key={cIdx}
+            options={{
+              text: newsItem,
+            }}
+          />
+        ))}
+      </div>
+    </Layout>
+  )
 }
 
-export default About
+export default NewsPage

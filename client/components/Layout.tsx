@@ -1,10 +1,39 @@
+import * as React from 'react'
+const { useEffect } = React
+
 import styles from './styles.scss'
 // const styles = require('./styles.scss')
 
 import Head from 'next/head'
 import Header from './Header'
 
+import ReactGA from 'react-ga'
+const googleAnalyticsTrackingId = 'UA-135264357-1'
+ReactGA.initialize(googleAnalyticsTrackingId)
+log('ga init -> ' + googleAnalyticsTrackingId)
+
+function log(...x) {
+  if (console && console.log) {
+    console.log(...x)
+  }
+}
+
 const Layout = (props: { title: string; children: any }) => {
+  useEffect(() => {
+    // Update the document title using the browser API
+    let url = window.location.pathname + window.location.search
+    if (
+      location.hostname === 'localhost' ||
+      location.hostname === '127.0.0.1' ||
+      location.hostname === ''
+    ) {
+      log('page -> ' + url)
+    } else {
+      log('ga -> ' + url)
+      ReactGA.pageview(url)
+    }
+  })
+
   return (
     <div className={styles.layout}>
       <Head>

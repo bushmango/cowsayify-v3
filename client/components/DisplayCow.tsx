@@ -1,5 +1,5 @@
 import cowsay from 'cowsay-browser'
-import styles from '../pages/cowsay.scss'
+import displayCowStyles from './DisplayCow.scss'
 
 const DisplayCow = (props: { options }) => {
   let { options } = props
@@ -11,7 +11,7 @@ const DisplayCow = (props: { options }) => {
   }
 
   return (
-    <div className={styles.cowBox}>
+    <div className={displayCowStyles.cowBox}>
       <pre>
         {options.action === 'think'
           ? cowsay.think(options)

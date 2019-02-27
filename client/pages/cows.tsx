@@ -14,6 +14,7 @@ const Cows = (props: any) => {
   return (
     <Layout title="cows">
       <h1>Cows</h1>
+      <h2>These are the 'cows' you can use with cowsayify</h2>
       {_.map(cowsay.cowList, c => (
         <div key={c}>
           {/* <div> {c} </div> */}
