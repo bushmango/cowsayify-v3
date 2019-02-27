@@ -4,6 +4,8 @@ import * as PubSub from 'pubsub-js'
 import { _ } from '../imports/lodash'
 
 let verbose = false
+let freeze = true
+let clone = false
 export function setVerbose(val: boolean) {
   verbose = val
 }
@@ -23,21 +25,38 @@ export interface IStateManager<T> {
   unSubscribe: (token) => void
 }
 
+export function tryCloneAndFreeze(state) {
+  let nextState = state
+  if (clone) {
+    nextState = _.cloneDeep(state)
+  }
+  if (freeze && Object.freeze) {
+    Object.freeze(nextState)
+  }
+  return nextState
+}
+
+export function tryFreeze(state) {
+  if (freeze && Object.freeze) {
+    Object.freeze(tryFreeze)
+  }
+}
+
 export function createStateManager<T>(
   stateKey,
   initialState: T
 ): IStateManager<T> {
-  let state = initialState
+  let state = tryCloneAndFreeze(initialState)
 
   const getState = () => {
-    return _.clone(state)
+    return tryCloneAndFreeze(state)
   }
 
   return {
     stateKey,
     getState,
     setState: (changes: Partial<T>, sync = false) => {
-      state = _.assign({}, state, changes)
+      state = tryFreeze(_.assign({}, state, changes))
       if (verbose) {
         log('updated ' + stateKey)
       }
