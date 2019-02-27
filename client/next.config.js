@@ -5,6 +5,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
+const useCssModules = true
+
 module.exports = (phase, { defaultConfig }) => {
   let config = withTypescript(
     withSass({
@@ -15,8 +17,6 @@ module.exports = (phase, { defaultConfig }) => {
         }
 
         if (!options.isServer) {
-          // console.log('default loaders 2')
-          // console.log(JSON.stringify(options.defaultLoaders.sass, null, 2))
           // See: https://github.com/zeit/next.js/blob/master/examples/with-typings-for-css-modules/next.config.js
           // for (let entry of options.defaultLoaders.css) {
           //   if (entry.loader === 'css-loader') {
@@ -30,8 +30,6 @@ module.exports = (phase, { defaultConfig }) => {
               break
             }
           }
-          // console.log('default loaders 3')
-          // console.log(JSON.stringify(options.defaultLoaders.sass, null, 2))
         }
 
         for (let rule of config.module.rules) {
@@ -51,23 +49,25 @@ module.exports = (phase, { defaultConfig }) => {
           }
         }
 
-        // console.log('config')
-        // console.log(JSON.stringify(config.module.rules, null, 2))
         return config
       },
-      cssModules: true,
+      cssModules: useCssModules,
       cssLoaderOptions: {
         camelCase: true,
         namedExport: true,
+        importLoaders: 1,
+        localIdentName:
+          phase === PHASE_DEVELOPMENT_SERVER
+            ? '[name]_[local]_[hash:base64:5]'
+            : '[hash:base64]',
       },
     })
   )
 
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     config.env = {
-      // host: 'http://localhost:4000',
       // host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
-      host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
+      host: 'https://api.cowsayify.com/',
       // host: 'http://localhost:3005'
     }
 
@@ -76,8 +76,8 @@ module.exports = (phase, { defaultConfig }) => {
     config.target = 'serverless'
 
     config.env = {
-      // host: 'https://api.cowsayify.com',
-      host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
+      // host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
+      host: 'https://api.cowsayify.com/',
     }
 
     return config
