@@ -28,6 +28,7 @@ const NewsPage = (props: any) => {
             key={cIdx}
             options={{
               text: newsItem,
+              action: 'say',
             }}
           />
         ))}

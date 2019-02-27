@@ -65,6 +65,7 @@ function AboutPage(props: { data: any }) {
           options={{
             text:
               'Copyright 2018 Steve Bushman\nMIT License\nhttps://github.com/bushmango/cowsayify-v3',
+            action: 'say',
           }}
         />
       </div>
