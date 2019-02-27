@@ -50,7 +50,7 @@ export interface IAction {
   key: string
   label: string
 }
-const actions: IMode[] = [
+const actions: IAction[] = [
   {
     key: 'say',
     label: 'Say',
@@ -129,8 +129,23 @@ export function doShare() {
   })
 }
 
+export interface ICowOptions {
+  text: string
+  action: 'think' | 'say',
+  e?: string,
+  T?: string,
+  b?: boolean,
+  d?: boolean,
+  g?: boolean,
+  p?: boolean,
+  s?: boolean,
+  t?: boolean,
+  w?: boolean,
+  y?: boolean,
+}
+
 // Convert our internal options into cowsay-specific options
-export function calcOptions() {
+export function calcOptions(): ICowOptions {
   let state = stateManager.getState()
   let { text, mode } = state
 
