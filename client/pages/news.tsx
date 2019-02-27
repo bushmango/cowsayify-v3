@@ -18,13 +18,14 @@ const news = [
   'Feb 17, 2019\nLaunched the cow',
 ]
 
-const AboutPage = (props: any) => {
+const NewsPage = (props: any) => {
   return (
     <Layout title="news / changelog">
       <div>
         <h1>Cowsayify news!</h1>
         {news.map((newsItem, cIdx) => (
           <DisplayCow
+            key={cIdx}
             options={{
               text: newsItem,
             }}
@@ -35,4 +36,4 @@ const AboutPage = (props: any) => {
   )
 }
 
-export default AboutPage
+export default NewsPage
