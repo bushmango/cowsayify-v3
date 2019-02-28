@@ -35,7 +35,12 @@ let initialState: IStateCowsay = {
   cowList: [],
 }
 
-const stateManager = stateUtil.createStateManager(stateKey, initialState)
+const stateManager = stateUtil.createStateManager(
+  stateKey,
+  '1.0.0',
+  initialState,
+  {}
+)
 export { stateManager }
 
 function init() {
@@ -131,17 +136,17 @@ export function doShare() {
 
 export interface ICowOptions {
   text: string
-  action: 'think' | 'say',
-  e?: string,
-  T?: string,
-  b?: boolean,
-  d?: boolean,
-  g?: boolean,
-  p?: boolean,
-  s?: boolean,
-  t?: boolean,
-  w?: boolean,
-  y?: boolean,
+  action: 'think' | 'say'
+  e?: string
+  T?: string
+  b?: boolean
+  d?: boolean
+  g?: boolean
+  p?: boolean
+  s?: boolean
+  t?: boolean
+  w?: boolean
+  y?: boolean
 }
 
 // Convert our internal options into cowsay-specific options

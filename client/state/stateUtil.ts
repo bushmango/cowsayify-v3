@@ -3,19 +3,18 @@ const { useState, useEffect } = React
 import * as PubSub from 'pubsub-js'
 import { _ } from '../imports/lodash'
 
-let verbose = false
-let freeze = true
-let clone = false
-export function setVerbose(val: boolean) {
-  verbose = val
-}
-
 function log(...x) {
   if (console && console.log) {
     console.log(...x)
   }
 }
 
+export interface IStateManagerOptions {
+  useVerbose: boolean
+  useFreeze: boolean
+  useClone: boolean
+  useLocalStorage: boolean
+}
 export interface IStateManager<T> {
   stateKey: string
   getState: () => T
@@ -23,41 +22,74 @@ export interface IStateManager<T> {
   subscribe: (component: React.Component) => any
   subscribeHook: (callback: (state: T) => any) => any
   unSubscribe: (token) => void
+  setOptions: (options: Partial<IStateManagerOptions>) => void
+  getOptions: () => IStateManagerOptions
 }
 
-export function tryCloneAndFreeze(state) {
+export function tryCloneAndFreeze(
+  state,
+  localStorageKey,
+  options: IStateManagerOptions
+) {
   let nextState = state
-  if (clone) {
+  if (options.useClone) {
     nextState = _.cloneDeep(state)
   }
-  if (freeze && Object.freeze) {
+  if (options.useFreeze && Object.freeze) {
     Object.freeze(nextState)
+  }
+  if (options.useLocalStorage) {
+    localStorage.setItem(localStorageKey, JSON.stringify(nextState))
   }
   return nextState
 }
 
-export function tryFreeze(state) {
-  if (freeze && Object.freeze) {
+export function tryFreeze(state, options: IStateManagerOptions) {
+  if (options.useFreeze && Object.freeze) {
     Object.freeze(tryFreeze)
   }
 }
 
 export function createStateManager<T>(
   stateKey,
-  initialState: T
+  version: string,
+  initialState: T,
+  options: Partial<IStateManagerOptions>
 ): IStateManager<T> {
-  let state = tryCloneAndFreeze(initialState)
+  let _options: IStateManagerOptions = _.defaults(options, {
+    useFreeze: true,
+    useClone: false,
+    useLocalStorage: true,
+  })
 
+  const localStorageKey = 'state:' + stateKey + ':' + version
+
+  // Try to restore our local state
+  if (_options.useLocalStorage) {
+    let stored = localStorage.getItem(localStorageKey)
+    if (stored) {
+      try {
+        initialState = _.assign({}, initialState, JSON.parse(stored))
+      } catch (err) {
+        log('Error loading state from localStorage: ' + stateKey)
+      }
+    }
+  }
+
+  let state = tryCloneAndFreeze(initialState, localStorageKey, _options)
   const getState = () => {
-    return tryCloneAndFreeze(state)
+    return tryCloneAndFreeze(state, localStorageKey, _options)
   }
 
   return {
     stateKey,
-    getState,
+    setOptions: (options: IStateManagerOptions) => {},
+    getOptions: () => {
+      return _options
+    },
     setState: (changes: Partial<T>, sync = false) => {
-      state = tryFreeze(_.assign({}, state, changes))
-      if (verbose) {
+      state = tryFreeze(_.assign({}, state, changes), _options)
+      if (_options.useVerbose) {
         log('updated ' + stateKey)
       }
       if (sync) {
@@ -66,11 +98,12 @@ export function createStateManager<T>(
         PubSub.publish(stateKey) // With a frame delay
       }
     },
+    getState,
     subscribe: (component: React.Component) => {
       let token = PubSub.subscribe(stateKey, () => {
         component.forceUpdate()
       })
-      if (verbose) {
+      if (options.useVerbose) {
         log('subscribed ' + stateKey + '|' + token)
       }
       return token
@@ -79,13 +112,13 @@ export function createStateManager<T>(
       let token = PubSub.subscribe(stateKey, () => {
         callback(getState())
       })
-      if (verbose) {
+      if (_options.useVerbose) {
         log('subscribed hook ' + stateKey + '|' + token)
       }
       return token
     },
     unSubscribe: token => {
-      if (verbose) {
+      if (_options.useVerbose) {
         log('unsubscribed ' + stateKey + '|' + token)
       }
       PubSub.unsubscribe(token)
