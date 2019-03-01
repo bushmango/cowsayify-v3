@@ -46,7 +46,10 @@ export { stateManager }
 function init() {
   // Get our list of cows
   cowsay.list((err, result) => {
-    stateManager.setState({ cowList: result })
+    //stateManager.setState({ cowList: result })
+    stateManager.produce(draftState => {
+      draftState.cowList = result
+    })
   })
 }
 init()

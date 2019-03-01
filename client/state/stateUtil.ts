@@ -2,6 +2,7 @@ import * as React from 'react'
 const { useState, useEffect } = React
 import * as PubSub from 'pubsub-js'
 import { _ } from '../imports/lodash'
+import produce from 'immer'
 
 function log(...x) {
   if (console && console.log) {
@@ -14,15 +15,20 @@ export interface IStateManagerOptions {
   useFreeze: boolean
   useClone: boolean
   useLocalStorage: boolean
+  useImmer: boolean
+}
+export interface IStateManagerLiveOptions {
+  useVerbose: boolean
 }
 export interface IStateManager<T> {
   stateKey: string
   getState: () => T
   setState: (changes: Partial<T>) => any
+  produce: (producer: (draftState: T) => void) => void
   subscribe: (component: React.Component) => any
   subscribeHook: (callback: (state: T) => any) => any
   unSubscribe: (token) => void
-  setOptions: (options: Partial<IStateManagerOptions>) => void
+  setOptions: (options: Partial<IStateManagerLiveOptions>) => void
   getOptions: () => IStateManagerOptions
 }
 
@@ -32,12 +38,14 @@ export function tryCloneAndFreeze(
   options: IStateManagerOptions
 ) {
   let nextState = state
-  if (options.useClone) {
+
+  if (options.useImmer) {
+  } else if (options.useClone) {
     nextState = _.cloneDeep(state)
-  }
-  if (options.useFreeze && Object.freeze) {
+  } else if (options.useFreeze && Object.freeze) {
     Object.freeze(nextState)
   }
+
   if (options.useLocalStorage) {
     localStorage.setItem(localStorageKey, JSON.stringify(nextState))
   }
@@ -45,7 +53,9 @@ export function tryCloneAndFreeze(
 }
 
 export function tryFreeze(state, options: IStateManagerOptions) {
-  if (options.useFreeze && Object.freeze) {
+  if (options.useImmer) {
+    // Don't freeze
+  } else if (options.useFreeze && Object.freeze) {
     Object.freeze(tryFreeze)
   }
 }
@@ -57,9 +67,10 @@ export function createStateManager<T>(
   options: Partial<IStateManagerOptions>
 ): IStateManager<T> {
   let _options: IStateManagerOptions = _.defaults(options, {
-    useFreeze: true,
+    useFreeze: false,
     useClone: false,
     useLocalStorage: true,
+    useImmer: true,
   })
 
   const localStorageKey = 'state:' + stateKey + ':' + version
@@ -77,6 +88,11 @@ export function createStateManager<T>(
   }
 
   let state = tryCloneAndFreeze(initialState, localStorageKey, _options)
+
+  if (_options.useImmer) {
+    state = produce(state, draftState => {})
+  }
+
   const getState = () => {
     return tryCloneAndFreeze(state, localStorageKey, _options)
   }
@@ -88,7 +104,13 @@ export function createStateManager<T>(
       return _options
     },
     setState: (changes: Partial<T>, sync = false) => {
-      state = tryFreeze(_.assign({}, state, changes), _options)
+      if (_options.useImmer) {
+        state = produce(state, draftState => {
+          _.assign(draftState, changes)
+        })
+      } else {
+        state = tryFreeze(_.assign({}, state, changes), _options)
+      }
       if (_options.useVerbose) {
         log('updated ' + stateKey)
       }
@@ -96,6 +118,15 @@ export function createStateManager<T>(
         PubSub.publishSync(stateKey)
       } else {
         PubSub.publish(stateKey) // With a frame delay
+      }
+    },
+    produce: (producer: (draftState: T) => void) => {
+      if (_options.useImmer) {
+        produce(state, producer)
+      } else {
+        let nextState = _.cloneDeep(state)
+        producer(nextState)
+        nextState = tryCloneAndFreeze(nextState, localStorageKey, _options)
       }
     },
     getState,

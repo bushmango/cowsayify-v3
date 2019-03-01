@@ -7,7 +7,7 @@ import Input from 'antd/lib/input'
 const { TextArea } = Input
 import Select from 'antd/lib/select'
 const Option = Select.Option
-import Form from 'antd/lib/form'
+// import Form from 'antd/lib/form'
 
 import * as stateUtil from '../state/stateUtil'
 import * as stateCowsay from '../state/stateCowsay'
@@ -50,7 +50,7 @@ const CowsayOptions = () => {
               placeholder="What should the cow say?"
               value={state.text}
               autosize
-              onChange={this._onChange_text}
+              onChange={_onChange_text}
             />
           </div>
         </div>
@@ -144,6 +144,7 @@ const CowsayOptions = () => {
 
 export default CowsayOptions
 
+// Below is what a class example would look like
 // export default class CowsayOptions extends React.Component<{}> {
 //   _onChange_text = ev => {
 //     stateManager.setState({ text: ev.target.value })
