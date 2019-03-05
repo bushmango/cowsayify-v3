@@ -9,7 +9,6 @@ import Select from 'antd/lib/select'
 const Option = Select.Option
 // import Form from 'antd/lib/form'
 
-import * as stateUtil from '../state/stateUtil'
 import * as stateCowsay from '../state/stateCowsay'
 import { modes, actions } from '../state/stateCowsay'
 
@@ -37,9 +36,8 @@ const _onClick_share = () => {
   stateCowsay.doShare()
 }
 
-const CowsayOptions = () => {
-  const state = stateUtil.useSubscription(stateCowsay.stateManager)
-
+const CowsayOptions = (props: { cowsay: stateCowsay.IStateCowsay }) => {
+  const { cowsay } = props
   return (
     <div className={styles.cowForm}>
       <div>
@@ -48,7 +46,8 @@ const CowsayOptions = () => {
           <div className={styles.cowFormItem}>
             <TextArea
               placeholder="What should the cow say?"
-              value={state.text}
+              value={cowsay.text}
+              rows={1}
               autosize
               onChange={_onChange_text}
             />
@@ -59,7 +58,7 @@ const CowsayOptions = () => {
           <div className={styles.cowFormLabel}>Action</div>
           <div className={styles.cowFormItem}>
             <Select
-              value={state.action}
+              value={cowsay.action}
               style={{ width: 120 }}
               onChange={_onChange_action}
             >
@@ -76,7 +75,7 @@ const CowsayOptions = () => {
           <div className={styles.cowFormLabel}>MOOd</div>
           <div className={styles.cowFormItem}>
             <Select
-              value={state.mode}
+              value={cowsay.mode}
               style={{ width: 120 }}
               onChange={_onChange_mode}
             >
@@ -95,7 +94,7 @@ const CowsayOptions = () => {
             <Input
               placeholder="Custom Eyes i.e. **"
               maxLength={2}
-              value={state.eyes}
+              value={cowsay.eyes}
               onChange={_onChange_eyes}
             />
           </div>
@@ -106,7 +105,7 @@ const CowsayOptions = () => {
             <Input
               placeholder="Custom Tongue i.e. ()"
               maxLength={2}
-              value={state.tongue}
+              value={cowsay.tongue}
               onChange={_onChange_tongue}
             />
           </div>
@@ -116,11 +115,11 @@ const CowsayOptions = () => {
           <div className={styles.cowFormLabel}>Cow</div>
           <div className={styles.cowFormItem}>
             <Select
-              value={state.cow}
+              value={cowsay.cow}
               style={{ width: 120 }}
               onChange={_onChange_cow}
             >
-              {state.cowList.map(c => (
+              {cowsay.cowList.map(c => (
                 <Option key={c} value={c}>
                   {c}
                 </Option>

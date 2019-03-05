@@ -13,7 +13,7 @@ import Router from 'next/router'
 
 const host = process.env.host
 
-interface IStateCowsay {
+export interface IStateCowsay {
   text: string
   mode: string
   eyes: string
