@@ -12,6 +12,7 @@ const aboutStyles = require('./about.scss')
 const cowStyles = require('./cowsay.scss')
 
 const news = [
+  'Mar 04, 2019\nAdded immer and state management support!',
   'Feb 22, 2019\nAdded different cows!',
   'Feb 22, 2019\nAdded history',
   'Feb 18, 2019\nAdded friendly urls, eyes, tongue, and the ability to think!',

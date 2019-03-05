@@ -30,6 +30,7 @@ export interface IStateManager<T> {
   unSubscribe: (token) => void
   setOptions: (options: Partial<IStateManagerLiveOptions>) => void
   getOptions: () => IStateManagerOptions
+  rehydrate: (changes: Partial<T>) => any
 }
 
 export function tryCloneAndFreeze(
@@ -76,6 +77,7 @@ export function createStateManager<T>(
   })
 
   const localStorageKey = 'state:' + stateKey + ':' + version
+  let isRehydrated = false
 
   // Try to restore our local state
   if (_options.useLocalStorage) {
@@ -100,30 +102,40 @@ export function createStateManager<T>(
   const getState = () => {
     return tryCloneAndFreeze(state, localStorageKey, _options)
   }
+  const setState = (changes: Partial<T>, sync = false) => {
+    if (_options.useImmer) {
+      state = immer.produce(state, draftState => {
+        _.assign(draftState, changes)
+      })
+    } else {
+      state = tryFreeze(_.assign({}, state, changes), _options)
+    }
+    if (_options.useVerbose) {
+      log('updated ' + stateKey)
+    }
+    if (sync) {
+      PubSub.publishSync(stateKey)
+    } else {
+      PubSub.publish(stateKey) // With a frame delay
+    }
+  }
 
   return {
     stateKey,
+    rehydrate: (changes: Partial<T>) => {
+      if (!isRehydrated) {
+        setState(changes)
+        isRehydrated = true
+        if (options.useVerbose) {
+          log('rehydrated ' + stateKey)
+        }
+      }
+    },
     setOptions: (options: IStateManagerOptions) => {},
     getOptions: () => {
       return _options
     },
-    setState: (changes: Partial<T>, sync = false) => {
-      if (_options.useImmer) {
-        state = immer.produce(state, draftState => {
-          _.assign(draftState, changes)
-        })
-      } else {
-        state = tryFreeze(_.assign({}, state, changes), _options)
-      }
-      if (_options.useVerbose) {
-        log('updated ' + stateKey)
-      }
-      if (sync) {
-        PubSub.publishSync(stateKey)
-      } else {
-        PubSub.publish(stateKey) // With a frame delay
-      }
-    },
+
     produce: (producer: (draftState: T) => void, sync = true) => {
       if (_options.useImmer) {
         state = immer.produce(state, producer)
@@ -139,6 +151,7 @@ export function createStateManager<T>(
       }
     },
     getState,
+    setState,
     subscribe: (component: React.Component) => {
       let token = PubSub.subscribe(stateKey, () => {
         component.forceUpdate()

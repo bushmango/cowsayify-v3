@@ -20,14 +20,22 @@ interface IDataList {
   ScannedCount: number
 }
 
-function HistoryPage(props: { _fetchedHistory: any }) {
+function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
+  if (props.fromServer && props.serverStateHistory) {
+    stateHistory.stateManager.rehydrate(props.serverStateHistory)
+  }
+
   const history = stateUtil.useSubscription(stateHistory.stateManager)
   let { fetchedHistory } = history
 
   if (!fetchedHistory || fetchedHistory.error) {
     return (
       <Layout title="oh noes">
-        Error <pre>{JSON.stringify(props._fetchedHistory, null, 2)}</pre>
+        Error
+        {/* <br />
+        Server <pre>{JSON.stringify(props.serverStateHistory, null, 2)}</pre>
+        <br />
+        Local <pre>{JSON.stringify(history, null, 2)}</pre> */}
       </Layout>
     )
   }
@@ -65,7 +73,15 @@ function HistoryPage(props: { _fetchedHistory: any }) {
 }
 
 HistoryPage.getInitialProps = async ({ req }) => {
-  return await stateHistory.fetchHistory()
+  const fromServer = !!req
+  await stateHistory.fetchHistory()
+
+  return {
+    fromServer,
+    serverStateHistory: fromServer
+      ? stateHistory.stateManager.getState()
+      : null,
+  }
 }
 
 export default HistoryPage

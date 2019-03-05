@@ -37,13 +37,7 @@ export { stateManager }
 export async function fetchHistory() {
   const res = await fetch(host + '/cows-list')
   const fetchedHistory = await res.json()
-
-  console.log(JSON.stringify(fetchedHistory, null, 2))
-
   stateManager.produce(draftState => {
     draftState.fetchedHistory = fetchedHistory
   })
-  console.log(JSON.stringify(stateManager.getState(), null, 2))
-
-  return stateManager.getState() //{  _fetchedHistory: fetchedHistory }
 }
