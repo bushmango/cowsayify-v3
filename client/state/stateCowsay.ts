@@ -140,6 +140,7 @@ export function doShare() {
 export interface ICowOptions {
   text: string
   action: 'think' | 'say'
+  f?: string
   e?: string
   T?: string
   b?: boolean

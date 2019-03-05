@@ -7,7 +7,8 @@ import Layout from '../components/Layout'
 
 import DisplayCow from '../components/DisplayCow'
 
-import * as stateCowsay from '../state/stateCowsay'
+import * as stateUtil from '../state/stateUtil'
+import * as stateHistory from '../state/stateHistory'
 
 interface IDataListItem {
   text: string
@@ -19,14 +20,23 @@ interface IDataList {
   ScannedCount: number
 }
 
-function HistoryPage(props: { data: any }) {
-  let { data } = props
+function HistoryPage(props: { _fetchedHistory: any }) {
+  const history = stateUtil.useSubscription(stateHistory.stateManager)
+  let { fetchedHistory } = history
 
-  if (!data || data.error) {
-    return <Layout title="oh noes">Error</Layout>
+  if (!fetchedHistory || fetchedHistory.error) {
+    return (
+      <Layout title="oh noes">
+        Error <pre>{JSON.stringify(props._fetchedHistory, null, 2)}</pre>
+      </Layout>
+    )
   }
 
-  let items = _.map(data.data.Items, c => {
+  let items: {
+    created?: string
+    options?: any
+    text?: string
+  }[] = _.map(fetchedHistory.data.Items, c => {
     try {
       return {
         created: c.created || 'Before history',
@@ -55,7 +65,7 @@ function HistoryPage(props: { data: any }) {
 }
 
 HistoryPage.getInitialProps = async ({ req }) => {
-  return await stateCowsay.fetchHistory()
+  return await stateHistory.fetchHistory()
 }
 
 export default HistoryPage

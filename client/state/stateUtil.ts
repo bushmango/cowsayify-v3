@@ -2,7 +2,7 @@ import * as React from 'react'
 const { useState, useEffect } = React
 import * as PubSub from 'pubsub-js'
 import { _ } from '../imports/lodash'
-import produce from 'immer'
+import * as immer from 'immer'
 
 function log(...x) {
   if (console && console.log) {
@@ -47,7 +47,9 @@ export function tryCloneAndFreeze(
   }
 
   if (options.useLocalStorage) {
-    localStorage.setItem(localStorageKey, JSON.stringify(nextState))
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(localStorageKey, JSON.stringify(nextState))
+    }
   }
   return nextState
 }
@@ -77,12 +79,14 @@ export function createStateManager<T>(
 
   // Try to restore our local state
   if (_options.useLocalStorage) {
-    let stored = localStorage.getItem(localStorageKey)
-    if (stored) {
-      try {
-        initialState = _.assign({}, initialState, JSON.parse(stored))
-      } catch (err) {
-        log('Error loading state from localStorage: ' + stateKey)
+    if (typeof localStorage !== 'undefined') {
+      let stored = localStorage.getItem(localStorageKey)
+      if (stored) {
+        try {
+          initialState = _.assign({}, initialState, JSON.parse(stored))
+        } catch (err) {
+          log('Error loading state from localStorage: ' + stateKey)
+        }
       }
     }
   }
@@ -90,7 +94,7 @@ export function createStateManager<T>(
   let state = tryCloneAndFreeze(initialState, localStorageKey, _options)
 
   if (_options.useImmer) {
-    state = produce(state, draftState => {})
+    state = immer.produce(state, draftState => {})
   }
 
   const getState = () => {
@@ -105,7 +109,7 @@ export function createStateManager<T>(
     },
     setState: (changes: Partial<T>, sync = false) => {
       if (_options.useImmer) {
-        state = produce(state, draftState => {
+        state = immer.produce(state, draftState => {
           _.assign(draftState, changes)
         })
       } else {
@@ -120,13 +124,18 @@ export function createStateManager<T>(
         PubSub.publish(stateKey) // With a frame delay
       }
     },
-    produce: (producer: (draftState: T) => void) => {
+    produce: (producer: (draftState: T) => void, sync = true) => {
       if (_options.useImmer) {
-        produce(state, producer)
+        state = immer.produce(state, producer)
       } else {
         let nextState = _.cloneDeep(state)
         producer(nextState)
         nextState = tryCloneAndFreeze(nextState, localStorageKey, _options)
+      }
+      if (sync) {
+        PubSub.publishSync(stateKey)
+      } else {
+        PubSub.publish(stateKey) // With a frame delay
       }
     },
     getState,

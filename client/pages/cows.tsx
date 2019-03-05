@@ -19,7 +19,7 @@ const Cows = (props: any) => {
         <div key={c}>
           {/* <div> {c} </div> */}
           <div>
-            <DisplayCow options={{ text: c, f: c }} />
+            <DisplayCow options={{ text: c, f: c, action: 'say' }} />
           </div>
         </div>
       ))}
