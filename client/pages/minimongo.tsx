@@ -21,11 +21,26 @@ const friendOptions = [
   },
 ]
 
+const onChange = ev => {
+  let hasChange = false
+  stateMongo.stateManager.produce(ds => {
+    if (ds.search !== ev.target.value) {
+      ds.search = ev.target.value
+      hasChange = true
+    }
+  })
+  if (hasChange) {
+    stateMongo.fetchTest()
+  }
+}
+
 function MinimongoTest(props: { data: any }) {
   const state = stateUtil.useSubscription(stateMongo.stateManager)
 
   React.useEffect(() => {
-    stateMongo.fetchTest()
+    if (!state.fetchedTest) {
+      stateMongo.fetchTest()
+    }
   })
 
   return (
@@ -36,14 +51,19 @@ function MinimongoTest(props: { data: any }) {
           href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
         />
       </Head>
-      <h2>Minimongo test</h2>
-      Zip codes
-      <div>
-        {_.map(state.fetchedTest, c => (
-          <div>
-            <pre>{JSON.stringify(c, null, 2)}</pre>
-          </div>
-        ))}
+      <div style={{ padding: '2em' }}>
+        <h2>Minimongo test</h2>
+
+        <input value={state.search} onChange={onChange} />
+        {state.isLoading ? 'LOADING' : ''}
+        <h3>Zip codes</h3>
+        <div>
+          {_.map(state.fetchedTest, c => (
+            <div>
+              <pre>{JSON.stringify(c, null, 2)}</pre>
+            </div>
+          ))}
+        </div>
       </div>
       {/* <pre>{state.fetchedTest}</pre> */}
     </Layout>

@@ -1,5 +1,6 @@
 import * as express from 'express'
 import { MongoClient, Db } from 'mongodb'
+import * as _ from 'lodash'
 
 // Connection URL
 const url = 'mongodb://localhost:44444'
@@ -21,8 +22,8 @@ MongoClient.connect(url, (err, client) => {
 
 export function attach(server: express.Express) {
   
-  server.get('/mongo-api/v1/test', (req, res) => {
-
+  server.get('/mongo-api/v1/test/:search', (req, res) => {
+    let { search } = req.params || ''
     console.log('start request')
 
     if(!db) { res.end('merp'); return}
@@ -30,7 +31,7 @@ export function attach(server: express.Express) {
     const collection = db.collection('zips');
     // Find some documents
     console.log('start find')
-    collection.find({}).limit(5).toArray((err, docs) => {
+    collection.find({zip: {$regex: _.escapeRegExp(search) }}).limit(5).toArray((err, docs) => {
       
       console.log("Found the following records");
       console.log(docs)
