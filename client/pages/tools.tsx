@@ -29,22 +29,63 @@ function ToolsPage(props: { data: any }) {
       c = c.replace(/case\s*\'(.*)\'\:\s*/, "'$1'")
       c = '  ' + c + ':'
       out.push(c)
+      nextIsValue = true
+      used = true
     }
 
     if (c.indexOf('default') !== -1) {
       c = c.replace(/default\:/, '__default')
       c = '  ' + c + ':'
+      __default = '__unset_default__'
+      nextIsDefault = true
       out.push(c)
+      used = true
     }
 
     if (c.indexOf('return') !== -1) {
       c = c.replace(/return\s*\'(.*)\'\s*/, "'$1'")
+      if (nextIsDefault) {
+        __default = c
+      }
       c = ' ' + c + ',\n'
       out.push(c)
+      nextIsValue = false
+      used = true
+    }
+
+    if (c.indexOf('.push(') !== -1) {
+      c = c.replace(/.*\.push\(*\'(.*)\'\)*/, "'$1'")
+      if (nextIsDefault) {
+        __default = c
+      }
+      c = ' ' + c + ',\n'
+      out.push(c)
+      nextIsValue = false
+      used = true
+    }
+
+    if (c.indexOf('break') !== -1) {
+      if (nextIsValue) {
+        out.push(' null,\n')
+        nextIsValue = false
+      }
+      used = true
+    }
+
+    if (!used) {
+      out.push('// ' + c + '\n')
     }
   })
   out.push('}\n')
-  out.push('const getMap = (key) => { return map[key] || map[__default] }\n\n')
+  if (__default != undefined) {
+    out.push(`return lookupOrGetDefault(map, key, ${__default}) }\n\n`)
+  } else {
+    out.push(`return lookupOrThrow(map, key') }\n\n`)
+  }
+  out.push(
+    '\n\nconst getMap = (key) => { return map[key] || map[__default] }\n\n'
+  )
+  // out.push('const getMap = (key) => { return map[key] || map[__default] }\n\n')
 
   const outCombined = _.join(out, '')
 
