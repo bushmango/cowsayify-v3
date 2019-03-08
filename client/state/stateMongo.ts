@@ -8,7 +8,7 @@ import fetch from 'isomorphic-unfetch'
 const host = process.env.host
 
 interface IStateMinimongo {
-  fetchedTest: any,
+  fetchedTest: any
 }
 
 let initialState: IStateMinimongo = {
@@ -25,10 +25,13 @@ const stateManager = stateUtil.createStateManager(
 )
 export { stateManager }
 
+let mongoUrl = 'http://localhost:3008/mongo-api/v1/'
+
 export async function fetchTest() {
-  const res = await fetch(host + '/cows-list')
-  const fetchedHistory = await res.json()
+  let data = await fetch(mongoUrl + 'test')
+  let json = await data.json()
+
   stateManager.produce(draftState => {
-    draftState.fetchedTest = fetchedHistory
+    draftState.fetchedTest = json
   })
 }

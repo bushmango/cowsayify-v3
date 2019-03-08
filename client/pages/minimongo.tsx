@@ -4,7 +4,8 @@ import Layout from '../components/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
-import fetch from 'isomorphic-unfetch'
+import * as stateUtil from '../state/stateUtil'
+import * as stateMongo from '../state/stateMongo'
 
 import { Button } from 'semantic-ui-react'
 import { Divider } from 'semantic-ui-react'
@@ -20,19 +21,11 @@ const friendOptions = [
   },
 ]
 
-let mongoUrl = 'http://localhost:3006/mongo-api/v1/'
-
-const fetchTestData = async () => {}
-
 function MinimongoTest(props: { data: any }) {
-  const [zips, setZips] = React.useState()
+  const state = stateUtil.useSubscription(stateMongo.stateManager)
 
   React.useEffect(() => {
-    const f = async () => {
-      let data = await fetch(mongoUrl + 'test')
-      setZips(await data.json())
-    }
-    f()
+    stateMongo.fetchTest()
   })
 
   return (
@@ -44,15 +37,15 @@ function MinimongoTest(props: { data: any }) {
         />
       </Head>
       <h2>Minimongo test</h2>
-      ZIIIPS
-      {/* <div>
-        {_.map(zips, c => (
+      Zip codes
+      <div>
+        {_.map(state.fetchedTest, c => (
           <div>
-            <pre>{JSON.stringify(c)}</pre>
+            <pre>{JSON.stringify(c, null, 2)}</pre>
           </div>
         ))}
-      </div> */}
-      <pre>{zips}</pre>
+      </div>
+      {/* <pre>{state.fetchedTest}</pre> */}
     </Layout>
   )
 }

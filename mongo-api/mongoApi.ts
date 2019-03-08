@@ -21,18 +21,21 @@ MongoClient.connect(url, (err, client) => {
 
 export function attach(server: express.Express) {
   
-  server.get('/mongo-api/v1/test/', (req, res) => {
+  server.get('/mongo-api/v1/test', (req, res) => {
 
-    if(!db) { return res.end('merp') ;}
+    console.log('start request')
+
+    if(!db) { res.end('merp'); return}
       
     const collection = db.collection('zips');
     // Find some documents
-    collection.find({}).limit(100).toArray((err, docs) => {
+    console.log('start find')
+    collection.find({}).limit(5).toArray((err, docs) => {
       
       console.log("Found the following records");
       console.log(docs)
       // callback(docs);
-      return res.send(docs)
+      return res.json(docs)
     })  
   })
 
