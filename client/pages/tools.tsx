@@ -20,7 +20,15 @@ function ToolsPage(props: { data: any }) {
 
   let out = []
   out.push('const map: {[key: string]:  string} = {\n')
+
+
+  let nextIsValue = false
+  let nextIsDefault = false
+  let __default = null
+
+
   _.forEach(lines, c => {
+    let used = false
     c = c.trim()
     if (c.indexOf('case') !== -1) {
       // Regex fix
