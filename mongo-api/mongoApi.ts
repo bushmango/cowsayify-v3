@@ -31,10 +31,10 @@ export function attach(server: express.Express) {
     const collection = db.collection('zips');
     // Find some documents
     console.log('start find')
-    collection.find({zip: {$regex: _.escapeRegExp(search) }}).limit(5).toArray((err, docs) => {
+    collection.find({zip: {$regex: _.escapeRegExp(search) }}).limit(10).toArray((err, docs) => {
       
-      console.log("Found the following records");
-      console.log(docs)
+      // console.log("Found the following records");
+      // console.log(docs)
       // callback(docs);
       return res.json(docs)
     })  

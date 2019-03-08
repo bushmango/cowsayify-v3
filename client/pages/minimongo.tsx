@@ -34,6 +34,23 @@ const onChange = ev => {
   }
 }
 
+const Zip = ({ zip }) => {
+  return (
+    <div style={{ marginBottom: '1em' }}>
+      <div>
+        <strong>{zip.zip}</strong>
+      </div>
+      <div>
+        {zip.city}, {zip.state} - {zip.pop} people
+      </div>
+      <div>
+        {zip.lattitude} | {zip.longitude}
+      </div>
+      {/* <pre>{JSON.stringify(zip, null, 2)}</pre> */}
+    </div>
+  )
+}
+
 function MinimongoTest(props: { data: any }) {
   const state = stateUtil.useSubscription(stateMongo.stateManager)
 
@@ -58,10 +75,8 @@ function MinimongoTest(props: { data: any }) {
         {state.isLoading ? 'LOADING' : ''}
         <h3>Zip codes</h3>
         <div>
-          {_.map(state.fetchedTest, c => (
-            <div>
-              <pre>{JSON.stringify(c, null, 2)}</pre>
-            </div>
+          {_.map(state.fetchedTest, (c, cIdx) => (
+            <Zip key={cIdx} zip={c} />
           ))}
         </div>
       </div>
