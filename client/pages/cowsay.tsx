@@ -6,11 +6,11 @@ import CowsayOptions from '../components/CowsayOptions'
 
 import Layout from '../components/Layout'
 
-import * as stateUtil from '../state/stateUtil'
+import * as midboss from 'midboss'
 import * as stateCowsay from '../state/stateCowsay'
 
 const CowsayWithHooks = (props: any) => {
-  const cowsay = stateUtil.useSubscription(stateCowsay.stateManager)
+  const cowsay = midboss.useSubscription(stateCowsay.stateManager)
   let options = stateCowsay.calcOptions()
 
   return (

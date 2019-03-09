@@ -7,7 +7,7 @@ import Layout from '../components/Layout'
 
 import DisplayCow from '../components/DisplayCow'
 
-import * as stateUtil from '../state/stateUtil'
+import * as midboss from 'midboss'
 import * as stateHistory from '../state/stateHistory'
 
 interface IDataListItem {
@@ -25,7 +25,7 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
     stateHistory.stateManager.rehydrate(props.serverStateHistory)
   }
 
-  const history = stateUtil.useSubscription(stateHistory.stateManager)
+  const history = midboss.useSubscription(stateHistory.stateManager)
   let { fetchedHistory } = history
 
   if (!fetchedHistory || fetchedHistory.error) {

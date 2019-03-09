@@ -1,6 +1,6 @@
-import * as stateUtil from './stateUtil'
-const stateKey = 'cowsay'
-export { stateKey }
+import * as midboss from 'midboss'
+const midbossKey = 'cowsay'
+export { midbossKey }
 
 import { _ } from '../imports/lodash'
 import moment from 'moment'
@@ -35,8 +35,8 @@ let initialState: IStateCowsay = {
   cowList: [],
 }
 
-const stateManager = stateUtil.createStateManager(
-  stateKey,
+const stateManager = midboss.createMidboss(
+  midbossKey,
   '1.0.0',
   initialState,
   {}

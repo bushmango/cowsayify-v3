@@ -6,7 +6,6 @@ import DisplayCow from '../components/DisplayCow'
 
 //import styles from './about.scss'
 const aboutStyles = require('./about.scss')
-const cowStyles = require('./cowsay.scss')
 
 const keywords = [
   'serverless-api',
