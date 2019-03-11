@@ -16,7 +16,7 @@ const onChange = ev => {
     }
   })
   if (hasChange) {
-    stateMongo.fetchMinimongo()
+    stateMongo.fetchMongo()
   }
 }
 
@@ -37,17 +37,17 @@ const Zip = ({ zip }) => {
   )
 }
 
-function MinimongoTest(props: { data: any }) {
+function MongoTest(props: { data: any }) {
   const state = midboss.useSubscription(stateMongo.stateManager)
 
   React.useEffect(() => {
-    if (!state.fetchedMinimongo) {
-      stateMongo.fetchMinimongo()
+    if (!state.fetchedMongo) {
+      stateMongo.fetchMongo()
     }
   })
 
   return (
-    <Layout title="minimongo test">
+    <Layout title="mongo test">
       <Head>
         <link
           rel="stylesheet"
@@ -61,7 +61,7 @@ function MinimongoTest(props: { data: any }) {
         {state.isLoading ? 'LOADING' : ''}
         <h3>Zip codes</h3>
         <div>
-          {_.map(state.fetchedMinimongo, (c, cIdx) => (
+          {_.map(state.fetchedMongo, (c, cIdx) => (
             <Zip key={cIdx} zip={c} />
           ))}
         </div>
@@ -71,4 +71,4 @@ function MinimongoTest(props: { data: any }) {
   )
 }
 
-export default MinimongoTest
+export default MongoTest
