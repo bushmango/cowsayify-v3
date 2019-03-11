@@ -5,11 +5,11 @@ import DisplayCow from '../components/DisplayCow'
 
 import Layout from '../components/Layout'
 
-import * as stateUtil from '../state/stateUtil'
+import * as midboss from 'midboss'
 import * as stateCowsay from '../state/stateCowsay'
 
 const Cows = (props: any) => {
-  const cowsay = stateUtil.useSubscription(stateCowsay.stateManager)
+  const cowsay = midboss.useSubscription(stateCowsay.stateManager)
 
   return (
     <Layout title="cows">

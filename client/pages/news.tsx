@@ -1,15 +1,8 @@
 import * as React from 'react'
 
 import Layout from '../components/Layout'
-import Header from '../components/Header'
-
-import cowsay from 'cowsay-browser'
 
 import DisplayCow from '../components/DisplayCow'
-
-//import styles from './about.scss'
-const aboutStyles = require('./about.scss')
-const cowStyles = require('./cowsay.scss')
 
 const news = [
   'Mar 04, 2019\nAdded immer and state management support!',

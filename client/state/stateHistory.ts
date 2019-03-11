@@ -1,6 +1,6 @@
-import * as stateUtil from './stateUtil'
-const stateKey = 'history'
-export { stateKey }
+import * as midboss from 'midboss'
+const midbossKey = 'history'
+export { midbossKey }
 
 import { _ } from '../imports/lodash'
 import fetch from 'isomorphic-unfetch'
@@ -24,14 +24,9 @@ let initialState: IStateHistory = {
   fetchedHistory: null,
 }
 
-const stateManager = stateUtil.createStateManager(
-  stateKey,
-  '1.0.0',
-  initialState,
-  {
-    useLocalStorage: false,
-  }
-)
+const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
+  useLocalStorage: false,
+})
 export { stateManager }
 
 export async function fetchHistory() {
