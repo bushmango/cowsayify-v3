@@ -57,6 +57,10 @@ function MongoTest(props: { data: any }) {
       <div style={{ padding: '2em' }}>
         <h2>Minimongo test</h2>
 
+        <button onClick={async () => alert(await stateMongo.getTotalPop())}>
+          Get count
+        </button>
+
         <input value={state.search} onChange={onChange} />
         {state.isLoading ? 'LOADING' : ''}
         <h3>Zip codes</h3>

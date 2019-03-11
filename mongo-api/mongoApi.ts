@@ -41,6 +41,15 @@ export function attach(server: express.Express) {
     })  
   })
 
+  server.get('/minimongo-api/get-total-population', async (req: express.Request, res) => {
+    const dbCollection = db.collection('zips');
+    let total = 0
+    await dbCollection.find().forEach((zip) => {
+      total += zip.pop
+    })
+    res.send({total})
+  })
+
   server.get('/minimongo-api/v1/:collection', (req: express.Request, res) => {
 
     let { collection } = req.params 
@@ -73,6 +82,7 @@ export function attach(server: express.Express) {
 
       return res.json(docs)
     })  
+    
 
     //return res.send('get request')
   })
