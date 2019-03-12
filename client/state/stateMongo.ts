@@ -62,7 +62,6 @@ export async function fetchMinimongo() {
     { zip: { $regex: _.escapeRegExp(search) } },
     { limit: 10 }
   )
-  console.log('what is find', find)
   find.fetch(res => {
     stateManager.produce(draftState => {
       draftState.fetchedMinimongo = res

@@ -77,13 +77,7 @@ const Input = ({ value, idx, field }) => {
 function Timesheet(props: { data: any }) {
   const state = midboss.useSubscription(
     stateTimesheet.stateManager
-  ) as stateTimesheet.IStateTimesheet
-
-  React.useEffect(() => {
-    // if (!state.fetchedMongo) {
-    //   // stateTimesheet.fetchMongo()
-    // }
-  })
+  )
 
   return (
     <Layout title="timesheet tool">

@@ -12,6 +12,9 @@ const dbName = 'tms2'
 let db: Db 
 MongoClient.connect(url, (err, client) => {
 
+  if(err)
+    console.log(' you fool your database isnt running!!!!!')
+
   console.log('Connected successfully to server')
   db = client.db(dbName)
 
