@@ -57,7 +57,8 @@
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "now-build": "next build",
     "now-deploy": "npm run build && now",
-    "sass": "tsm --watch --nameFormat camel '+(pages|components)/**/*.scss'"
+    "sass-build": "tsm --nameFormat camel --exportType default '+(pages|components)/**/*.scss'",
+    "sass": "tsm --watch --nameFormat camel --exportType default '+(pages|components)/**/*.scss'"
   },
   "repository": {
     "type": "git",

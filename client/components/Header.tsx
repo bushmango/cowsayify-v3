@@ -1,4 +1,4 @@
-import * as headerStyles from './Header.scss'
+import styles from './Header.scss'
 import Link from 'next/link'
 
 const linkStyle = {
@@ -6,7 +6,7 @@ const linkStyle = {
 }
 
 const Header = () => (
-  <div className={headerStyles.header}>
+  <div className={styles.header}>
     {/* <Link href="/index">
       <a style={linkStyle}>Home</a>
     </Link> */}

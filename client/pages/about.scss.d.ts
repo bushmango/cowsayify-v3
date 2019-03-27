@@ -1,2 +1,10 @@
-export const section: string;
-export const keyword: string;
+export interface Styles {
+  'section': string;
+  'keyword': string;
+}
+
+export type ClassNames = keyof Styles;
+
+declare const styles: Styles;
+
+export default styles;
