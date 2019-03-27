@@ -1,6 +1,2 @@
-declare const styles: {
-  readonly "testSass": string;
-  readonly "welcome": string;
-};
-export = styles;
-
+export const testSass: string;
+export const welcome: string;

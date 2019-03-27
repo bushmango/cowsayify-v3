@@ -1,5 +1,1 @@
-declare const styles: {
-  readonly "cowBox": string;
-};
-export = styles;
-
+export const cowBox: string;

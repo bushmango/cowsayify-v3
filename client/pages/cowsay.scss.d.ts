@@ -1,8 +1,4 @@
-declare const styles: {
-  readonly "cowForm": string;
-  readonly "cowFormRow": string;
-  readonly "cowFormLabel": string;
-  readonly "cowFormItem": string;
-};
-export = styles;
-
+export const cowForm: string;
+export const cowFormRow: string;
+export const cowFormLabel: string;
+export const cowFormItem: string;

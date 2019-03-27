@@ -1,6 +1,2 @@
-declare const styles: {
-  readonly "page_history": string;
-  readonly "date": string;
-};
-export = styles;
-
+export const pageHistory: string;
+export const date: string;

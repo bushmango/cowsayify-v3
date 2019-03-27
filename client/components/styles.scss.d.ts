@@ -1,5 +1,1 @@
-declare const styles: {
-  readonly "layout": string;
-};
-export = styles;
-
+export const layout: string;

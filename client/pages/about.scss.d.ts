@@ -1,6 +1,2 @@
-declare const styles: {
-  readonly "section": string;
-  readonly "keyword": string;
-};
-export = styles;
-
+export const section: string;
+export const keyword: string;
