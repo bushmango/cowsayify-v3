@@ -58,7 +58,7 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
   return (
     <Layout title="history">
       <h1>Messages sent with cowsayify</h1>
-      <div className={historyStyles.page_history}>
+      <div className={historyStyles.pageHistory}>
         {_.map(items, (c, cIdx) => (
           <div key={cIdx}>
             {/* item{c.text} {c.action} */}
