@@ -1,1 +1,5 @@
-export const cowBox: string;
+declare const styles: {
+  readonly "cowBox": string;
+};
+export = styles;
+

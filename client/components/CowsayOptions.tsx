@@ -32,7 +32,7 @@ const _onChange_tongue = ev => {
 const _onChange_cow = val => {
   stateManager.setState({ cow: val })
 }
-const _onClick_share = () => {
+const _onClick_share = ev => {
   stateCowsay.doShare()
 }
 
@@ -131,7 +131,7 @@ const CowsayOptions = (props: { cowsay: stateCowsay.IStateCowsay }) => {
         <div className={styles.cowFormRow}>
           <div className={styles.cowFormLabel} />
           <div className={styles.cowFormItem}>
-            <Button type="primary" onClick={_onClick_share}>
+            <Button href="" type="primary" onClick={_onClick_share}>
               Share!
             </Button>
           </div>

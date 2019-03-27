@@ -1,2 +1,6 @@
-export const section: string;
-export const keyword: string;
+declare const styles: {
+  readonly "section": string;
+  readonly "keyword": string;
+};
+export = styles;
+
