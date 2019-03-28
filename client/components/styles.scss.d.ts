@@ -1,1 +1,9 @@
-export const layout: string;
+export interface Styles {
+  'layout': string;
+}
+
+export type ClassNames = keyof Styles;
+
+declare const styles: Styles;
+
+export default styles;

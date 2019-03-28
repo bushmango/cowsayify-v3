@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-//import styles from './index.scss'
-const styles = require('./index.scss')
+import styles from './index.scss'
+// const styles = require('./index.scss')
 
 import Layout from '../components/Layout'
 import Head from 'next/head'

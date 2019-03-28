@@ -10,7 +10,7 @@ const useCssModules = true
 module.exports = (phase, { defaultConfig }) => {
   let config = withTypescript(
     withSass({
-      webpack(config, options) {
+      webpack (config, options) {
         // Do not run type checking twice:
         if (options.isServer) {
           config.plugins.push(new ForkTsCheckerWebpackPlugin())
@@ -24,30 +24,30 @@ module.exports = (phase, { defaultConfig }) => {
           //     break
           //   }
           // }
-          for (let entry of options.defaultLoaders.sass) {
-            if (entry.loader === 'css-loader') {
-              entry.loader = 'typings-for-css-modules-loader'
-              break
-            }
-          }
+          // for (let entry of options.defaultLoaders.sass) {
+          //   if (entry.loader === 'css-loader') {
+          //     entry.loader = 'typings-for-css-modules-loader'
+          //     break
+          //   }
+          // }
         }
 
-        for (let rule of config.module.rules) {
-          if (rule.use) {
-            if (typeof rule.use === 'object') {
-              let useItem = rule.use
-              if (useItem.loader === 'css-loader/locals') {
-                useItem.loader = 'typings-for-css-modules-loader/locals'
-              }
-            } else {
-              for (let useItem of rule.use) {
-                if (useItem.loader === 'css-loader/locals') {
-                  useItem.loader = 'typings-for-css-modules-loader/locals'
-                }
-              }
-            }
-          }
-        }
+        // for (let rule of config.module.rules) {
+        //   if (rule.use) {
+        //     if (typeof rule.use === 'object') {
+        //       let useItem = rule.use
+        //       if (useItem.loader === 'css-loader/locals') {
+        //         useItem.loader = 'typings-for-css-modules-loader/locals'
+        //       }
+        //     } else {
+        //       for (let useItem of rule.use) {
+        //         if (useItem.loader === 'css-loader/locals') {
+        //           useItem.loader = 'typings-for-css-modules-loader/locals'
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
 
         return config
       },
@@ -59,15 +59,15 @@ module.exports = (phase, { defaultConfig }) => {
         localIdentName:
           phase === PHASE_DEVELOPMENT_SERVER
             ? '[name]_[local]_[hash:base64:5]'
-            : '[hash:base64]',
-      },
+            : '[hash:base64]'
+      }
     })
   )
 
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     config.env = {
       // host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
-      host: 'https://api.cowsayify.com',
+      host: 'https://api.cowsayify.com'
       // host: 'http://localhost:3005'
     }
 
@@ -77,7 +77,7 @@ module.exports = (phase, { defaultConfig }) => {
 
     config.env = {
       // host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
-      host: 'https://api.cowsayify.com',
+      host: 'https://api.cowsayify.com'
     }
 
     return config

@@ -1,4 +1,12 @@
-export const cowForm: string;
-export const cowFormRow: string;
-export const cowFormLabel: string;
-export const cowFormItem: string;
+export interface Styles {
+  'cowForm': string;
+  'cowFormRow': string;
+  'cowFormLabel': string;
+  'cowFormItem': string;
+}
+
+export type ClassNames = keyof Styles;
+
+declare const styles: Styles;
+
+export default styles;

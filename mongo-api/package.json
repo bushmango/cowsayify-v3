@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "dev": "ts-node-dev server.ts"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.122",
+    "@types/mongodb": "^3.1.21",
+    "@types/node": "^11.10.5",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "mongodb": "^3.1.13",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.3.3333"
+  }
+}

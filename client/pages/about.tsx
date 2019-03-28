@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import DisplayCow from '../components/DisplayCow'
 
 //import styles from './about.scss'
-const aboutStyles = require('./about.scss')
+import styles from './about.scss'
 
 const keywords = [
   'serverless-api',
@@ -22,7 +22,7 @@ const keywords = [
 ]
 
 function Section(props: any) {
-  return <div className={aboutStyles.section}>{props.children}</div>
+  return <div className={styles.section}>{props.children}</div>
 }
 
 function AboutPage(props: { data: any }) {
@@ -42,7 +42,7 @@ function AboutPage(props: { data: any }) {
           Demonstrates these technologies:
           <br />
           {keywords.map(c => (
-            <div key={c} className={aboutStyles.keyword}>
+            <div key={c} className={styles.keyword}>
               {c}
             </div>
           ))}

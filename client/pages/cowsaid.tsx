@@ -1,5 +1,3 @@
-import styles from './cowsay.scss'
-
 import * as React from 'react'
 
 import Layout from '../components/Layout'

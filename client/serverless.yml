@@ -1,0 +1,21 @@
+service: cowsayify-v3
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+stage: dev2
+region: eu-west-1
+
+plugins:
+  - serverless-nextjs-plugin
+
+custom:
+  serverless-nextjs:
+    nextConfigDir: './'
+
+package:
+  # exclude everything
+  # page handlers are automatically included by the plugin
+  exclude:
+    - ./**/*
