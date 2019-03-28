@@ -131,7 +131,7 @@ const CowsayOptions = (props: { cowsay: stateCowsay.IStateCowsay }) => {
         <div className={styles.cowFormRow}>
           <div className={styles.cowFormLabel} />
           <div className={styles.cowFormItem}>
-            <Button href="" type="primary" onClick={_onClick_share}>
+            <Button href="javascript:;" type="primary" onClick={_onClick_share}>
               Share!
             </Button>
           </div>

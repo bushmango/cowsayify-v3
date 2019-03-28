@@ -18,19 +18,23 @@ function log(...x) {
   }
 }
 
+let lastUrl = null
 const Layout = (props: { title: string; children: any }) => {
   useEffect(() => {
     // Update the document title using the browser API
     let url = window.location.pathname + window.location.search
-    if (
-      location.hostname === 'localhost' ||
-      location.hostname === '127.0.0.1' ||
-      location.hostname === ''
-    ) {
-      log('page -> ' + url)
-    } else {
-      log('ga -> ' + url)
-      ReactGA.pageview(url)
+    if (url !== lastUrl) {
+      lastUrl = url
+      if (
+        location.hostname === 'localhost' ||
+        location.hostname === '127.0.0.1' ||
+        location.hostname === ''
+      ) {
+        log('page -> ' + url)
+      } else {
+        log('ga -> ' + url)
+        ReactGA.pageview(url)
+      }
     }
   })
 

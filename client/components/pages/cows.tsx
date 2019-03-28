@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { _ } from '../../imports/lodash'
 
-import DisplayCow from '../DisplayCow'
+import DisplayCow from '../shared/DisplayCow'
 
-import Layout from '../Layout'
+import Layout from '../shared/Layout'
 
 import * as midboss from 'midboss'
 import * as stateCowsay from '../../state/stateCowsay'
 
-const Cows = (props: any) => {
+const CowsPage = (props: any) => {
   const cowsay = midboss.useSubscription(stateCowsay.stateManager)
 
   return (
@@ -27,4 +27,4 @@ const Cows = (props: any) => {
   )
 }
 
-export default Cows
+export { CowsPage }

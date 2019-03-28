@@ -133,10 +133,14 @@ export function doShare() {
       options: JSON.stringify(calcOptions()),
       created: moment().format(),
     }),
-  }).then(r => {
-    //Router.push('/cowsaid?key=' + key)
-    Router.push('/cowsaid/' + key)
   })
+    .then(r => {
+      //Router.push('/cowsaid?key=' + key)
+      Router.push('/cowsaid/' + key)
+    })
+    .catch(err => {
+      console.error('error posting cow', err)
+    })
 }
 
 export interface ICowOptions {

@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Layout from '../Layout'
+import Layout from '../shared/Layout'
 
-import DisplayCow from '../DisplayCow'
+import DisplayCow from '../shared/DisplayCow'
 
 import * as stateCowsay from '../../state/stateCowsay'
 
