@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { _ } from '../imports/lodash'
+import { _ } from '../../imports/lodash'
 
-import DisplayCow from '../components/DisplayCow'
+import DisplayCow from '../DisplayCow'
 
-import Layout from '../components/Layout'
+import Layout from '../Layout'
 
 import * as midboss from 'midboss'
-import * as stateCowsay from '../state/stateCowsay'
+import * as stateCowsay from '../../state/stateCowsay'
 
 const Cows = (props: any) => {
   const cowsay = midboss.useSubscription(stateCowsay.stateManager)

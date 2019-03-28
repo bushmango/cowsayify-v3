@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../shared/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
 import * as midboss from 'midboss'
-import * as stateMongo from '../state/stateMongo'
+import * as stateMongo from '../../state/stateMongo'
 
 const onChange = ev => {
   let hasChange = false
@@ -16,7 +16,7 @@ const onChange = ev => {
     }
   })
   if (hasChange) {
-    stateMongo.fetchMinimongo()
+    stateMongo.fetchMongo()
   }
 }
 
@@ -37,17 +37,17 @@ const Zip = ({ zip }) => {
   )
 }
 
-function MinimongoTest(props: { data: any }) {
+function MongoTest(props: { data: any }) {
   const state = midboss.useSubscription(stateMongo.stateManager)
 
   React.useEffect(() => {
-    if (!state.fetchedMinimongo) {
-      stateMongo.fetchMinimongo()
+    if (!state.fetchedMongo) {
+      stateMongo.fetchMongo()
     }
   })
 
   return (
-    <Layout title="minimongo test">
+    <Layout title="mongo test">
       <Head>
         <link
           rel="stylesheet"
@@ -57,11 +57,15 @@ function MinimongoTest(props: { data: any }) {
       <div style={{ padding: '2em' }}>
         <h2>Minimongo test</h2>
 
+        <button onClick={async () => alert(await stateMongo.getTotalPop())}>
+          Get count
+        </button>
+
         <input value={state.search} onChange={onChange} />
         {state.isLoading ? 'LOADING' : ''}
         <h3>Zip codes</h3>
         <div>
-          {_.map(state.fetchedMinimongo, (c, cIdx) => (
+          {_.map(state.fetchedMongo, (c, cIdx) => (
             <Zip key={cIdx} zip={c} />
           ))}
         </div>
@@ -71,4 +75,4 @@ function MinimongoTest(props: { data: any }) {
   )
 }
 
-export default MinimongoTest
+export default MongoTest

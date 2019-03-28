@@ -9,8 +9,8 @@ import Select from 'antd/lib/select'
 const Option = Select.Option
 // import Form from 'antd/lib/form'
 
-import * as stateCowsay from '../state/stateCowsay'
-import { modes, actions } from '../state/stateCowsay'
+import * as stateCowsay from '../../state/stateCowsay'
+import { modes, actions } from '../../state/stateCowsay'
 
 const stateManager = stateCowsay.stateManager
 

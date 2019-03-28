@@ -1,7 +1,7 @@
 import cowsay from 'cowsay-browser'
 import styles from './DisplayCow.scss'
 
-import { ICowOptions } from '../state/stateCowsay'
+import { ICowOptions } from 'state/stateCowsay'
 
 const DisplayCow = (props: { options: ICowOptions }) => {
   let { options } = props

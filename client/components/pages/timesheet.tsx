@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../shared/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
 import * as midboss from 'midboss'
-import * as stateTimesheet from '../state/stateTimesheet'
+import * as stateTimesheet from '../../state/stateTimesheet'
 
 const onChange = (idx, field, ev) => {
   let hasChange = false
@@ -75,9 +75,7 @@ const Input = ({ value, idx, field }) => {
 }
 
 function Timesheet(props: { data: any }) {
-  const state = midboss.useSubscription(
-    stateTimesheet.stateManager
-  )
+  const state = midboss.useSubscription(stateTimesheet.stateManager)
 
   return (
     <Layout title="timesheet tool">

@@ -1,7 +1,7 @@
 import * as React from 'react'
 const { useEffect } = React
 
-import styles from './styles.scss'
+import styles from './../styles.scss'
 // const styles = require('./styles.scss')
 
 import Head from 'next/head'
