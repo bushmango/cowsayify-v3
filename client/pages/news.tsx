@@ -1,2 +1,2 @@
-import { NewsPage } from './../components/pages/news'
+import { NewsPage } from './../components/root/news'
 export default NewsPage

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import styles from '../pages/cowsay.scss'
+import styles from '../root/cowsay.scss'
 
 import Button from 'antd/lib/button'
 import Input from 'antd/lib/input'

@@ -1,2 +1,2 @@
-import { HistoryPage } from './../components/pages/history'
+import { HistoryPage } from './../components/root/history'
 export default HistoryPage

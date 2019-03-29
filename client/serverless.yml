@@ -13,6 +13,7 @@ plugins:
 custom:
   serverless-nextjs:
     nextConfigDir: './'
+    assetsBucketName: 'serverless-cowsay-2'
 
 package:
   # exclude everything

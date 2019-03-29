@@ -80,6 +80,8 @@ module.exports = (phase, { defaultConfig }) => {
       host: 'https://api.cowsayify.com'
     }
 
+    // config.assetPrefix = 'https://s3.amazonaws.com/serverless-cowsay-2'
+
     return config
   }
 }

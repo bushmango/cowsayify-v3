@@ -1,2 +1,2 @@
-import { AboutPage } from './../components/pages/about'
+import { AboutPage } from './../components/root/about'
 export default AboutPage
