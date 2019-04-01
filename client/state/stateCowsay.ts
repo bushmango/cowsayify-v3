@@ -9,7 +9,8 @@ import cowsay from 'cowsay-browser'
 import fetch from 'isomorphic-unfetch'
 // const uuidv4 = require('uuid/v4')
 const shortid = require('shortid')
-import Router from 'next/router'
+
+import * as router from './router'
 
 const host = process.env.host
 
@@ -138,7 +139,7 @@ export function doShare() {
   })
     .then(r => {
       //Router.push('/cowsaid?key=' + key)
-      Router.push('/cowsaid/' + key)
+      router.navTo('/cowsaid/' + key)
     })
     .catch(err => {
       console.error('error posting cow', err)

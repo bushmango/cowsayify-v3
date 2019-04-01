@@ -4,13 +4,13 @@ import styles from './index.scss'
 // const styles = require('./index.scss')
 
 import Layout from '../shared/Layout'
-import Head from 'next/head'
-import Header from '../shared/Header'
+
+import * as router from '../../state/router'
 
 class IndexPage extends React.Component<{ data: any }> {
   componentDidMount() {
     // Simple redirect
-    window.location.href = '/cowsay'
+    router.navTo('/cowsay')
   }
 
   render() {
