@@ -12,7 +12,15 @@ plugins:
 custom:
   serverless-nextjs:
     nextConfigDir: './'
-
+    pageConfig:
+      cowsaid:
+        events:
+          - http:
+              path: cowsaid/{key}
+              request:
+                parameters:
+                  paths:
+                    key: true
 package:
   exclude:
     - ./**

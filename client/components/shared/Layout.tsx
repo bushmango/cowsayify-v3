@@ -21,7 +21,7 @@ function log(...x) {
 }
 
 let lastUrl = null
-const Layout = (props: { title: string; children: any }) => {
+const Layout = (props: { title: string; children: React.ReactNode }) => {
   useEffect(() => {
     // Update the document title using the browser API
     let url = window.location.pathname + window.location.search
