@@ -14,12 +14,9 @@ function ServerlessLink(props: {
   let as = router.correctAs(props.as)
 
   return (
-    <div>
-      Click{' '}
-      <Link href={href} as={as}>
-        <a>{props.children}</a>
-      </Link>
-    </div>
+    <Link href={href} as={as}>
+      {props.children}
+    </Link>
   )
 }
 

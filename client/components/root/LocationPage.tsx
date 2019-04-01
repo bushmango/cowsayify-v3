@@ -20,6 +20,7 @@ class LocationPage extends React.Component<{ data: any }> {
     return (
       <Layout title="location">
         <div>Window location props</div>
+
         {typeof window !== 'undefined' && (
           <div>
             {_.map(locationProps, c => (

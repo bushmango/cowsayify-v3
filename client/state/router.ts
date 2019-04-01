@@ -1,5 +1,6 @@
 import Router from 'next/router'
-import { _ } from '../imports/lodash'
+// import { _ } from '../imports/lodash'
+import * as _ from 'lodash'
 
 export function navTo(href: string) {
   Router.push(href)

@@ -7,9 +7,6 @@ const linkStyle = {
 
 const Header = () => (
   <div className={styles.header}>
-    {/* <Link href="/index">
-      <a style={linkStyle}>Home</a>
-    </Link> */}
     <ServerlessLink href="/cowsay">
       <a style={linkStyle}>Make the cow say something</a>
     </ServerlessLink>
