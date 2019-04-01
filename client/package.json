@@ -58,7 +58,7 @@
   },
   "scripts": {
     "_dev": "next",
-    "dev": "nodemon",
+    "dev": "tsc --project tsconfig.server.json  && nodemon server/index.js",
     "_build": "next build && tsc --project tsconfig.server.json",
     "build": "next build",
     "_start": "next start -p 8000",

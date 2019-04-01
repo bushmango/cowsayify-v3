@@ -3,7 +3,7 @@
     "**/*.js": { "when": "$(basename).ts" },
     "**/**.js": { "when": "$(basename).tsx" },
     "**/**.jsx": { "when": "$(basename).tsx" },
-    "**/**scss.d.ts": true,
+    "**/*.scss.d.ts": true,
     "**/*.map": true
   }
 }
