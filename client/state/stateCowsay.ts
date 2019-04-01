@@ -13,13 +13,15 @@ import Router from 'next/router'
 
 const host = process.env.host
 
+export type TAction = 'say' | 'think'
+
 export interface IStateCowsay {
   text: string
   mode: string
   eyes: string
   tongue: string
   template: string
-  action: 'say' | 'think'
+  action: TAction
   cow: string
   cowList: string[]
 }
@@ -57,7 +59,7 @@ function init() {
 init()
 
 export interface IAction {
-  key: string
+  key: TAction
   label: string
 }
 const actions: IAction[] = [
@@ -168,7 +170,7 @@ export function calcOptions(): ICowOptions {
     text = 'Moo'
   }
 
-  let options: any = {
+  let options: ICowOptions = {
     text,
     action: state.action,
   }

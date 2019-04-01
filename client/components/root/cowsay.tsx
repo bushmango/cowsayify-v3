@@ -16,7 +16,7 @@ const CowsayPage = (props: any) => {
   return (
     <Layout title="cowsay">
       <CowsayOptions cowsay={cowsay} />
-      <DisplayCow options={options} />
+      <DisplayCow options={options as any} />
     </Layout>
   )
 }

@@ -8,8 +8,8 @@ import { configureApp } from "./app";
 // by aws-serverless-express and/or API Gateway. Add the necessary MIME types to
 // binaryMimeTypes below, then redeploy (`npm run package-deploy`)
 const binaryMimeTypes: string[] = [
-  "application/javascript",
-  "application/json",
+  // "application/javascript",
+  // "application/json",
   // 'application/octet-stream',
   // 'application/xml',
   "font/eot",
@@ -19,11 +19,11 @@ const binaryMimeTypes: string[] = [
   "image/png",
   "image/svg+xml",
   // 'text/comma-separated-values',
-  "text/css",
-  "text/html",
-  "text/javascript",
-  "text/plain",
-  "text/text"
+  // "text/css",
+  // "text/html",
+  // "text/javascript",
+  // "text/plain",
+  // "text/text"
   // 'text/xml',
 ];
 const app = configureApp();

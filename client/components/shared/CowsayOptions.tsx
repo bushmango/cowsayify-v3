@@ -36,7 +36,7 @@ const _onClick_share = ev => {
   stateCowsay.doShare()
 }
 
-const CowsayOptions = (props: { cowsay: stateCowsay.IStateCowsay }) => {
+const CowsayOptions = (props: { cowsay: any }) => {
   const { cowsay } = props
   return (
     <div className={styles.cowForm}>

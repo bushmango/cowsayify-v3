@@ -1,11 +1,10 @@
-service: cowsayify-v3
+service: cowsayify
 
 provider:
   name: aws
   runtime: nodejs8.10
-
-stage: dev2
-region: eu-west-1
+  memorySize: 512
+  region: us-east-1
 
 plugins:
   - serverless-nextjs-plugin
@@ -13,10 +12,7 @@ plugins:
 custom:
   serverless-nextjs:
     nextConfigDir: './'
-    assetsBucketName: 'serverless-cowsay-2'
 
 package:
-  # exclude everything
-  # page handlers are automatically included by the plugin
   exclude:
-    - ./**/*
+    - ./**

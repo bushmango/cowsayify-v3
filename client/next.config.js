@@ -15,40 +15,6 @@ module.exports = (phase, { defaultConfig }) => {
         if (options.isServer) {
           config.plugins.push(new ForkTsCheckerWebpackPlugin())
         }
-
-        if (!options.isServer) {
-          // See: https://github.com/zeit/next.js/blob/master/examples/with-typings-for-css-modules/next.config.js
-          // for (let entry of options.defaultLoaders.css) {
-          //   if (entry.loader === 'css-loader') {
-          //     entry.loader = 'typings-for-css-modules-loader'
-          //     break
-          //   }
-          // }
-          // for (let entry of options.defaultLoaders.sass) {
-          //   if (entry.loader === 'css-loader') {
-          //     entry.loader = 'typings-for-css-modules-loader'
-          //     break
-          //   }
-          // }
-        }
-
-        // for (let rule of config.module.rules) {
-        //   if (rule.use) {
-        //     if (typeof rule.use === 'object') {
-        //       let useItem = rule.use
-        //       if (useItem.loader === 'css-loader/locals') {
-        //         useItem.loader = 'typings-for-css-modules-loader/locals'
-        //       }
-        //     } else {
-        //       for (let useItem of rule.use) {
-        //         if (useItem.loader === 'css-loader/locals') {
-        //           useItem.loader = 'typings-for-css-modules-loader/locals'
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
-
         return config
       },
       cssModules: useCssModules,
@@ -80,7 +46,7 @@ module.exports = (phase, { defaultConfig }) => {
       host: 'https://api.cowsayify.com'
     }
 
-    // config.assetPrefix = 'https://s3.amazonaws.com/serverless-cowsay-2'
+    config.assetPrefix = 'https://s3.amazonaws.com/serverless-cowsay-3'
 
     return config
   }
