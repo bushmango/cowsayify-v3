@@ -7,6 +7,8 @@ import styles from './../styles.scss'
 import Head from 'next/head'
 import Header from './Header'
 
+import * as router from './../../state/router'
+
 import ReactGA from 'react-ga'
 const googleAnalyticsTrackingId = 'UA-135264357-1'
 ReactGA.initialize(googleAnalyticsTrackingId)
@@ -47,7 +49,10 @@ const Layout = (props: { title: string; children: any }) => {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Nunito:300,400,500"
         />
-        <link rel="stylesheet" href="/static/css/antd.min.css" />
+        <link
+          rel="stylesheet"
+          href={router.correctHref('/static/css/antd.min.css')}
+        />
       </Head>
       <Header />
       {props.children}

@@ -3,7 +3,7 @@ import Router from 'next/router'
 import * as _ from 'lodash'
 
 export function navTo(href: string) {
-  Router.push(href)
+  Router.push(correctHref(href))
 }
 
 export function correctHref(href: string) {
