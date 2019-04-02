@@ -1,6 +1,9 @@
 import Router from 'next/router'
 // import { _ } from '../imports/lodash'
 import * as _ from 'lodash'
+import * as log from './log'
+
+const s3Bucket = 'https://serverless-cowsay-3.s3.amazonaws.com'
 
 export function navTo(href: string) {
   Router.push(correctHref(href))
@@ -8,24 +11,29 @@ export function navTo(href: string) {
 
 let prefix = ''
 let staticPrefix = ''
-function getPrefix() {
+export function getPrefix(origin, pathname) {
   if (typeof window != 'undefined') {
-    if (_.startsWith(window.location.origin, 'http://localhost:')) {
-      prefix = ''
-      staticPrefix = ''
-    } else if (_.startsWith(window.location.pathname, '/dev/')) {
-      prefix = '/dev'
-      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com/dev'
-    } else if (_.startsWith(window.location.pathname, '/prod/')) {
-      prefix = '/prod'
-      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com/prod'
-    } else {
-      prefix = ''
-      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com/prod'
-    }
+    origin = window.location.origin
+    pathname = window.location.pathname
+  }
+
+  log.x('getPrefix', origin, pathname)
+
+  if (origin.indexOf('localhost:') !== -1) {
+    prefix = ''
+    staticPrefix = ''
+  } else if (_.startsWith(pathname, '/dev/')) {
+    prefix = '/dev'
+    staticPrefix = s3Bucket + '/dev'
+  } else if (_.startsWith(pathname, '/prod/')) {
+    prefix = '/prod'
+    staticPrefix = s3Bucket + '/prod'
+  } else {
+    prefix = ''
+    staticPrefix = s3Bucket + '/prod'
   }
 }
-getPrefix()
+getPrefix('', '')
 
 export function correctStatic(href: string) {
   if (typeof window != 'undefined') {
@@ -48,7 +56,7 @@ export function correctHref(href: string) {
 
 export function correctAs(as: string) {
   if (!as) {
-    return as
+    return null
   }
   return correctHref(as)
 }

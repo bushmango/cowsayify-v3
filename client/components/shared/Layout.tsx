@@ -8,17 +8,12 @@ import Head from 'next/head'
 import Header from './Header'
 
 import * as router from './../../state/router'
+import * as log from './../../state/log'
 
 import ReactGA from 'react-ga'
 const googleAnalyticsTrackingId = 'UA-135264357-1'
 ReactGA.initialize(googleAnalyticsTrackingId)
-log('ga init -> ' + googleAnalyticsTrackingId)
-
-function log(...x) {
-  if (console && console.log) {
-    console.log(...x)
-  }
-}
+log.x('ga init -> ' + googleAnalyticsTrackingId)
 
 let lastUrl = null
 const Layout = (props: { title: string; children: React.ReactNode }) => {
@@ -32,9 +27,9 @@ const Layout = (props: { title: string; children: React.ReactNode }) => {
         location.hostname === '127.0.0.1' ||
         location.hostname === ''
       ) {
-        log('page -> ' + url)
+        log.x('page -> ' + url)
       } else {
-        log('ga -> ' + url)
+        log.x('ga -> ' + url)
         ReactGA.pageview(url)
       }
     }

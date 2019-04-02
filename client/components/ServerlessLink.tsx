@@ -11,11 +11,11 @@ function ServerlessLink(props: {
   children: React.ReactNode
 }) {
   let href = router.correctHref(props.href)
-  let as = router.correctAs(props.as)
+  let as = router.correctAs(props.as) || href
 
   return (
     <Link href={href} as={as}>
-      {props.children}
+      <a>{props.children}</a>
     </Link>
   )
 }
