@@ -10,13 +10,18 @@ let prefix = ''
 let staticPrefix = ''
 function getPrefix() {
   if (typeof window != 'undefined') {
-    if (_.startsWith(window.location.pathname, '/dev/')) {
+    if (_.startsWith(window.location.origin, 'http://localhost:')) {
+      prefix = ''
+      staticPrefix = ''
+    } else if (_.startsWith(window.location.pathname, '/dev/')) {
       prefix = '/dev'
-      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com'
-    }
-    if (_.startsWith(window.location.pathname, '/prod/')) {
+      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com/dev'
+    } else if (_.startsWith(window.location.pathname, '/prod/')) {
       prefix = '/prod'
-      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com'
+      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com/prod'
+    } else {
+      prefix = ''
+      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com/prod'
     }
   }
 }

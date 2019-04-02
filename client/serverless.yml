@@ -5,11 +5,17 @@ provider:
   runtime: nodejs8.10
   memorySize: 512
   region: us-east-1
+  stage: ${opt:stage}
 
 plugins:
   - serverless-nextjs-plugin
+  - serverless-s3-sync
+  - serverless-plugin-write-env-vars
 
 custom:
+  stage: ${opt:stage}
+  writeEnvVars:
+    NODE_ENV: ${file(./.env.yml):${opt:stage}.NODE_ENV}
   serverless-nextjs:
     nextConfigDir: './'
     pageConfig:
@@ -21,6 +27,20 @@ custom:
                 parameters:
                   paths:
                     key: true
+  s3Sync:
+    - bucketName: serverless-cowsay-3
+      bucketPrefix: ${opt:stage}/static/
+      localDir: static
+      acl: public-read
+      defaultContentType: text/html
+      params:
+        - index.html:
+            CacheControl: 'no-cache'
+        - '*.css':
+            CacheControl: 'public, max-age=604800'
+        - '*.js':
+            CacheControl: 'public, max-age=31536000'
+
 package:
   exclude:
     - ./**
