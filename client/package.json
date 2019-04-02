@@ -24,6 +24,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-ga": "^2.5.7",
+    "s3-deploy": "^1.3.0",
     "semantic-ui-react": "0.86.0",
     "serverless-plugin-include-dependencies": "^3.2.1",
     "serverless-webpack": "^5.2.0",
@@ -66,7 +67,8 @@
     "now-build": "next build",
     "now-deploy": "npm run build && now",
     "sass-build": "tsm --nameFormat camel --exportType default '+(pages|components)/**/*.scss'",
-    "sass": "tsm --watch --nameFormat camel --exportType default '+(pages|components)/**/*.scss'"
+    "sass": "tsm --watch --nameFormat camel --exportType default '+(pages|components)/**/*.scss'",
+    "deploy-static": "s3-deploy './static/**' --cwd './' --region us-east-1 --bucket serverless-cowsay-3"
   },
   "repository": {
     "type": "git",

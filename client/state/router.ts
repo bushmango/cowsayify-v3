@@ -6,18 +6,37 @@ export function navTo(href: string) {
   Router.push(correctHref(href))
 }
 
+let prefix = ''
+let staticPrefix = ''
+function getPrefix() {
+  if (typeof window != 'undefined') {
+    if (_.startsWith(window.location.pathname, '/dev/')) {
+      prefix = '/dev'
+      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com'
+    }
+    if (_.startsWith(window.location.pathname, '/prod/')) {
+      prefix = '/prod'
+      staticPrefix = 'https://serverless-cowsay-3.s3.amazonaws.com'
+    }
+  }
+}
+getPrefix()
+
+export function correctStatic(href: string) {
+  if (typeof window != 'undefined') {
+    if (_.startsWith(window.location.origin, 'http://localhost:')) {
+      return href
+    } else {
+      return staticPrefix + href
+    }
+  }
+}
+
 export function correctHref(href: string) {
   if (_.startsWith(href, '/')) {
     // Add our host
     // TODO: work on the server?
-    if (typeof window != 'undefined') {
-      if (_.startsWith(window.location.pathname, '/dev/')) {
-        href = '/dev' + href
-      }
-      if (_.startsWith(window.location.pathname, '/prod/')) {
-        href = '/prod' + href
-      }
-    }
+    href = prefix + href
   }
   return href
 }

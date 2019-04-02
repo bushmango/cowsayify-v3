@@ -51,7 +51,7 @@ const Layout = (props: { title: string; children: React.ReactNode }) => {
         />
         <link
           rel="stylesheet"
-          href={router.correctHref('/static/css/antd.min.css')}
+          href={router.correctStatic('/static/css/antd.min.css')}
         />
       </Head>
       <Header />
