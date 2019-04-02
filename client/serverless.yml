@@ -13,9 +13,16 @@ provider:
 plugins:
   - serverless-nextjs-plugin
   - serverless-s3-sync
+  - serverless-domain-manager
 
 custom:
   stage: ${opt:stage}
+  customDomain:
+    domainName: ${opt:stage}.cowsayify.com
+    stage: ${opt:stage}
+    certificateName: 'cowsayify.com'
+    createRoute53Record: true
+    endpointType: 'edge'
   serverless-nextjs:
     nextConfigDir: './'
     pageConfig:
@@ -28,7 +35,7 @@ custom:
                   paths:
                     key: true
   s3Sync:
-    - bucketName: serverless-cowsay-3
+    - bucketName: serverless-cowsay-3-prod
       bucketPrefix: ${opt:stage}/static/
       localDir: static
       acl: public-read
