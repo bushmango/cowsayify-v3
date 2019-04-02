@@ -6,16 +6,16 @@ provider:
   memorySize: 512
   region: us-east-1
   stage: ${opt:stage}
+  environment:
+    NODE_ENV: ${file(./.env.yml):${opt:stage}.NODE_ENV}
+    NODE_STAGE: ${opt:stage}
 
 plugins:
   - serverless-nextjs-plugin
   - serverless-s3-sync
-  - serverless-plugin-write-env-vars
 
 custom:
   stage: ${opt:stage}
-  writeEnvVars:
-    NODE_ENV: ${file(./.env.yml):${opt:stage}.NODE_ENV}
   serverless-nextjs:
     nextConfigDir: './'
     pageConfig:
