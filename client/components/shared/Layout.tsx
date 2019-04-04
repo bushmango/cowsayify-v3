@@ -47,6 +47,8 @@ const Pace = (props: { isLoading }) => {
         backgroundColor: props.isLoading && '#aaa',
         height: '3px',
         maxHeight: '3px',
+        position: 'fixed',
+        top: '2px',
       }}
     >
       &nbsp;
