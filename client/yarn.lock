@@ -912,9 +912,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/react@^16.8.8":
-  version "16.8.10"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.10.tgz#1ccb6fde17f71a62ef055382ec68bdc379d4d8d9"
+"@types/react@^16.8.12":
+  version "16.8.12"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.12.tgz#ffbdd7bcd2b7037c3f78e26c708922a2befbb71f"
+  integrity sha512-MZZiv11BQhsxFp5DHDmRKBi6Nv3jwOhRiFFDE7ZJ1+rb52gdOd9y/qY0+5wyV/PQVK9926wFMjpQj3BJ18pb4Q==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -3935,9 +3936,14 @@ immediate@~3.0.5:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
 
-immer@^2.1.2, immer@^2.1.4:
+immer@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/immer/-/immer-2.1.4.tgz#92545e07c2c28b94afe0752364a35f5693b6ffaa"
+
+immer@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-2.1.5.tgz#0389947455c5a2c7a47f1e6f415c9d1a62a1ebed"
+  integrity sha512-xyjQyTBYIeiz6jd02Hg12jV+9QISwF1crLcwTlzHpWH4e0ryNWj1kacpTwimK3bJV5NKKXw458G2vpqoB/inFA==
 
 immutable@^3.7.4:
   version "3.8.2"
@@ -4875,9 +4881,10 @@ micromatch@^3.1.0, micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-midboss@0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/midboss/-/midboss-0.18.0.tgz#8cef5942d8c61875af91fe0c6cbe41ca20dc2cf3"
+midboss@0.18.4:
+  version "0.18.4"
+  resolved "https://registry.yarnpkg.com/midboss/-/midboss-0.18.4.tgz#f524301fbe151635314971ec6d0c4ca9bd1d3248"
+  integrity sha512-5xy0NnZTVgeYaXyvUgajXLhMoJTJWM7G1dbjV6d2YAOuHrnfQYTkNP9SmROkNQNWDpmjqZAhsKHcx9gg+s15vw==
   dependencies:
     "@types/node" "11.12.0"
     flavor-saver "0.14.0"

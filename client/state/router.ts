@@ -3,6 +3,8 @@ import Router from 'next/router'
 import * as _ from 'lodash'
 import * as log from './log'
 
+import * as midbossTheme from './midbossTheme'
+
 const s3Bucket = 'https://serverless-cowsay-3-prod.s3.amazonaws.com'
 
 export function navTo(href: string, as?: string) {
@@ -71,3 +73,12 @@ export function correctAs(as: string) {
   }
   return correctHref(as)
 }
+
+Router.events.on('routeChangeStart', url => {
+  console.log('App is changing to: ', url)
+  midbossTheme.setLoading(true)
+})
+Router.events.on('routeChangeComplete', url => {
+  console.log('App changed to: ', url)
+  midbossTheme.setLoading(false)
+})
