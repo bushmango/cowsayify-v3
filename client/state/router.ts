@@ -3,7 +3,7 @@ import Router from 'next/router'
 import * as _ from 'lodash'
 import * as log from './log'
 
-const s3Bucket = 'https://serverless-cowsay-3-prodv002.s3.amazonaws.com'
+const s3Bucket = 'https://serverless-cowsay-3-prod.s3.amazonaws.com'
 
 export function navTo(href: string, as?: string) {
   Router.push(correctHref(href), correctAs(as))
