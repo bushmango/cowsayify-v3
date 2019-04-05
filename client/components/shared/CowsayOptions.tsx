@@ -103,16 +103,10 @@ const CowsayOptions = (props: { cowsay: any }) => {
           <div className={styles.cowFormItem}>
             <Select
               value={cowsay.cow}
-              style={{ width: 120 }}
+              // style={{ width: 120 }}
               onChange={_onChange_cow}
-            >
-              <Select
-                value={cowsay.action}
-                // style={{ width: 120 }}
-                onChange={_onChange_action}
-                options={cowsay.cowList.map(c => ({ value: c, display: c }))}
-              />
-            </Select>
+              options={cowsay.cowList.map(c => ({ value: c, display: c }))}
+            />
           </div>
         </div>
 

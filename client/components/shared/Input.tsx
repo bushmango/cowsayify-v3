@@ -2,18 +2,19 @@ import React from 'react'
 
 function Input<T>(props: {
   onChange: (newVal) => void
-  val: string
+  value: string
   width?: string
   id?: string
   name?: string
   testId?: string
   placeholder?: string
+  maxLength?: number
 }) {
   const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     let newVal = ev.target.value
     props.onChange(newVal)
   }
-  let val = props.val
+  let val = props.value
 
   return (
     <div>
@@ -26,6 +27,7 @@ function Input<T>(props: {
         name={props.name}
         data-t={props.testId}
         placeholder={props.placeholder}
+        maxLength={props.maxLength}
       />
     </div>
   )
