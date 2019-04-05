@@ -4,8 +4,7 @@ import Layout from '../shared/Layout'
 
 import DisplayCow from '../shared/DisplayCow'
 
-//import styles from './about.scss'
-import styles from './about.scss'
+import styles from './AboutPage.scss'
 
 const keywords = [
   'serverless-api',

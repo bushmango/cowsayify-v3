@@ -17,7 +17,11 @@
     "lib": ["dom", "es2015", "es2016"],
     "baseUrl": ".",
     "paths": {
-      "state": ["state/*"]
+      "@pages/*": ["./pages/*"],
+      "@imports/*": ["./imports/*"],
+      "@state/*": ["./state/*"],
+      "@components/*": ["./components/*"],
+      "*": ["*"]
     }
   }
 }

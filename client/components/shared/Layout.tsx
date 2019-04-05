@@ -14,47 +14,10 @@ import * as midboss from 'midboss'
 import * as midbossTheme from '../../state/midbossTheme'
 
 import ReactGA from 'react-ga'
+import { Pace } from './Pace'
 const googleAnalyticsTrackingId = 'UA-135264357-1'
 ReactGA.initialize(googleAnalyticsTrackingId)
 log.x('ga init -> ' + googleAnalyticsTrackingId)
-
-const Pace = (props: { isLoading }) => {
-  const [count, setCount] = React.useState(0)
-
-  useEffect(() => {
-    if (props.isLoading) {
-      setTimeout(() => {
-        if (props.isLoading) {
-          setCount(count + 1)
-        } else {
-          setCount(0)
-        }
-      }, 1000 / 60)
-    } else {
-      setCount(0)
-    }
-  })
-
-  let y = (1 - 1 / ((count - 2) / 5 + 1)) * 100
-  if (count <= 2) {
-    y = 0
-  }
-
-  return (
-    <div
-      style={{
-        width: y + '%',
-        backgroundColor: props.isLoading && '#aaa',
-        height: '3px',
-        maxHeight: '3px',
-        position: 'fixed',
-        top: '2px',
-      }}
-    >
-      &nbsp;
-    </div>
-  )
-}
 
 let lastUrl = null
 const Layout = (props: { title: string; children: React.ReactNode }) => {

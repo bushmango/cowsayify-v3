@@ -1,4 +1,4 @@
-import styles from './history.scss'
+import styles from './HistoryPage.scss'
 
 import * as React from 'react'
 import { _ } from '../../imports/lodash'

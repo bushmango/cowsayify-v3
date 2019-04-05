@@ -1,0 +1,14 @@
+$color: #ccc;
+$textColor: #000;
+
+.button {
+  border: none;
+  border-radius: 3px;
+  margin: 0.5em;
+  width: 200px;
+  height: 35px;
+  background-color: $color;
+  color: $textColor;
+  font-weight: bold;
+  font-size: 20px;
+}

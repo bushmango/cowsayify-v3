@@ -1,13 +1,11 @@
 import * as React from 'react'
 
-import styles from '../root/cowsay.scss'
+import styles from '../root/CowsayPage.scss'
 
-import Button from 'antd/lib/button'
-import Input from 'antd/lib/input'
-const { TextArea } = Input
-import Select from 'antd/lib/select'
-const Option = Select.Option
-// import Form from 'antd/lib/form'
+import { Button } from '@components/shared/Button'
+import { Input } from '@components/shared/Input'
+import { TextArea } from '@components/shared/TextArea'
+import { Select } from '@components/shared/Select'
 
 import * as stateCowsay from '../../state/stateCowsay'
 import { modes, actions } from '../../state/stateCowsay'
@@ -48,7 +46,6 @@ const CowsayOptions = (props: { cowsay: any }) => {
               placeholder="What should the cow say?"
               value={cowsay.text}
               rows={1}
-              autosize
               onChange={_onChange_text}
             />
           </div>
@@ -59,15 +56,10 @@ const CowsayOptions = (props: { cowsay: any }) => {
           <div className={styles.cowFormItem}>
             <Select
               value={cowsay.action}
-              style={{ width: 120 }}
+              // style={{ width: 120 }}
               onChange={_onChange_action}
-            >
-              {actions.map(c => (
-                <Option key={c.key} value={c.key}>
-                  {c.label}
-                </Option>
-              ))}
-            </Select>
+              options={actions.map(c => ({ value: c.key, display: c.label }))}
+            />
           </div>
         </div>
 
@@ -75,16 +67,11 @@ const CowsayOptions = (props: { cowsay: any }) => {
           <div className={styles.cowFormLabel}>MOOd</div>
           <div className={styles.cowFormItem}>
             <Select
-              value={cowsay.mode}
-              style={{ width: 120 }}
-              onChange={_onChange_mode}
-            >
-              {modes.map(c => (
-                <Option key={c.key} value={c.key}>
-                  {c.label}
-                </Option>
-              ))}
-            </Select>
+              value={cowsay.action}
+              // style={{ width: 120 }}
+              onChange={_onChange_action}
+              options={modes.map(c => ({ value: c.key, display: c.label }))}
+            />
           </div>
         </div>
 
@@ -119,11 +106,12 @@ const CowsayOptions = (props: { cowsay: any }) => {
               style={{ width: 120 }}
               onChange={_onChange_cow}
             >
-              {cowsay.cowList.map(c => (
-                <Option key={c} value={c}>
-                  {c}
-                </Option>
-              ))}
+              <Select
+                value={cowsay.action}
+                // style={{ width: 120 }}
+                onChange={_onChange_action}
+                options={cowsay.cowList.map(c => ({ value: c, display: c }))}
+              />
             </Select>
           </div>
         </div>
@@ -131,9 +119,7 @@ const CowsayOptions = (props: { cowsay: any }) => {
         <div className={styles.cowFormRow}>
           <div className={styles.cowFormLabel} />
           <div className={styles.cowFormItem}>
-            <Button href="javascript:;" type="primary" onClick={_onClick_share}>
-              Share!
-            </Button>
+            <Button onClick={_onClick_share}>Share!</Button>
           </div>
         </div>
       </div>

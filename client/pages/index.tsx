@@ -1,2 +1,2 @@
-import { IndexPage } from './../components/root/index'
+import { IndexPage } from '../components/root/IndexPage'
 export default IndexPage
