@@ -12,8 +12,8 @@ import { modes, actions } from '../../state/stateCowsay'
 
 const stateManager = stateCowsay.stateManager
 
-const _onChange_text = ev => {
-  stateManager.setState({ text: ev.target.value })
+const _onChange_text = val => {
+  stateManager.setState({ text: val })
 }
 const _onChange_mode = val => {
   stateManager.setState({ mode: val })
@@ -21,11 +21,11 @@ const _onChange_mode = val => {
 const _onChange_action = val => {
   stateManager.setState({ action: val })
 }
-const _onChange_eyes = ev => {
-  stateManager.setState({ eyes: ev.target.value })
+const _onChange_eyes = val => {
+  stateManager.setState({ eyes: val })
 }
-const _onChange_tongue = ev => {
-  stateManager.setState({ tongue: ev.target.value })
+const _onChange_tongue = val => {
+  stateManager.setState({ tongue: val })
 }
 const _onChange_cow = val => {
   stateManager.setState({ cow: val })
@@ -67,9 +67,9 @@ const CowsayOptions = (props: { cowsay: any }) => {
           <div className={styles.cowFormLabel}>MOOd</div>
           <div className={styles.cowFormItem}>
             <Select
-              value={cowsay.action}
+              value={cowsay.modes}
               // style={{ width: 120 }}
-              onChange={_onChange_action}
+              onChange={_onChange_mode}
               options={modes.map(c => ({ value: c.key, display: c.label }))}
             />
           </div>
