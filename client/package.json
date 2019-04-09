@@ -60,7 +60,8 @@
     "typescript": "3.4.2"
   },
   "scripts": {
-    "dev": "stmux [ [ \"yarn dev-start\" ] : [ \"yarn sass\" .. \"yarn test\" ] ] -t \"Cowsayify - :3004 - Ctrl+a then k to quit\" -e \"[Ff]ail(?!ed\\stests\\.)\"",
+    "dev": "stmux [ [ \"yarn dev-start\" ] : [ \"yarn dev-secondary\" .. \"yarn test\" ] ] -t \"Cowsayify - :3004 - Ctrl+a then k to quit\" -e \"[Ff]ail(?!ed\\stests\\.)\"",
+    "dev-secondary": "concurrently \"yarn sass\"",
     "dev-start": "tsc --project tsconfig.server.json  && nodemon server/index.js",
     "build": "next build",
     "_start": "next start -p 8000",
