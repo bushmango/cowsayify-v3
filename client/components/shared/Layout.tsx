@@ -45,8 +45,6 @@ const Layout = (props: { title: string; children: React.ReactNode }) => {
     return null
   }
 
-  console.log('rendered', stateTheme.isLoading)
-
   return (
     <div className={styles.layout}>
       <Pace isLoading={stateTheme.isLoading} />

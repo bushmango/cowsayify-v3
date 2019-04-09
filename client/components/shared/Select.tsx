@@ -13,7 +13,6 @@ const Select = (props: {
   onChange: (newValue) => void
 }) => {
   const onChange = (ev: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log('changed', ev.target.value)
     props.onChange(ev.target.value)
   }
 

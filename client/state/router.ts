@@ -75,10 +75,10 @@ export function correctAs(as: string) {
 }
 
 Router.events.on('routeChangeStart', url => {
-  console.log('App is changing to: ', url)
+  log.x('App is changing to: ', url)
   midbossTheme.setLoading(true)
 })
 Router.events.on('routeChangeComplete', url => {
-  console.log('App changed to: ', url)
+  log.x('App changed to: ', url)
   midbossTheme.setLoading(false)
 })

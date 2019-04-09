@@ -9,12 +9,11 @@ export interface IStateTheme {
 }
 
 let initialState: IStateTheme = {
-  isLoading: true,
+  isLoading: false,
 }
 
 const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
-  useLocalStorage: true,
-  useVerbose: true,
+  useLocalStorage: false,
 })
 export { stateManager }
 
@@ -22,5 +21,4 @@ export function setLoading(isLoading: boolean) {
   stateManager.produce(draftState => {
     draftState.isLoading = isLoading
   })
-  console.log('set loading to', isLoading)
 }
