@@ -9,19 +9,27 @@ import Layout from '../shared/Layout'
 import * as midboss from 'midboss'
 import * as minionCowsay from '../../state/minionCowsay'
 
+const Cowsay = (props: any) => {
+  return (
+    <Layout title='cowsay'>
+      <CowsayPage />
+    </Layout>
+  )
+}
+
 const CowsayPage = (props: any) => {
   const cowsay = midboss.useSubscription(minionCowsay.stateManager)
   let options = minionCowsay.calcOptions()
 
   return (
-    <Layout title='cowsay'>
+    <div>
       <CowsayOptions cowsay={cowsay} />
       <DisplayCow options={options as any} />
-    </Layout>
+    </div>
   )
 }
 
-export { CowsayPage }
+export { Cowsay, CowsayPage }
 
 // class Cowsay extends React.Component<{}> {
 //   subscriptionToken = minionCowsay.subscribe(this)

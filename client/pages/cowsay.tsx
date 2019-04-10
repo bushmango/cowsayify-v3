@@ -1,2 +1,2 @@
-import { CowsayPage } from '../components/root/CowsayPage'
-export default CowsayPage
+import { Cowsay } from '../components/root/CowsayPage'
+export default Cowsay
