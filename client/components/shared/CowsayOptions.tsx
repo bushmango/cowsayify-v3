@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import styles from '../root/CowsayPage.scss'
 
@@ -7,31 +7,31 @@ import { Input } from '@components/shared/Input'
 import { TextArea } from '@components/shared/TextArea'
 import { Select } from '@components/shared/Select'
 
-import * as stateCowsay from '../../state/stateCowsay'
-import { modes, actions } from '../../state/stateCowsay'
+import * as minionCowsay from '../../state/minionCowsay'
+import { modes, actions } from '../../state/minionCowsay'
 
-const stateManager = stateCowsay.stateManager
+const stateManager = minionCowsay.stateManager
 
-const _onChange_text = val => {
+const _onChange_text = (val) => {
   stateManager.setState({ text: val })
 }
-const _onChange_mode = val => {
+const _onChange_mode = (val) => {
   stateManager.setState({ mode: val })
 }
-const _onChange_action = val => {
+const _onChange_action = (val) => {
   stateManager.setState({ action: val })
 }
-const _onChange_eyes = val => {
+const _onChange_eyes = (val) => {
   stateManager.setState({ eyes: val })
 }
-const _onChange_tongue = val => {
+const _onChange_tongue = (val) => {
   stateManager.setState({ tongue: val })
 }
-const _onChange_cow = val => {
+const _onChange_cow = (val) => {
   stateManager.setState({ cow: val })
 }
-const _onClick_share = ev => {
-  stateCowsay.doShare()
+const _onClick_share = (ev) => {
+  minionCowsay.doShare()
 }
 
 const CowsayOptions = (props: { cowsay: any }) => {
@@ -43,7 +43,7 @@ const CowsayOptions = (props: { cowsay: any }) => {
           <div className={styles.cowFormLabel}>Text</div>
           <div className={styles.cowFormItem}>
             <TextArea
-              placeholder="What should the cow say?"
+              placeholder='What should the cow say?'
               value={cowsay.text}
               rows={1}
               onChange={_onChange_text}
@@ -58,7 +58,7 @@ const CowsayOptions = (props: { cowsay: any }) => {
               value={cowsay.action}
               // style={{ width: 120 }}
               onChange={_onChange_action}
-              options={actions.map(c => ({ value: c.key, display: c.label }))}
+              options={actions.map((c) => ({ value: c.key, display: c.label }))}
             />
           </div>
         </div>
@@ -70,7 +70,7 @@ const CowsayOptions = (props: { cowsay: any }) => {
               value={cowsay.modes}
               // style={{ width: 120 }}
               onChange={_onChange_mode}
-              options={modes.map(c => ({ value: c.key, display: c.label }))}
+              options={modes.map((c) => ({ value: c.key, display: c.label }))}
             />
           </div>
         </div>
@@ -79,7 +79,7 @@ const CowsayOptions = (props: { cowsay: any }) => {
           <div className={styles.cowFormLabel}>Eyes</div>
           <div className={styles.cowFormItem}>
             <Input
-              placeholder="Custom Eyes i.e. **"
+              placeholder='Custom Eyes i.e. **'
               maxLength={2}
               value={cowsay.eyes}
               onChange={_onChange_eyes}
@@ -90,7 +90,7 @@ const CowsayOptions = (props: { cowsay: any }) => {
           <div className={styles.cowFormLabel}>Tongue</div>
           <div className={styles.cowFormItem}>
             <Input
-              placeholder="Custom Tongue i.e. ()"
+              placeholder='Custom Tongue i.e. ()'
               maxLength={2}
               value={cowsay.tongue}
               onChange={_onChange_tongue}
@@ -105,7 +105,7 @@ const CowsayOptions = (props: { cowsay: any }) => {
               value={cowsay.cow}
               // style={{ width: 120 }}
               onChange={_onChange_cow}
-              options={cowsay.cowList.map(c => ({ value: c, display: c }))}
+              options={cowsay.cowList.map((c) => ({ value: c, display: c }))}
             />
           </div>
         </div>
@@ -146,7 +146,7 @@ export default CowsayOptions
 //   _onSubmit = () => {}
 
 //   _onClick_share = () => {
-//     stateCowsay.doShare()
+//     minionCowsay.doShare()
 //   }
 
 //   render() {

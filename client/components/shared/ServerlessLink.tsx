@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import Link from 'next/link'
 import { _ } from 'imports/lodash'
@@ -15,7 +15,7 @@ function ServerlessLink(props: {
   return (
     <a
       href={href}
-      onClick={ev => {
+      onClick={(ev) => {
         ev.preventDefault()
         router.navTo(props.href, props.as)
         return false

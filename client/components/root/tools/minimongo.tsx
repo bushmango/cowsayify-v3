@@ -1,22 +1,22 @@
-import * as React from 'react'
+import React from 'react'
 import { useState } from 'react'
 import Layout from '../../shared/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
 import * as midboss from 'midboss'
-import * as stateMongo from '../../../state/stateMongo'
+import * as minionMongo from '../../../state/minionMongo'
 
-const onChange = ev => {
+const onChange = (ev) => {
   let hasChange = false
-  stateMongo.stateManager.produce(ds => {
+  minionMongo.stateManager.produce((ds) => {
     if (ds.search !== ev.target.value) {
       ds.search = ev.target.value
       hasChange = true
     }
   })
   if (hasChange) {
-    stateMongo.fetchMinimongo()
+    minionMongo.fetchMinimongo()
   }
 }
 
@@ -38,20 +38,20 @@ const Zip = ({ zip }) => {
 }
 
 function MinimongoTest(props: { data: any }) {
-  const state = midboss.useSubscription(stateMongo.stateManager)
+  const state = midboss.useSubscription(minionMongo.stateManager)
 
   React.useEffect(() => {
     if (!state.fetchedMinimongo) {
-      stateMongo.fetchMinimongo()
+      minionMongo.fetchMinimongo()
     }
   })
 
   return (
-    <Layout title="minimongo test">
+    <Layout title='minimongo test'>
       <Head>
         <link
-          rel="stylesheet"
-          href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+          rel='stylesheet'
+          href='//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css'
         />
       </Head>
       <div style={{ padding: '2em' }}>

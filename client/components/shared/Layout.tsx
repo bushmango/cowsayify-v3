@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 const { useEffect } = React
 
 import styles from './../styles.scss'
@@ -13,15 +13,19 @@ import * as log from './../../state/log'
 import * as midboss from 'midboss'
 import * as midbossTheme from '../../state/midbossTheme'
 
-import ReactGA from 'react-ga'
 import { Pace } from './Pace'
+
+import ReactGA from 'react-ga'
 const googleAnalyticsTrackingId = 'UA-135264357-1'
-ReactGA.initialize(googleAnalyticsTrackingId)
-log.x('ga init -> ' + googleAnalyticsTrackingId)
 
 let lastUrl = null
 const Layout = (props: { title: string; children: React.ReactNode }) => {
   const stateTheme = midboss.useSubscription(midbossTheme.stateManager)
+
+  useEffect(() => {
+    ReactGA.initialize(googleAnalyticsTrackingId)
+    log.x('ga init -> ' + googleAnalyticsTrackingId)
+  }, [])
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -50,10 +54,10 @@ const Layout = (props: { title: string; children: React.ReactNode }) => {
       <Pace isLoading={stateTheme.isLoading} />
       <Head>
         <title>Cowsayify - {props.title}!</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Nunito:300,400,500"
+          rel='stylesheet'
+          href='https://fonts.googleapis.com/css?family=Nunito:300,400,500'
         />
         {/* <link
           rel="stylesheet"

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import Layout from '../shared/Layout'
 
@@ -14,7 +14,7 @@ const news = [
 
 const NewsPage = (props: any) => {
   return (
-    <Layout title="news / changelog">
+    <Layout title='news / changelog'>
       <div>
         <h1>Cowsayify news!</h1>
         {news.map((newsItem, cIdx) => (

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Icon } from './Icon'
+import { TimesheetPage } from './TimesheetPage'
 
 import * as reactTesting from '@lib/reactTesting'
 
-describe('Icon', () => {
+describe('TimesheetPage', () => {
   it('renders without crashing', () => {
-    reactTesting.rendersWithoutCrashing(<Icon />)
+    reactTesting.rendersWithoutCrashing(<TimesheetPage />)
     expect(true).toBe(true)
   })
 })

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { _ } from '../../imports/lodash'
 
 import DisplayCow from '../shared/DisplayCow'
@@ -6,16 +6,16 @@ import DisplayCow from '../shared/DisplayCow'
 import Layout from '../shared/Layout'
 
 import * as midboss from 'midboss'
-import * as stateCowsay from '../../state/stateCowsay'
+import * as minionCowsay from '../../state/minionCowsay'
 
 const CowsPage = (props: any) => {
-  const cowsay = midboss.useSubscription(stateCowsay.stateManager)
+  const cowsay = midboss.useSubscription(minionCowsay.stateManager)
 
   return (
-    <Layout title="cows">
+    <Layout title='cows'>
       <h1>Cows</h1>
       <h2>These are the 'cows' you can use with cowsayify</h2>
-      {_.map(cowsay.cowList, c => (
+      {_.map(cowsay.cowList, (c) => (
         <div key={c}>
           {/* <div> {c} </div> */}
           <div>

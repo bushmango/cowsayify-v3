@@ -1,9 +1,9 @@
-import * as React from 'react'
+import React from 'react'
 
 import cowsay from 'cowsay-browser'
 import styles from './DisplayCow.scss'
 
-import { ICowOptions } from 'state/stateCowsay'
+import { ICowOptions } from '@state/minionCowsay'
 
 const DisplayCow = (props: { options: ICowOptions }) => {
   let { options } = props

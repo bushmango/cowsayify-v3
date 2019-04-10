@@ -1,10 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 
 import Layout from '../shared/Layout'
 
 import DisplayCow from '../shared/DisplayCow'
 
-import * as stateCowsay from '../../state/stateCowsay'
+import * as minionCowsay from '../../state/minionCowsay'
 
 function CowsaidPage(props: { data: any }) {
   let { data } = props
@@ -24,7 +24,7 @@ function CowsaidPage(props: { data: any }) {
   }
 
   return (
-    <Layout title="cowsaid">
+    <Layout title='cowsaid'>
       <DisplayCow options={options} />
     </Layout>
   )
@@ -32,7 +32,7 @@ function CowsaidPage(props: { data: any }) {
 
 CowsaidPage.getInitialProps = async ({ query }) => {
   const { key } = query
-  return await stateCowsay.fetchCow(key)
+  return await minionCowsay.fetchCow(key)
 }
 
 export { CowsaidPage }

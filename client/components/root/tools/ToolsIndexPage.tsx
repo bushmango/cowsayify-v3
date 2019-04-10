@@ -1,15 +1,23 @@
-import * as React from 'react'
+import React from 'react'
 
 import Layout from '../../shared/Layout'
 import { _ } from '../../../imports/lodash'
 
-const ToolsIndexPage = () => {
+const ToolsIndex = () => {
   return (
-    <Layout title="Tools">
-      <div>ToolsIndexPage</div>
-      ToolsIndexPage
+    <Layout title='Tools'>
+      <ToolsIndexPage />
     </Layout>
   )
 }
 
-export { ToolsIndexPage }
+const ToolsIndexPage = () => {
+  return (
+    <div>
+      <div>ToolsIndexPage</div>
+      ToolsIndexPage
+    </div>
+  )
+}
+
+export { ToolsIndex, ToolsIndexPage }

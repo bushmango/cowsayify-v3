@@ -1,11 +1,11 @@
 import React from 'react'
-import { Icon } from './Icon'
+import { AboutPage } from './AboutPage'
 
 import * as reactTesting from '@lib/reactTesting'
 
-describe('Icon', () => {
+describe('AboutPage', () => {
   it('renders without crashing', () => {
-    reactTesting.rendersWithoutCrashing(<Icon />)
+    reactTesting.rendersWithoutCrashing(<AboutPage />)
     expect(true).toBe(true)
   })
 })

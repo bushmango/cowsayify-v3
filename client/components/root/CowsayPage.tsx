@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import styles from './CowsayPage.scss'
 import DisplayCow from '../shared/DisplayCow'
@@ -7,14 +7,14 @@ import CowsayOptions from '../shared/CowsayOptions'
 import Layout from '../shared/Layout'
 
 import * as midboss from 'midboss'
-import * as stateCowsay from '../../state/stateCowsay'
+import * as minionCowsay from '../../state/minionCowsay'
 
 const CowsayPage = (props: any) => {
-  const cowsay = midboss.useSubscription(stateCowsay.stateManager)
-  let options = stateCowsay.calcOptions()
+  const cowsay = midboss.useSubscription(minionCowsay.stateManager)
+  let options = minionCowsay.calcOptions()
 
   return (
-    <Layout title="cowsay">
+    <Layout title='cowsay'>
       <CowsayOptions cowsay={cowsay} />
       <DisplayCow options={options as any} />
     </Layout>
@@ -24,14 +24,14 @@ const CowsayPage = (props: any) => {
 export { CowsayPage }
 
 // class Cowsay extends React.Component<{}> {
-//   subscriptionToken = stateCowsay.subscribe(this)
+//   subscriptionToken = minionCowsay.subscribe(this)
 //   componentWillUnmount() {
-//     stateCowsay.unSubscribe(this.subscriptionToken)
+//     minionCowsay.unSubscribe(this.subscriptionToken)
 //   }
 
 //   render() {
-//     let state = stateCowsay.getState()
-//     let options = stateCowsay.calcOptions()
+//     let state = minionCowsay.getState()
+//     let options = minionCowsay.calcOptions()
 
 //     return (
 //       <Layout title="cowsay">

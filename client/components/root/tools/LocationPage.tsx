@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import Layout from '../../shared/Layout'
 import { _ } from '../../../imports/lodash'
@@ -15,14 +15,22 @@ let locationProps = [
   'search',
 ]
 
+const Location = () => {
+  return (
+    <Layout title='location'>
+      <LocationPage />
+    </Layout>
+  )
+}
+
 const LocationPage = () => {
   return (
-    <Layout title="location">
+    <div>
       <div>Window location props</div>
 
       {typeof window !== 'undefined' && (
         <div>
-          {_.map(locationProps, c => (
+          {_.map(locationProps, (c) => (
             <div key={c}>
               <div>
                 {c} | {window.location[c]}
@@ -31,8 +39,8 @@ const LocationPage = () => {
           ))}
         </div>
       )}
-    </Layout>
+    </div>
   )
 }
 
-export { LocationPage }
+export { LocationPage, Location }

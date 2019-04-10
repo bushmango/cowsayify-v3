@@ -1,6 +1,6 @@
 import styles from './HistoryPage.scss'
 
-import * as React from 'react'
+import React from 'react'
 import { _ } from '../../imports/lodash'
 
 import Layout from '../shared/Layout'
@@ -8,7 +8,7 @@ import Layout from '../shared/Layout'
 import DisplayCow from '../shared/DisplayCow'
 
 import * as midboss from 'midboss'
-import * as stateHistory from '../../state/stateHistory'
+import * as minionHistory from '../../state/minionHistory'
 
 interface IDataListItem {
   text: string
@@ -22,15 +22,15 @@ interface IDataList {
 
 function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
   if (props.fromServer && props.serverStateHistory) {
-    stateHistory.stateManager.rehydrate(props.serverStateHistory)
+    minionHistory.stateManager.rehydrate(props.serverStateHistory)
   }
 
-  const history = midboss.useSubscription(stateHistory.stateManager)
+  const history = midboss.useSubscription(minionHistory.stateManager)
   let { fetchedHistory } = history
 
   if (!fetchedHistory || fetchedHistory.error) {
     return (
-      <Layout title="oh noes">
+      <Layout title='oh noes'>
         Error
         {/* <br />
         Server <pre>{JSON.stringify(props.serverStateHistory, null, 2)}</pre>
@@ -44,7 +44,7 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
     created?: string
     options?: any
     text?: string
-  }[] = _.map(fetchedHistory.data.Items, c => {
+  }[] = _.map(fetchedHistory.data.Items, (c) => {
     try {
       return {
         created: c.created || 'Before history',
@@ -56,7 +56,7 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
   })
 
   return (
-    <Layout title="history">
+    <Layout title='history'>
       <h1>Messages sent with cowsayify</h1>
       <div className={styles.pageHistory}>
         {_.map(items, (c, cIdx) => (
@@ -74,12 +74,12 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
 
 HistoryPage.getInitialProps = async ({ req }) => {
   const fromServer = !!req
-  await stateHistory.fetchHistory()
+  await minionHistory.fetchHistory()
 
   return {
     fromServer,
     serverStateHistory: fromServer
-      ? stateHistory.stateManager.getState()
+      ? minionHistory.stateManager.getState()
       : null,
   }
 }

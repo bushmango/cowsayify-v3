@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import styles from './IndexPage.scss'
 // const styles = require('./index.scss')
@@ -14,7 +14,7 @@ const IndexPage = (props: any) => {
   })
 
   return (
-    <Layout title="home">
+    <Layout title='home'>
       <div className={styles.welcome}>Welcome to Cowsayify.com!</div>
       <div>
         {/* <img

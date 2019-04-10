@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import Layout from '@components/shared/Layout'
 
@@ -8,14 +8,14 @@ import { Select } from '@components/shared/Select'
 
 const TestPage = (props: any) => {
   return (
-    <Layout title="home">
+    <Layout title='home'>
       <div>This is a test page</div>
       <div>testing stuff goes here</div>
-      <Input value="" onChange={() => {}} placeholder="input" />
-      <TextArea value="" onChange={() => {}} placeholder="textarea" />
+      <Input value='' onChange={() => {}} placeholder='input' />
+      <TextArea value='' onChange={() => {}} placeholder='textarea' />
       <Select
         options={[{ value: 'A', display: 'A' }]}
-        value="A"
+        value='A'
         onChange={() => {}}
       />
     </Layout>

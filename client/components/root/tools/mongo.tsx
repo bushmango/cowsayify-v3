@@ -1,22 +1,22 @@
-import * as React from 'react'
+import React from 'react'
 import { useState } from 'react'
 import Layout from '../../shared/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
 import * as midboss from 'midboss'
-import * as stateMongo from '../../../state/stateMongo'
+import * as minionMongo from '../../../state/minionMongo'
 
 const onChange = ev => {
   let hasChange = false
-  stateMongo.stateManager.produce(ds => {
+  minionMongo.stateManager.produce(ds => {
     if (ds.search !== ev.target.value) {
       ds.search = ev.target.value
       hasChange = true
     }
   })
   if (hasChange) {
-    stateMongo.fetchMongo()
+    minionMongo.fetchMongo()
   }
 }
 
@@ -38,11 +38,11 @@ const Zip = ({ zip }) => {
 }
 
 function MongoTest(props: { data: any }) {
-  const state = midboss.useSubscription(stateMongo.stateManager)
+  const state = midboss.useSubscription(minionMongo.stateManager)
 
   React.useEffect(() => {
     if (!state.fetchedMongo) {
-      stateMongo.fetchMongo()
+      minionMongo.fetchMongo()
     }
   })
 
@@ -57,7 +57,7 @@ function MongoTest(props: { data: any }) {
       <div style={{ padding: '2em' }}>
         <h2>Minimongo test</h2>
 
-        <button onClick={async () => alert(await stateMongo.getTotalPop())}>
+        <button onClick={async () => alert(await minionMongo.getTotalPop())}>
           Get count
         </button>
 

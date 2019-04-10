@@ -1,3 +1,5 @@
+import React from 'react'
+
 import styles from './Header.scss'
 import { ServerlessLink } from './ServerlessLink'
 
@@ -15,11 +17,11 @@ const HeaderLink = (props: { href: string; children: React.ReactNode }) => {
 
 const Header = () => (
   <div className={styles.header}>
-    <HeaderLink href="/cowsay">Make the cow say something</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-    <HeaderLink href="/history">History</HeaderLink>
-    <HeaderLink href="/cows">Cows</HeaderLink>
-    <HeaderLink href="/news">News</HeaderLink>
+    <HeaderLink href='/cowsay'>Make the cow say something</HeaderLink>
+    <HeaderLink href='/about'>About</HeaderLink>
+    <HeaderLink href='/history'>History</HeaderLink>
+    <HeaderLink href='/cows'>Cows</HeaderLink>
+    <HeaderLink href='/news'>News</HeaderLink>
   </div>
 )
 

@@ -1,18 +1,18 @@
-import * as React from 'react'
+import React from 'react'
 import { useState } from 'react'
 import Layout from '../../shared/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
 import * as midboss from 'midboss'
-import * as stateTimesheet from '../../../state/stateTimesheet'
+import * as minionTimesheet from '../../../state/minionTimesheet'
 
 const onChange = (idx, field, ev) => {
   let hasChange = false
-  stateTimesheet.stateManager.produce(ds => {
+  minionTimesheet.stateManager.produce((ds) => {
     ds.lines[idx][field] = ev.target.value
   })
-  stateTimesheet.update()
+  minionTimesheet.update()
 }
 
 const days = ['M', 'Tu', 'W', 'Th', 'F']
@@ -27,8 +27,8 @@ const Line = ({ idx, line, verbose }) => {
         </div>
       )}
       <div style={{ width: '75px' }}>
-        {stateTimesheet.formatTime(
-          stateTimesheet.getMagicMinutesString(line.a)
+        {minionTimesheet.formatTime(
+          minionTimesheet.getMagicMinutesString(line.a)
         )}
       </div>
       {verbose && (
@@ -37,8 +37,8 @@ const Line = ({ idx, line, verbose }) => {
         </div>
       )}
       <div style={{ width: '75px' }}>
-        {stateTimesheet.formatTime(
-          stateTimesheet.getMagicMinutesString(line.b) + 12 * 60
+        {minionTimesheet.formatTime(
+          minionTimesheet.getMagicMinutesString(line.b) + 12 * 60
         )}
       </div>
       {verbose && (
@@ -47,8 +47,8 @@ const Line = ({ idx, line, verbose }) => {
         </div>
       )}
       <div style={{ width: '75px' }}>
-        {stateTimesheet.formatTime(
-          stateTimesheet.getMagicMinutesString(line.c) + 12 * 60
+        {minionTimesheet.formatTime(
+          minionTimesheet.getMagicMinutesString(line.c) + 12 * 60
         )}
       </div>
       <div />
@@ -66,7 +66,7 @@ const Input = ({ value, idx, field }) => {
       <input
         style={{ width: '50px' }}
         value={value}
-        onChange={ev => {
+        onChange={(ev) => {
           onChange(idx, field, ev)
         }}
       />
@@ -74,44 +74,45 @@ const Input = ({ value, idx, field }) => {
   )
 }
 
-function TimesheetPage(props: { data: any }) {
-  const state = midboss.useSubscription(stateTimesheet.stateManager)
+const Timesheet = (props: {}) => {
+  const state = midboss.useSubscription(minionTimesheet.stateManager)
 
   return (
-    <Layout title="timesheet tool">
+    <Layout title='timesheet tool'>
       <Head>
         <link
-          rel="stylesheet"
-          href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+          rel='stylesheet'
+          href='//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css'
         />
       </Head>
-      <div style={{ padding: '2em' }}>
-        <h2>Timesheet tool</h2>
-        <div>
-          {_.map(state.lines, (c, cIdx) => (
-            <Line
-              key={cIdx}
-              idx={cIdx}
-              line={state.lines[cIdx]}
-              verbose={true}
-            />
-          ))}
-        </div>
-        <div>
-          {_.map(state.lines, (c, cIdx) => (
-            <Line
-              key={cIdx}
-              idx={cIdx}
-              line={state.lines[cIdx]}
-              verbose={false}
-            />
-          ))}
-        </div>
-        <div>Hours: {(state.totals.minutes / 60).toFixed(2)}</div>
-      </div>
-      {/* <pre>{state.fetchedTest}</pre> */}
+      <TimesheetPage />
     </Layout>
   )
 }
+const TimesheetPage = (props: {}) => {
+  const state = midboss.useSubscription(minionTimesheet.stateManager)
 
-export { TimesheetPage }
+  return (
+    <div style={{ padding: '2em' }}>
+      <h2>Timesheet tool</h2>
+      <div>
+        {_.map(state.lines, (c, cIdx) => (
+          <Line key={cIdx} idx={cIdx} line={state.lines[cIdx]} verbose={true} />
+        ))}
+      </div>
+      <div>
+        {_.map(state.lines, (c, cIdx) => (
+          <Line
+            key={cIdx}
+            idx={cIdx}
+            line={state.lines[cIdx]}
+            verbose={false}
+          />
+        ))}
+      </div>
+      <div>Hours: {(state.totals.minutes / 60).toFixed(2)}</div>
+    </div>
+  )
+}
+
+export { TimesheetPage, Timesheet }

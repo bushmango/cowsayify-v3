@@ -18,7 +18,8 @@ module.exports = {
     '^@lib/(.*)$': '<rootDir>/lib/$1',
     '^@imports/(.*)$': '<rootDir>/imports/$1',
     '^@state/(.*)$': '<rootDir>/state/$1',
-    '^@components/(.*)$': '<rootDir>/components/$1'
+    '^@components/(.*)$': '<rootDir>/components/$1',
+    '\\.(css|less|scss|sss|styl)$': '<rootDir>/node_modules/jest-css-modules'
   },
 
   testMatch: ['**/*.spec.(ts|tsx)'],
