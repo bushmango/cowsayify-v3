@@ -1,5 +1,5 @@
 import styles from './Header.scss'
-import { ServerlessLink } from '../ServerlessLink'
+import { ServerlessLink } from './ServerlessLink'
 
 const linkStyle: React.CSSProperties = {
   marginRight: 15,

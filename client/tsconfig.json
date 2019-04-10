@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.paths.json",
   "compileOnSave": false,
   "compilerOptions": {
     "target": "esnext",
@@ -14,14 +15,6 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "typeRoots": ["./node_modules/@types"],
-    "lib": ["dom", "es2015", "es2016"],
-    "baseUrl": ".",
-    "paths": {
-      "@pages/*": ["./pages/*"],
-      "@imports/*": ["./imports/*"],
-      "@state/*": ["./state/*"],
-      "@components/*": ["./components/*"],
-      "*": ["*"]
-    }
+    "lib": ["dom", "es2015", "es2016"]
   }
 }

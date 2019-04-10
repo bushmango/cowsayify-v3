@@ -3,7 +3,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { _ } from 'imports/lodash'
 
-import * as router from './../state/router'
+import * as router from '../../state/router'
 
 function ServerlessLink(props: {
   href: string

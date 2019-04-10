@@ -15,26 +15,24 @@ let locationProps = [
   'search',
 ]
 
-class LocationPage extends React.Component<{ data: any }> {
-  render() {
-    return (
-      <Layout title="location">
-        <div>Window location props</div>
+const LocationPage = () => {
+  return (
+    <Layout title="location">
+      <div>Window location props</div>
 
-        {typeof window !== 'undefined' && (
-          <div>
-            {_.map(locationProps, c => (
-              <div key={c}>
-                <div>
-                  {c} | {window.location[c]}
-                </div>
+      {typeof window !== 'undefined' && (
+        <div>
+          {_.map(locationProps, c => (
+            <div key={c}>
+              <div>
+                {c} | {window.location[c]}
               </div>
-            ))}
-          </div>
-        )}
-      </Layout>
-    )
-  }
+            </div>
+          ))}
+        </div>
+      )}
+    </Layout>
+  )
 }
 
 export { LocationPage }
