@@ -73,7 +73,7 @@ const HistoryPage = (props: {
         created: c.created || 'Before history',
         options: JSON.parse(c.options),
       }
-    } catch {
+    } catch (err) {
       return { text: 'JSON error' }
     }
   })
