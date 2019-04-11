@@ -1,15 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
-import Layout from '../../shared/Layout'
+import Layout from '../../../shared/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
 import * as midboss from 'midboss'
-import * as minionMongo from '../../../state/minionMongo'
+import * as minionMongo from '../../../../state/minionMongo'
 
-const onChange = ev => {
+const onChange = (ev) => {
   let hasChange = false
-  minionMongo.stateManager.produce(ds => {
+  minionMongo.stateManager.produce((ds) => {
     if (ds.search !== ev.target.value) {
       ds.search = ev.target.value
       hasChange = true
@@ -47,11 +47,11 @@ function MongoTest(props: { data: any }) {
   })
 
   return (
-    <Layout title="mongo test">
+    <Layout title='mongo test'>
       <Head>
         <link
-          rel="stylesheet"
-          href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+          rel='stylesheet'
+          href='//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css'
         />
       </Head>
       <div style={{ padding: '2em' }}>

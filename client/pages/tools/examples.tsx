@@ -1,2 +1,2 @@
-import { ToolsExamplesPage } from '../../components/root/tools/ToolsExamplesPage'
-export default ToolsExamplesPage
+import { ToolsExamples } from '../../components/root/tools/ToolsExamples'
+export default ToolsExamples

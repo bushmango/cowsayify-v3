@@ -6,9 +6,17 @@ import { Input } from '@components/shared/Input'
 import { TextArea } from '@components/shared/TextArea'
 import { Select } from '@components/shared/Select'
 
-const TestPage = (props: any) => {
+const Test = () => {
   return (
     <Layout title='home'>
+      <TestPage />
+    </Layout>
+  )
+}
+
+const TestPage = (props: any) => {
+  return (
+    <div>
       <div>This is a test page</div>
       <div>testing stuff goes here</div>
       <Input value='' onChange={() => {}} placeholder='input' />
@@ -18,8 +26,8 @@ const TestPage = (props: any) => {
         value='A'
         onChange={() => {}}
       />
-    </Layout>
+    </div>
   )
 }
 
-export { TestPage }
+export { Test, TestPage }

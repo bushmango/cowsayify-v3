@@ -1,2 +1,2 @@
-import { TimesheetPage } from '../../components/root/tools/TimesheetPage'
-export default TimesheetPage
+import { Timesheet } from '../../components/root/tools/timesheet/TimesheetPage'
+export default Timesheet

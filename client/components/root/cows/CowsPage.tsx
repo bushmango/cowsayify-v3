@@ -1,18 +1,26 @@
 import React from 'react'
-import { _ } from '../../imports/lodash'
+import { _ } from '../../../imports/lodash'
 
-import DisplayCow from '../shared/DisplayCow'
+import DisplayCow from '../../shared/DisplayCow'
 
-import Layout from '../shared/Layout'
+import Layout from '../../shared/Layout'
 
 import * as midboss from 'midboss'
-import * as minionCowsay from '../../state/minionCowsay'
+import * as minionCowsay from '../../../state/minionCowsay'
 
-const CowsPage = (props: any) => {
+const Cows = () => {
+  return (
+    <Layout title='cows'>
+      <CowsPage />
+    </Layout>
+  )
+}
+
+const CowsPage = () => {
   const cowsay = midboss.useSubscription(minionCowsay.stateManager)
 
   return (
-    <Layout title='cows'>
+    <div>
       <h1>Cows</h1>
       <h2>These are the 'cows' you can use with cowsayify</h2>
       {_.map(cowsay.cowList, (c) => (
@@ -23,8 +31,8 @@ const CowsPage = (props: any) => {
           </div>
         </div>
       ))}
-    </Layout>
+    </div>
   )
 }
 
-export { CowsPage }
+export { Cows, CowsPage }

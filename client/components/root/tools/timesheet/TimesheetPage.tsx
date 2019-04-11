@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import Layout from '../../shared/Layout'
+import Layout from '../../../shared/Layout'
 import Head from 'next/head'
 import * as _ from 'lodash'
 
 import * as midboss from 'midboss'
-import * as minionTimesheet from '../../../state/minionTimesheet'
+import * as minionTimesheet from '../../../../state/minionTimesheet'
 
 const onChange = (idx, field, ev) => {
   let hasChange = false

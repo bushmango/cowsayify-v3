@@ -1,2 +1,2 @@
-import { ToolsIndexPage } from '../../components/root/tools/ToolsIndexPage'
-export default ToolsIndexPage
+import { ToolsIndex } from '../../components/root/tools/ToolsIndex'
+export default ToolsIndex

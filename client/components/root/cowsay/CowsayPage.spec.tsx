@@ -6,6 +6,5 @@ import * as reactTesting from '@lib/reactTesting'
 describe('CowsayPage', () => {
   it('renders without crashing', () => {
     reactTesting.rendersWithoutCrashing(<CowsayPage />)
-    expect(true).toBe(true)
   })
 })

@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Layout from '../shared/Layout'
+import Layout from '@components/shared/Layout'
 
-import DisplayCow from '../shared/DisplayCow'
+import DisplayCow from '@components/shared/DisplayCow'
 
 import styles from './AboutPage.scss'
 

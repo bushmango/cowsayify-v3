@@ -1,14 +1,14 @@
 import styles from './HistoryPage.scss'
 
 import React from 'react'
-import { _ } from '../../imports/lodash'
+import { _ } from '@imports/lodash'
 
-import Layout from '../shared/Layout'
+import Layout from '@components/shared/Layout'
 
-import DisplayCow from '../shared/DisplayCow'
+import DisplayCow from '@components/shared/DisplayCow'
 
 import * as midboss from 'midboss'
-import * as minionHistory from '../../state/minionHistory'
+import * as minionHistory from '@state/minionHistory'
 
 interface IDataListItem {
   text: string
@@ -20,7 +20,30 @@ interface IDataList {
   ScannedCount: number
 }
 
-function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
+const History = (props: { fromServer: boolean; serverStateHistory: any }) => {
+  return (
+    <Layout title='history'>
+      <HistoryPage {...props} />
+    </Layout>
+  )
+}
+
+History.getInitialProps = async ({ req }) => {
+  const fromServer = !!req
+  await minionHistory.fetchHistory()
+
+  return {
+    fromServer,
+    serverStateHistory: fromServer
+      ? minionHistory.stateManager.getState()
+      : null,
+  }
+}
+
+const HistoryPage = (props: {
+  fromServer: boolean
+  serverStateHistory: any
+}) => {
   if (props.fromServer && props.serverStateHistory) {
     minionHistory.stateManager.rehydrate(props.serverStateHistory)
   }
@@ -30,13 +53,13 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
 
   if (!fetchedHistory || fetchedHistory.error) {
     return (
-      <Layout title='oh noes'>
+      <div>
         Error
         {/* <br />
         Server <pre>{JSON.stringify(props.serverStateHistory, null, 2)}</pre>
         <br />
         Local <pre>{JSON.stringify(history, null, 2)}</pre> */}
-      </Layout>
+      </div>
     )
   }
 
@@ -56,7 +79,7 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
   })
 
   return (
-    <Layout title='history'>
+    <div>
       <h1>Messages sent with cowsayify</h1>
       <div className={styles.pageHistory}>
         {_.map(items, (c, cIdx) => (
@@ -68,20 +91,8 @@ function HistoryPage(props: { fromServer: boolean; serverStateHistory: any }) {
         ))}
       </div>
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-    </Layout>
+    </div>
   )
 }
 
-HistoryPage.getInitialProps = async ({ req }) => {
-  const fromServer = !!req
-  await minionHistory.fetchHistory()
-
-  return {
-    fromServer,
-    serverStateHistory: fromServer
-      ? minionHistory.stateManager.getState()
-      : null,
-  }
-}
-
-export { HistoryPage }
+export { History, HistoryPage }

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Icon } from './Icon'
+import { IndexPage } from './IndexPage'
 
 import * as reactTesting from '@lib/reactTesting'
 
-describe('Icon', () => {
+describe('IndexPage', () => {
   it('renders without crashing', () => {
-    reactTesting.rendersWithoutCrashing(<Icon />)
+    reactTesting.rendersWithoutCrashing(<IndexPage />)
   })
 })

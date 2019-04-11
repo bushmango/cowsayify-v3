@@ -1,2 +1,2 @@
-import { LocationPage } from '../../components/root/tools/LocationPage'
-export default LocationPage
+import { Location } from '../../components/root/tools/Location'
+export default Location

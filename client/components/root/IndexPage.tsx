@@ -7,6 +7,14 @@ import Layout from '../shared/Layout'
 
 import * as router from '../../state/router'
 
+const Index = () => {
+  return (
+    <Layout title='home'>
+      <IndexPage />
+    </Layout>
+  )
+}
+
 const IndexPage = (props: any) => {
   React.useEffect(() => {
     // Simple redirect
@@ -14,7 +22,7 @@ const IndexPage = (props: any) => {
   })
 
   return (
-    <Layout title='home'>
+    <div>
       <div className={styles.welcome}>Welcome to Cowsayify.com!</div>
       <div>
         {/* <img
@@ -22,8 +30,8 @@ const IndexPage = (props: any) => {
       style={{ width: '300px', height: 'auto' }}
     /> */}
       </div>
-    </Layout>
+    </div>
   )
 }
 
-export { IndexPage }
+export { Index, IndexPage }
