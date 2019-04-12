@@ -8,6 +8,10 @@ const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 const useCssModules = true
 const TsConfigPathsPlugin = require('awesome-typescript-loader')
   .TsConfigPathsPlugin
+
+const stage = process.env.STAGE || 'default'
+console.log('stage', stage)
+// console.log(process.env)
 // const isProd = process.env.NODE_ENV === 'production'
 // const path = require('path')
 
@@ -67,9 +71,8 @@ module.exports = (phase, { defaultConfig }) => {
     //   config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-3-prod002`
     // }
 
-    config.assetPrefix = `https://${'' +
-      process.env.stage}-serverless-cowsay-3.s3-us-east-1.amazonaws.com`
-
+    config.assetPrefix = `https://${stage}-serverless-cowsay-3.s3-us-east-1.amazonaws.com`
+    console.log(config.assetPrefix)
     return config
   }
 }
