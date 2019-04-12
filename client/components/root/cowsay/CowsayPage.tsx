@@ -1,6 +1,5 @@
 import React from 'react'
 
-import styles from '../CowsayPage.scss'
 import DisplayCow from '../../shared/DisplayCow'
 import CowsayOptions from '../../shared/CowsayOptions'
 

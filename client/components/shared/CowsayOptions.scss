@@ -1,0 +1,19 @@
+$font-size: 50px;
+
+.cowForm {
+  display: flex;
+  justify-content: center;
+}
+.cowFormRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cowFormLabel {
+  width: 100px;
+  text-align: right;
+  margin-right: 10px;
+}
+.cowFormItem {
+  width: 300px;
+}

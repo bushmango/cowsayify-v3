@@ -4,10 +4,14 @@ import * as _ from 'lodash'
 import * as log from './log'
 
 import * as midbossTheme from './midbossTheme'
+import { reactTesting } from '@lib/reactTesting'
 
 const s3Bucket = 'https://serverless-cowsay-3-prod.s3.amazonaws.com'
 
 export function navTo(href: string, as?: string) {
+  if (reactTesting.isInTesting()) {
+    return false
+  }
   Router.push(correctHref(href), correctAs(as))
 }
 
@@ -74,11 +78,11 @@ export function correctAs(as: string) {
   return correctHref(as)
 }
 
-Router.events.on('routeChangeStart', url => {
+Router.events.on('routeChangeStart', (url) => {
   log.x('App is changing to: ', url)
   midbossTheme.setLoading(true)
 })
-Router.events.on('routeChangeComplete', url => {
+Router.events.on('routeChangeComplete', (url) => {
   log.x('App changed to: ', url)
   midbossTheme.setLoading(false)
 })

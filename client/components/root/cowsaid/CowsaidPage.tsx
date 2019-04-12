@@ -19,15 +19,15 @@ Cowsaid.getInitialProps = async ({ query }) => {
   return await minionCowsay.fetchCow(key)
 }
 
-function CowsaidPage(props: { data: any }) {
+const CowsaidPage = (props: { data: any }) => {
   let { data } = props
-  let { key, text, options } = data
+  let { key, text, options } = data || ({} as any)
 
   if (!text || text.length === 0) {
     text = 'Moo'
   }
 
-  if (data.error || !options) {
+  if (!data || data.error || !options) {
     text = '404 cow not found!'
     options = { d: true }
     options.text = text

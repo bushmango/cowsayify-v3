@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from '../root/CowsayPage.scss'
+import styles from './CowsayOptions.scss'
 
 import { Button } from '@components/shared/Button'
 import { Input } from '@components/shared/Input'

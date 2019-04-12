@@ -1,7 +1,7 @@
 import React from 'react'
 import { AboutPage } from './AboutPage'
 
-import * as reactTesting from '@lib/reactTesting'
+import { reactTesting } from '@lib/reactTesting'
 
 describe('AboutPage', () => {
   it('renders without crashing', () => {

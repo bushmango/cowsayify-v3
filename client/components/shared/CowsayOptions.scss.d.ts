@@ -1,5 +1,8 @@
 export interface Styles {
-  'dud': string;
+  'cowForm': string;
+  'cowFormRow': string;
+  'cowFormLabel': string;
+  'cowFormItem': string;
 }
 
 export type ClassNames = keyof Styles;

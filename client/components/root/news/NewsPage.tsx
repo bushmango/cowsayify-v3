@@ -13,9 +13,11 @@ const news = [
 ]
 
 const News = () => {
-  ;<Layout title='news / changelog'>
-    <NewsPage />
-  </Layout>
+  return (
+    <Layout title='news / changelog'>
+      <NewsPage />
+    </Layout>
+  )
 }
 
 const NewsPage = (props: any) => {
