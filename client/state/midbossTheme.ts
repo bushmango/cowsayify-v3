@@ -18,7 +18,7 @@ const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
 export { stateManager }
 
 export function setLoading(isLoading: boolean) {
-  stateManager.produce(draftState => {
+  stateManager.produce((draftState) => {
     draftState.isLoading = isLoading
   })
 }

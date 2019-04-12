@@ -33,11 +33,11 @@ let mongoUrl = 'http://localhost:3008/mongo-api/v1/'
 
 export async function update() {
   let search = ''
-  stateManager.produce(draftState => {
+  stateManager.produce((draftState) => {
     // draftState.isLoading = true
     // search = draftState.search
     draftState.totals.minutes = 0
-    _.forEach(draftState.lines, line => {
+    _.forEach(draftState.lines, (line) => {
       let a = getMagicMinutesString(line.a)
       let b = getMagicMinutesString(line.b)
       let c = getMagicMinutesString(line.c) + getMagicMinutesString('1200')

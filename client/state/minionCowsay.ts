@@ -51,7 +51,7 @@ function init() {
   cowsay.list((err, result) => {
     //stateManager.setState({ cowList: result })
     if (!err) {
-      stateManager.produce(draftState => {
+      stateManager.produce((draftState) => {
         draftState.cowList = result
       })
     }
@@ -137,11 +137,11 @@ export function doShare() {
       created: moment().format(),
     }),
   })
-    .then(r => {
+    .then((r) => {
       //Router.push('/cowsaid?key=' + key)
       router.navTo('/cowsaid/' + key)
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('error posting cow', err)
     })
 }

@@ -32,7 +32,7 @@ let mongoUrl = 'http://localhost:3008/mongo-api/v1/'
 
 export async function fetchMongo() {
   let search = ''
-  stateManager.produce(draftState => {
+  stateManager.produce((draftState) => {
     draftState.isLoading = true
     search = draftState.search
   })
@@ -40,7 +40,7 @@ export async function fetchMongo() {
   let data = await fetch(mongoUrl + `test/${search || '-'}`)
   let json = await data.json()
 
-  stateManager.produce(draftState => {
+  stateManager.produce((draftState) => {
     draftState.fetchedMongo = json
     draftState.isLoading = false
   })
@@ -52,7 +52,7 @@ export async function fetchMinimongo() {
   let db = new minimongo.RemoteDb(minimongoUrl, 'myclientid123')
 
   let search = ''
-  stateManager.produce(draftState => {
+  stateManager.produce((draftState) => {
     draftState.isLoading = true
     search = draftState.search
   })
@@ -62,8 +62,8 @@ export async function fetchMinimongo() {
     { zip: { $regex: _.escapeRegExp(search) } },
     { limit: 10 }
   )
-  find.fetch(res => {
-    stateManager.produce(draftState => {
+  find.fetch((res) => {
+    stateManager.produce((draftState) => {
       draftState.fetchedMinimongo = res
       draftState.isLoading = false
     })

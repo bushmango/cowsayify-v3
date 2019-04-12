@@ -6,10 +6,10 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 const useCssModules = true
-
-const isProd = process.env.NODE_ENV === 'production'
-
-const path = require('path')
+const TsConfigPathsPlugin = require('awesome-typescript-loader')
+  .TsConfigPathsPlugin
+// const isProd = process.env.NODE_ENV === 'production'
+// const path = require('path')
 
 module.exports = (phase, { defaultConfig }) => {
   let config = withTypescript(
@@ -20,13 +20,17 @@ module.exports = (phase, { defaultConfig }) => {
           config.plugins.push(new ForkTsCheckerWebpackPlugin())
         }
         // Typescript paths
-        config.resolve.alias = {
-          ...config.resolve.alias,
-          '@pages': path.resolve(__dirname, 'pages'),
-          '@imports': path.resolve(__dirname, 'imports'),
-          '@state': path.resolve(__dirname, 'state'),
-          '@components': path.resolve(__dirname, 'components')
-        }
+        // config.resolve.alias = {
+        //   ...config.resolve.alias,
+        //   '@pages': path.resolve(__dirname, 'pages'),
+        //   '@imports': path.resolve(__dirname, 'imports'),
+        //   '@state': path.resolve(__dirname, 'state'),
+        //   '@components': path.resolve(__dirname, 'components')
+        // }
+        config.resolve.plugins = [
+          ...(config.resolve.plugins || []),
+          new TsConfigPathsPlugin()
+        ]
         return config
       },
       cssModules: useCssModules,
@@ -58,10 +62,13 @@ module.exports = (phase, { defaultConfig }) => {
       host: 'https://api.cowsayify.com'
     }
 
-    config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-3-prod002`
-    if (isProd) {
-      config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-3-prod002`
-    }
+    // config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-3-prod002`
+    // if (isProd) {
+    //   config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-3-prod002`
+    // }
+
+    config.assetPrefix = `https://${'' +
+      process.env.stage}-serverless-cowsay-3.s3-us-east-1.amazonaws.com`
 
     return config
   }

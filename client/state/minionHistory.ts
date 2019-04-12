@@ -32,7 +32,7 @@ export { stateManager }
 export async function fetchHistory() {
   const res = await fetch(host + '/cows-list')
   const fetchedHistory = await res.json()
-  stateManager.produce(draftState => {
+  stateManager.produce((draftState) => {
     draftState.fetchedHistory = fetchedHistory
   })
 }

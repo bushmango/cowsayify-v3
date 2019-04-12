@@ -7,6 +7,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "awesome-typescript-loader": "^5.2.1",
     "aws-lambda": "^0.1.2",
     "aws-serverless-express": "^3.3.6",
     "concurrently": "^4.1.0",
@@ -90,7 +91,9 @@
     "deploy-dev": "awsume steve && sls deploy --stage dev",
     "deploy-prod": "awsume steve && sls deploy --stage prod",
     "test": "jest -w 1",
-    "dev-test": "jest --watch"
+    "dev-test": "jest --watch",
+    "prettier-check": "prettier --check \"**/*.ts\"",
+    "prettier-format": "prettier \"**/*.ts\" --write"
   },
   "repository": {
     "type": "git",

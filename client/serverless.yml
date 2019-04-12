@@ -12,7 +12,7 @@ provider:
 
 plugins:
   - serverless-nextjs-plugin
-  - serverless-s3-sync
+  #- serverless-s3-sync
   - serverless-domain-manager
 
 custom:
