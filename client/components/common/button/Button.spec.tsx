@@ -16,6 +16,6 @@ describe('Button', () => {
     const onClick = jest.fn()
     const el = render(<Button onClick={onClick}>Click me!</Button>)
     fireEvent.click(el.getByText(/Click me!/i))
-    expect(onClick).toHaveBeenCalled()
+    expect(onClick).toHaveBeenCalledTimes(1)
   })
 })

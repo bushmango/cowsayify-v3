@@ -25,6 +25,7 @@
     "next-sass": "^1.0.3",
     "node-sass": "^4.11.0",
     "nodemon": "1.18.11",
+    "pokedex": "^1.1.0",
     "preact": "^8.4.2",
     "pubsub-js": "^1.7.0",
     "react": "16.8.6",
