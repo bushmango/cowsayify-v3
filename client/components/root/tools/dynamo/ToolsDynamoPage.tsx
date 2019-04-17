@@ -17,6 +17,25 @@ const ToolsDynamo = () => {
   )
 }
 
+const Credentials = (props: { state: minionDynamo.IStateDynamo }) => {
+  const { state } = props
+
+  return (
+    <div>
+      <div>Credentials</div>
+      {_.map(state.credentials, (c: minionDynamo.ICredentials, cIdx) => (
+        <div>
+          <div>{c.name}</div>
+          <div>{c.isLocal}</div>
+          <div>{c.region}</div>
+          <div>{c.accessKeyId}</div>
+          <div>{c.secretAccessKey}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const SelectTable = (props: { state: minionDynamo.IStateDynamo }) => {
   const { state } = props
   return (
@@ -26,28 +45,36 @@ const SelectTable = (props: { state: minionDynamo.IStateDynamo }) => {
           minionDynamo.listTables()
         }}
       >
-        Refresh
+        <Icon icon={icons.faSyncAlt} /> Tables
       </Button>
-      {_.map(state.tables, (c, cIdx) => (
-        <div key={cIdx}>
-          <LinkButton
-            onClick={() => {
-              minionDynamo.selectTable(c)
-            }}
-          >
-            {c}
-          </LinkButton>
-        </div>
-      ))}
+      <div>Tables</div>
+      <div>
+        {_.map(state.tables, (c, cIdx) => (
+          <div key={cIdx}>
+            <LinkButton
+              onClick={() => {
+                minionDynamo.selectTable(c)
+              }}
+            >
+              {c}
+            </LinkButton>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
 
 const SelectedTable = (props: { state: minionDynamo.IStateDynamo }) => {
   const { state } = props
+
+  if (!state.table) {
+    return null
+  }
+
   return (
     <div>
-      Selected table {state.table}
+      {state.table}
       {_.map(state.data, (c, cIdx) => (
         <div key={cIdx}>
           <pre>{JSON.stringify(c, null, 2)}</pre>
@@ -63,6 +90,9 @@ const ToolsDynamoPage = () => {
   return (
     <div>
       <div>Dynamo</div>
+      <div>
+        <Credentials state={state} />
+      </div>
       <div>
         <SelectTable state={state} />
       </div>

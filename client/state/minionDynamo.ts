@@ -7,16 +7,36 @@ import { _ } from '../imports/lodash'
 import { secrets } from '../secrets/secrets'
 import dynasty from 'dynasty'
 
+export interface ICredentials {
+  name: string
+  isLocal: boolean
+  region: string
+  accessKeyId: string
+  secretAccessKey: string
+}
+
 export interface IStateDynamo {
   table: string
   tables: string[]
   data: any[]
+  selectedCredential: string
+  credentials: ICredentials[]
 }
 
 let initialState: IStateDynamo = {
   table: '',
   tables: [],
   data: [],
+  selectedCredential: '',
+  credentials: [
+    {
+      isLocal: true,
+      name: 'local',
+      region: '',
+      accessKeyId: 'local',
+      secretAccessKey: 'local',
+    },
+  ],
 }
 
 var credentials = {
@@ -39,26 +59,28 @@ export async function listTables() {
   })
 }
 
+export async function selectedCredential(name: string) {
+  stateManager.produce((ds) => {
+    let item = _.find(ds.credentials, (c) => c.name === name)
+    if (item) {
+      ds.selectedCredential = item.name
+    }
+  })
+  await listTables()
+}
+
 export async function selectTable(table: string) {
   stateManager.produce((ds) => {
     ds.table = table
   })
+  await scanTable(table)
+}
 
+export async function scanTable(table: string) {
   const dynTable = dyn.table(table)
   let result = await dynTable.scan()
 
   stateManager.produce((ds) => {
     ds.data = result
   })
-}
-
-const doScan = async () => {
-  dyn.list().then((resp) => {
-    // List tables
-    console.log(resp.TableNames)
-  })
-
-  const shipments = dyn.table('shipments')
-  let result = await shipments.scan()
-  console.log('shipments', result)
 }
