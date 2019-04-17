@@ -8,6 +8,7 @@ import * as midboss from 'midboss'
 import * as minionDynamo from 'state/minionDynamo'
 import { Button } from '@components/common/button/Button'
 import { LinkButton } from '@components/common/link/LinkButton'
+import { Group } from '@components/common/group/Group'
 
 const ToolsDynamo = () => {
   return (
@@ -24,14 +25,23 @@ const Credentials = (props: { state: minionDynamo.IStateDynamo }) => {
     <div>
       <div>Credentials</div>
       {_.map(state.credentials, (c: minionDynamo.ICredentials, cIdx) => (
-        <div>
+        <Group key={cIdx}>
           <div>{c.name}</div>
           <div>{c.isLocal}</div>
           <div>{c.region}</div>
           <div>{c.accessKeyId}</div>
           <div>{c.secretAccessKey}</div>
-        </div>
+        </Group>
       ))}
+      <div>
+        <Button
+          onClick={() => {
+            minionDynamo.addCredential()
+          }}
+        >
+          <Icon icon={icons.faPlus} />
+        </Button>
+      </div>
     </div>
   )
 }

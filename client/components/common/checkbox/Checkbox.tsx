@@ -7,7 +7,7 @@ import commonStyles from '@theme/common.scss'
 let sequenceName = 1
 
 const Checkbox = (props: {
-  label: string | React.ReactNode
+  label?: string | React.ReactNode
   value: boolean
   onChange: (newValue: boolean) => void
   testId?: string

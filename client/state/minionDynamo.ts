@@ -69,6 +69,18 @@ export async function selectedCredential(name: string) {
   await listTables()
 }
 
+export function addCredential() {
+  stateManager.produce((ds) => {
+    ds.credentials.push({
+      accessKeyId: '',
+      isLocal: false,
+      name: 'new credential',
+      region: 'us-east-1',
+      secretAccessKey: '',
+    })
+  })
+}
+
 export async function selectTable(table: string) {
   stateManager.produce((ds) => {
     ds.table = table

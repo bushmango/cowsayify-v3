@@ -7,9 +7,10 @@ import {
   faArrowRight,
   faArrowLeft,
   faSyncAlt,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons'
 
-const icons = { faCoffee, faArrowRight, faArrowLeft, faSyncAlt }
+const icons = { faCoffee, faArrowRight, faArrowLeft, faSyncAlt, faPlus }
 export { icons }
 
 const Icon = (props: { icon?: IconDefinition }) => {
