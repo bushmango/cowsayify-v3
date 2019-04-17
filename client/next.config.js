@@ -18,7 +18,7 @@ console.log('stage', stage)
 module.exports = (phase, { defaultConfig }) => {
   let config = withTypescript(
     withSass({
-      webpack (config, options) {
+      webpack(config, options) {
         // Do not run type checking twice:
         if (options.isServer) {
           config.plugins.push(new ForkTsCheckerWebpackPlugin())
@@ -33,7 +33,7 @@ module.exports = (phase, { defaultConfig }) => {
         // }
         config.resolve.plugins = [
           ...(config.resolve.plugins || []),
-          new TsConfigPathsPlugin()
+          new TsConfigPathsPlugin(),
         ]
         return config
       },
@@ -45,15 +45,15 @@ module.exports = (phase, { defaultConfig }) => {
         localIdentName:
           phase === PHASE_DEVELOPMENT_SERVER
             ? '[name]_[local]_[hash:base64:5]'
-            : '[hash:base64]'
-      }
+            : '[hash:base64]',
+      },
     })
   )
 
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     config.env = {
       // host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
-      host: 'https://api.cowsayify.com'
+      host: 'https://api.cowsayify.com',
       // host: 'http://localhost:3005'
     }
 
@@ -63,7 +63,7 @@ module.exports = (phase, { defaultConfig }) => {
 
     config.env = {
       // host: 'https://hd7idfu7th.execute-api.us-east-1.amazonaws.com/dev',
-      host: 'https://api.cowsayify.com'
+      host: 'https://api.cowsayify.com',
     }
 
     // config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-3-prod002`
@@ -71,7 +71,7 @@ module.exports = (phase, { defaultConfig }) => {
     //   config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-3-prod002`
     // }
 
-    config.assetPrefix = `https://${stage}-serverless-cowsay-3.s3-us-east-1.amazonaws.com`
+    config.assetPrefix = `https://s3.amazonaws.com/serverless-cowsay-v3-${stage}`
     console.log(config.assetPrefix)
     return config
   }

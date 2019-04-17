@@ -16,16 +16,7 @@
     "typeRoots": ["node_modules/@types", "src/@types"],
     "incremental": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "baseUrl": ".",
-    "paths": {
-      "@pages/*": ["./pages/*"],
-      "@lib/*": ["./lib/*"],
-      "@imports/*": ["./imports/*"],
-      "@state/*": ["./state/*"],
-      "@components/*": ["./components/*"],
-      "*": ["*"]
-    }
+    "isolatedModules": true
   },
   "exclude": ["node_modules", "out", ".next"]
 }

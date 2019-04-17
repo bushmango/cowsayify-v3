@@ -1,4 +1,4 @@
-service: cowsayify
+service: cowsayify-v3-001
 
 provider:
   name: aws
@@ -12,7 +12,7 @@ provider:
 
 plugins:
   - serverless-nextjs-plugin
-  #- serverless-s3-sync
+  - serverless-s3-sync
   - serverless-domain-manager
 
 custom:
@@ -35,8 +35,8 @@ custom:
                   paths:
                     key: true
   s3Sync:
-    - bucketName: serverless-cowsay-3-prod
-      bucketPrefix: ${opt:stage}/static/
+    - bucketName: serverless-cowsay-v3-${opt:stage}
+      bucketPrefix: static/
       localDir: static
       acl: public-read
       defaultContentType: text/html

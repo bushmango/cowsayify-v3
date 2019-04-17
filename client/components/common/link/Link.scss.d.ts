@@ -1,8 +1,5 @@
 export interface Styles {
-  'cowForm': string;
-  'cowFormRow': string;
-  'cowFormLabel': string;
-  'cowFormItem': string;
+  'link': string;
 }
 
 export type ClassNames = keyof Styles;

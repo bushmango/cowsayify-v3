@@ -6,7 +6,7 @@ import * as log from './log'
 import * as midbossTheme from './midbossTheme'
 import { reactTesting } from '@lib/reactTesting'
 
-const s3Bucket = 'https://serverless-cowsay-3-prod.s3.amazonaws.com'
+const s3Bucket = 'https://serverless-cowsay-v3-dev-001.s3.amazonaws.com'
 
 export function navTo(href: string, as?: string) {
   if (reactTesting.isInTesting()) {
@@ -26,15 +26,15 @@ export function getPrefix(origin, pathname) {
       isLocal = true
       prefix = ''
       staticPrefix = ''
-    } else if (_.startsWith(pathname, '/dev/')) {
+    } else if (_.startsWith(pathname, '/dev')) {
       prefix = '/dev'
-      staticPrefix = s3Bucket + '/dev'
-    } else if (_.startsWith(pathname, '/prod/')) {
+      staticPrefix = s3Bucket //+ '/dev'
+    } else if (_.startsWith(pathname, '/prod')) {
       prefix = '/prod'
-      staticPrefix = s3Bucket + '/prod'
+      staticPrefix = s3Bucket //+ '/prod'
     } else {
       prefix = ''
-      staticPrefix = s3Bucket + '/prod'
+      staticPrefix = s3Bucket //+ '/prod'
     }
   }
   if (typeof process != 'undefined') {
