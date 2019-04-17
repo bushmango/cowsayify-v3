@@ -17,6 +17,13 @@ app.prepare().then(() => {
     return app.render(req, res, '/cowsaid', { key: req.params.key })
   })
 
+  server.get('/tools/pokemon-details/:key', (req, res) => {
+    console.log('key:', req.params.key)
+    return app.render(req, res, '/tools/pokemon-details', {
+      key: req.params.key,
+    })
+  })
+
   server.get('*', (req, res) => {
     return handle(req, res)
   })

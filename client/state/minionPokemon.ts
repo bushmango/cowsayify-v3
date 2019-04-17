@@ -35,9 +35,9 @@ export { stateManager }
 
 import Pokedex from 'pokedex'
 
-export async function fetch() {
-  const pokedex = new Pokedex()
+const pokedex = new Pokedex()
 
+export async function fetch() {
   let pokemon = []
 
   for (let i = 1; i <= 807; i++) {
@@ -68,4 +68,8 @@ export function deselect() {
   stateManager.produce((ds) => {
     ds.selected = null
   })
+}
+
+export function getPokemon(id) {
+  return pokedex.pokemon(parseInt(id))
 }
