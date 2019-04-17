@@ -10,6 +10,8 @@ import { Button } from '@components/common/button/Button'
 import { LinkButton } from '@components/common/link/LinkButton'
 import { Group } from '@components/common/group/Group'
 
+import styles from './Dynamo.scss'
+
 const ToolsDynamo = () => {
   return (
     <Layout title='Dynamo'>
@@ -85,11 +87,34 @@ const SelectedTable = (props: { state: minionDynamo.IStateDynamo }) => {
   return (
     <div>
       {state.table}
-      {_.map(state.data, (c, cIdx) => (
+
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Entity</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          {_.map(state.data, (c, cIdx) => (
+            <tr key={cIdx}>
+              <td>{c.id}</td>
+              <td>{c.entity}</td>
+              <td>
+                <pre>{JSON.stringify(c, null, 2)}</pre>
+              </td>
+            </tr>
+          ))}
+          <tr />
+        </tbody>
+      </table>
+
+      {/* {_.map(state.data, (c, cIdx) => (
         <div key={cIdx}>
           <pre>{JSON.stringify(c, null, 2)}</pre>
         </div>
-      ))}
+      ))} */}
     </div>
   )
 }
