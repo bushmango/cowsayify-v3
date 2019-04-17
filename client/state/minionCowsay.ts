@@ -2,7 +2,7 @@ import * as midboss from 'midboss'
 const midbossKey = 'cowsay'
 export { midbossKey }
 
-import { _ } from '../imports/lodash'
+import { _ } from '@lib/lodash'
 import moment from 'moment'
 
 import cowsay from 'cowsay-browser'

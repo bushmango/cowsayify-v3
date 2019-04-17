@@ -1,7 +1,7 @@
 import styles from './HistoryPage.scss'
 
 import React from 'react'
-import { _ } from '@imports/lodash'
+import { _ } from '@lib/lodash'
 
 import Layout from '@components/shared/Layout'
 

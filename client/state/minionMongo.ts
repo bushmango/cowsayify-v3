@@ -4,7 +4,7 @@ export { midbossKey }
 
 import minimongo from 'minimongo'
 
-import { _ } from '../imports/lodash'
+import { _ } from '@lib/lodash'
 import fetch from 'isomorphic-unfetch'
 
 const host = process.env.host

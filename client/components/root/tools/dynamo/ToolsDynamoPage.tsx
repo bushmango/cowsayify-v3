@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 
-import Layout from '../../../shared/Layout'
-import { _ } from 'imports/lodash'
+import Layout from '@components/shared/Layout'
+import { _ } from '@lib/lodash'
 import { icons, Icon } from '@components/common/icon/Icon'
 
 import * as midboss from 'midboss'
 import * as minionDynamo from 'state/minionDynamo'
-import { Button } from '@components/shared/Button'
+import { Button } from '@components/common/button/Button'
 import { LinkButton } from '@components/common/link/LinkButton'
 
 const ToolsDynamo = () => {

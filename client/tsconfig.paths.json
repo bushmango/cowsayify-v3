@@ -2,11 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@imports/*": ["imports/*"],
-      "@state/*": ["state/*"],
       "@components/*": ["components/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@pages/*": ["pages/*"],
+      "@state/*": ["state/*"],
+      "@theme/*": ["theme/*"]
     }
   }
 }

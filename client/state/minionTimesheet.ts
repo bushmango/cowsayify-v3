@@ -2,7 +2,7 @@ import * as midboss from 'midboss'
 const midbossKey = 'timesheet'
 export { midbossKey }
 
-import { _ } from '../imports/lodash'
+import { _ } from '@lib/lodash'
 
 export interface IStateTimesheet {
   lines: { a: string; b: string; c: string; minutes: number }[]

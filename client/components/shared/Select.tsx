@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Select.scss'
-import { _ } from '@imports/lodash'
+import { _ } from '@lib/lodash'
 
 export interface ISelectOptions {
   value: string

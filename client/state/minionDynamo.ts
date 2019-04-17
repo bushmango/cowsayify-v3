@@ -2,7 +2,7 @@ import * as midboss from 'midboss'
 const midbossKey = 'dynamo'
 export { midbossKey }
 
-import { _ } from '../imports/lodash'
+import { _ } from '@lib/lodash'
 
 import { secrets } from '../secrets/secrets'
 import dynasty from 'dynasty'

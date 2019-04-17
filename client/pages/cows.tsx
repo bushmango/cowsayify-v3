@@ -1,2 +1,2 @@
-import { Cows } from '../components/root/cows/CowsPage'
+import { Cows } from '@components/root/cows/CowsPage'
 export default Cows

@@ -2,7 +2,7 @@ import * as midboss from 'midboss'
 const midbossKey = 'theme'
 export { midbossKey }
 
-import { _ } from '../imports/lodash'
+import { _ } from '@lib/lodash'
 
 export interface IStateTheme {
   isLoading: boolean

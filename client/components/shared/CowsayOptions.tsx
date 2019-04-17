@@ -2,13 +2,13 @@ import React from 'react'
 
 import styles from './CowsayOptions.scss'
 
-import { Button } from '@components/shared/Button'
+import { Button } from '@components/common/button/Button'
 import { Input } from '@components/shared/Input'
 import { TextArea } from '@components/shared/TextArea'
 import { Select } from '@components/shared/Select'
 
-import * as minionCowsay from '../../state/minionCowsay'
-import { modes, actions } from '../../state/minionCowsay'
+import * as minionCowsay from '@state/minionCowsay'
+import { modes, actions } from '@state/minionCowsay'
 
 const stateManager = minionCowsay.stateManager
 

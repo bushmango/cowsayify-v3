@@ -1,12 +1,12 @@
 import React from 'react'
 
-import DisplayCow from '../../shared/DisplayCow'
-import CowsayOptions from '../../shared/CowsayOptions'
+import DisplayCow from '@components/shared/DisplayCow'
+import CowsayOptions from '@components/shared/CowsayOptions'
 
-import Layout from '../../shared/Layout'
+import Layout from '@components/shared/Layout'
 
 import * as midboss from 'midboss'
-import * as minionCowsay from '../../../state/minionCowsay'
+import * as minionCowsay from '@state/minionCowsay'
 
 const Cowsay = (props: any) => {
   return (

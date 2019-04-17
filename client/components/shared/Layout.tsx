@@ -7,11 +7,11 @@ import styles from './../styles.scss'
 import Head from 'next/head'
 import Header from './Header'
 
-import * as router from './../../state/router'
-import * as log from './../../state/log'
+import * as router from '@state/router'
+import * as log from '@state/log'
 
 import * as midboss from 'midboss'
-import * as midbossTheme from '../../state/midbossTheme'
+import * as midbossTheme from '@state/midbossTheme'
 
 import { Pace } from './Pace'
 

@@ -1,12 +1,12 @@
 import React from 'react'
-import { _ } from '../../../imports/lodash'
+import { _ } from '@lib/lodash'
 
-import DisplayCow from '../../shared/DisplayCow'
+import DisplayCow from '@components/shared/DisplayCow'
 
-import Layout from '../../shared/Layout'
+import Layout from '@components/shared/Layout'
 
 import * as midboss from 'midboss'
-import * as minionCowsay from '../../../state/minionCowsay'
+import * as minionCowsay from '@state/minionCowsay'
 
 const Cows = () => {
   return (

@@ -3,9 +3,9 @@ import React from 'react'
 import styles from './IndexPage.scss'
 // const styles = require('./index.scss')
 
-import Layout from '../shared/Layout'
+import Layout from '@components/shared/Layout'
 
-import * as router from '../../state/router'
+import * as router from '@state/router'
 
 const Index = () => {
   return (

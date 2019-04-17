@@ -1,2 +1,2 @@
-import { Test } from '../../components/root/tools/test/TestPage'
+import { Test } from '@components/root/tools/test/TestPage'
 export default Test

@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Layout from '../../shared/Layout'
+import Layout from '@components/shared/Layout'
 
-import DisplayCow from '../../shared/DisplayCow'
+import DisplayCow from '@components/shared/DisplayCow'
 
-import * as minionCowsay from '../../../state/minionCowsay'
+import * as minionCowsay from '@state/minionCowsay'
 
 const Cowsaid = (props: { data: any }) => {
   return (

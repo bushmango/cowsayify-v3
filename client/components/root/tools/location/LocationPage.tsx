@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Layout from '../../../shared/Layout'
-import { _ } from '../../../../imports/lodash'
+import Layout from '@components/shared/Layout'
+import { _ } from '@lib/lodash'
 
 let locationProps = [
   'hash',
