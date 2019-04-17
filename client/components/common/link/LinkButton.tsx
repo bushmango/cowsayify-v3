@@ -10,7 +10,7 @@ const LinkButton = (props: {
       <a
         className={styles.link}
         href='javascript: void(0);'
-        onMouseDown={props.onClick}
+        onClick={props.onClick}
       >
         {props.children}
       </a>

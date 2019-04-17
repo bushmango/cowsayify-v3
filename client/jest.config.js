@@ -20,7 +20,7 @@ module.exports = {
     '^@lib/(.*)$': '<rootDir>/lib/$1',
     '^@imports/(.*)$': '<rootDir>/imports/$1',
     '^@state/(.*)$': '<rootDir>/state/$1',
-    '^@components/(.*)$': '<rootDir>/components/$1',
+    '^@components/(.*)$': '<rootDir>/components/$1'
   },
 
   preset: 'ts-jest',
@@ -28,13 +28,15 @@ module.exports = {
     'ts-jest': {
       // ts-jest configuration goes here
       babelConfig: true,
-      tsConfig: 'tsconfig.jest.json',
-    },
+      tsConfig: 'tsconfig.jest.json'
+    }
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.tsx?$': 'ts-jest'
   },
   coveragePathIgnorePatterns: ['/node_modules/'],
   verbose: false,
+
+  setupFilesAfterEnv: ['react-testing-library/cleanup-after-each']
 }
