@@ -1,4 +1,9 @@
 # serverless.yml
+Globals:
+  Api:
+    BinaryMediaTypes:
+      - 'application/pdf'
+      - 'image/*'
 
 service: my-express-application
 

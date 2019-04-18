@@ -12,12 +12,12 @@ const binaryMimeTypes: string[] = [
   // "application/json",
   // 'application/octet-stream',
   // 'application/xml',
-  "font/eot",
-  "font/opentype",
-  "font/otf",
-  "image/jpeg",
-  "image/png",
-  "image/svg+xml",
+  // "font/eot",
+  // "font/opentype",
+  // "font/otf",
+  // "image/jpeg",
+  // "image/png",
+  // "image/svg+xml",
   // 'text/comma-separated-values',
   // "text/css",
   // "text/html",
@@ -27,7 +27,7 @@ const binaryMimeTypes: string[] = [
   // 'text/xml',
 ];
 const app = configureApp();
-const server = createServer(app, undefined, binaryMimeTypes);
+const server = createServer(app, undefined, undefined/*binaryMimeTypes*/ );
 
 export const http = (event: any, context: Context) =>
   proxy(server, event, context);
