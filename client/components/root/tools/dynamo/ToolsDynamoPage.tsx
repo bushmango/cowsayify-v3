@@ -20,6 +20,53 @@ const ToolsDynamo = () => {
   )
 }
 
+const Filtered = (props: { state: minionDynamo.IStateDynamo }) => {
+  const { state } = props
+
+  if (!state.table) {
+    return null
+  }
+  if (state.table !== 'shipments') {
+    return null
+  }
+
+  let filtered = _.filter(
+    state.data,
+    (c) => c.entity === 'Shipment' && c.id !== 'quotedRate'
+  )
+  let ids = _.map(filtered, (c) => "'" + c.id + "'")
+  let array = _.join(ids, ',')
+
+  return (
+    <div>
+      Filtered
+      <pre>[{array}]</pre>
+      {/* <table className={styles.table}>
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Entity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {_.map(state.data, (c, cIdx) => (
+            <tr key={cIdx}>
+              <td>{c.id}</td>
+              <td>{c.entity}</td>
+            </tr>
+          ))}
+          <tr />
+        </tbody>
+      </table> */}
+      {/* {_.map(state.data, (c, cIdx) => (
+        <div key={cIdx}>
+          <pre>{JSON.stringify(c, null, 2)}</pre>
+        </div>
+      ))} */}
+    </div>
+  )
+}
+
 const Credentials = (props: { state: minionDynamo.IStateDynamo }) => {
   const { state } = props
 
@@ -124,12 +171,15 @@ const ToolsDynamoPage = () => {
 
   return (
     <div>
-      <div>Dynamo</div>
+      <div>Dynamo</div>af
       <div>
         <Credentials state={state} />
       </div>
       <div>
         <SelectTable state={state} />
+      </div>
+      <div>
+        <Filtered state={state} />
       </div>
       <div>
         <SelectedTable state={state} />
