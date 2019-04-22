@@ -1,17 +1,12 @@
 import React from 'react'
-import { isServer } from 'lib/isServer'
+import { isServer } from '@lib/isServer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import {
-  faCoffee,
-  faArrowRight,
-  faArrowLeft,
-  faSyncAlt,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons'
 
-const icons = { faCoffee, faArrowRight, faArrowLeft, faSyncAlt, faPlus }
-export { icons }
+import { regularIcons } from './regularIcons'
+import { solidIcons } from './solidIcons'
+
+export { regularIcons, solidIcons }
 
 const Icon = (props: { icon?: IconDefinition }) => {
   if (isServer()) {
@@ -29,7 +24,7 @@ const Icon = (props: { icon?: IconDefinition }) => {
     )
   }
 
-  return <FontAwesomeIcon icon={props.icon || faCoffee} />
+  return <FontAwesomeIcon icon={props.icon || solidIcons.faCoffee} />
 }
 
 export { Icon }

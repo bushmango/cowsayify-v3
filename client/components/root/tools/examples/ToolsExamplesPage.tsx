@@ -2,7 +2,7 @@ import React from 'react'
 
 import Layout from '@components/shared/Layout'
 import { _ } from '@lib/lodash'
-import { icons, Icon } from '@components/common/icon/Icon'
+import { solidIcons, Icon } from '@components/common/icon/Icon'
 
 const ToolsExamples = () => {
   return (
@@ -17,9 +17,9 @@ const ToolsExamplesPage = () => {
     <div>
       <div>ToolsExamplesPage</div>
       ToolsExamplesPage
-      <Icon icon={icons.faArrowRight} />
+      <Icon icon={solidIcons.faArrowRight} />
       Icons
-      <Icon icon={icons.faArrowLeft} />
+      <Icon icon={solidIcons.faArrowLeft} />
     </div>
   )
 }

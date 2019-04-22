@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import Layout from '@components/shared/Layout'
 import { _ } from '@lib/lodash'
-import { icons, Icon } from '@components/common/icon/Icon'
+import { solidIcons, Icon } from '@components/common/icon/Icon'
 
 import * as minionDynamo from 'state/minionDynamo'
 import { Button } from '@components/common/button/Button'
@@ -87,7 +87,7 @@ const Credentials = (props: { state: minionDynamo.IStateDynamo }) => {
             minionDynamo.addCredential()
           }}
         >
-          <Icon icon={icons.faPlus} />
+          <Icon icon={solidIcons.faPlus} />
         </Button>
       </div>
     </div>
@@ -103,7 +103,7 @@ const SelectTable = (props: { state: minionDynamo.IStateDynamo }) => {
           minionDynamo.listTables()
         }}
       >
-        <Icon icon={icons.faSyncAlt} /> Tables
+        <Icon icon={solidIcons.faSyncAlt} /> Tables
       </Button>
       <div>Tables</div>
       <div>
