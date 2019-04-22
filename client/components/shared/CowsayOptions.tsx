@@ -10,25 +10,23 @@ import { Select } from '@components/shared/Select'
 import * as minionCowsay from '@state/minionCowsay'
 import { modes, actions } from '@state/minionCowsay'
 
-const stateManager = minionCowsay.stateManager
-
 const _onChange_text = (val) => {
-  stateManager.setState({ text: val })
+  minionCowsay.setState({ text: val })
 }
 const _onChange_mode = (val) => {
-  stateManager.setState({ mode: val })
+  minionCowsay.setState({ mode: val })
 }
 const _onChange_action = (val) => {
-  stateManager.setState({ action: val })
+  minionCowsay.setState({ action: val })
 }
 const _onChange_eyes = (val) => {
-  stateManager.setState({ eyes: val })
+  minionCowsay.setState({ eyes: val })
 }
 const _onChange_tongue = (val) => {
-  stateManager.setState({ tongue: val })
+  minionCowsay.setState({ tongue: val })
 }
 const _onChange_cow = (val) => {
-  stateManager.setState({ cow: val })
+  minionCowsay.setState({ cow: val })
 }
 const _onClick_share = (ev) => {
   minionCowsay.doShare()

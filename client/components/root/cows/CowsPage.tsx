@@ -17,7 +17,7 @@ const Cows = () => {
 }
 
 const CowsPage = () => {
-  const cowsay = midboss.useSubscription(minionCowsay.stateManager)
+  const cowsay = minionCowsay.useSubscribe()
 
   return (
     <div>

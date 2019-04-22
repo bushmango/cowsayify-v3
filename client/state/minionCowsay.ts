@@ -1,7 +1,4 @@
 import * as midboss from 'midboss'
-const midbossKey = 'cowsay'
-export { midbossKey }
-
 import { _ } from '@lib/lodash'
 import moment from 'moment'
 
@@ -38,13 +35,10 @@ let initialState: IStateCowsay = {
   cowList: [],
 }
 
-const stateManager = midboss.createMidboss(
-  midbossKey,
-  '1.0.0',
-  initialState,
-  {}
-)
-export { stateManager }
+const stateManager = midboss.createMidboss('cowsay', '1.0.0', initialState, {})
+export function useSubscribe() {
+  return midboss.useSubscription(stateManager)
+}
 
 function init() {
   // Get our list of cows
@@ -208,4 +202,8 @@ export async function fetchHistory() {
   const data = await res.json()
 
   return { data: data }
+}
+
+export function setState(changes: Partial<IStateCowsay>) {
+  stateManager.setState(changes)
 }

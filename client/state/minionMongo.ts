@@ -1,6 +1,4 @@
 import * as midboss from 'midboss'
-const midbossKey = 'mongo'
-export { midbossKey }
 
 import minimongo from 'minimongo'
 
@@ -23,10 +21,12 @@ let initialState: IStateMongo = {
   isLoading: true,
 }
 
-const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
+const stateManager = midboss.createMidboss('mongo', '1.0.0', initialState, {
   useLocalStorage: false,
 })
-export { stateManager }
+export function useSubscribe() {
+  return midboss.useSubscription(stateManager)
+}
 
 let mongoUrl = 'http://localhost:3008/mongo-api/v1/'
 

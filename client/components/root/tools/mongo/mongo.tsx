@@ -8,16 +8,16 @@ import * as midboss from 'midboss'
 import * as minionMongo from '@state/minionMongo'
 
 const onChange = (ev) => {
-  let hasChange = false
-  minionMongo.stateManager.produce((ds) => {
-    if (ds.search !== ev.target.value) {
-      ds.search = ev.target.value
-      hasChange = true
-    }
-  })
-  if (hasChange) {
-    minionMongo.fetchMongo()
-  }
+  // let hasChange = false
+  // minionMongo.stateManager.produce((ds) => {
+  //   if (ds.search !== ev.target.value) {
+  //     ds.search = ev.target.value
+  //     hasChange = true
+  //   }
+  // })
+  // if (hasChange) {
+  //   minionMongo.fetchMongo()
+  // }
 }
 
 const Zip = ({ zip }) => {
@@ -38,7 +38,7 @@ const Zip = ({ zip }) => {
 }
 
 function MongoTest(props: { data: any }) {
-  const state = midboss.useSubscription(minionMongo.stateManager)
+  const state = minionMongo.useSubscribe()
 
   React.useEffect(() => {
     if (!state.fetchedMongo) {

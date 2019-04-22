@@ -1,13 +1,11 @@
 import * as midboss from 'midboss'
-const midbossKey = 'history'
-export { midbossKey }
 
 import { _ } from '@lib/lodash'
 import fetch from 'isomorphic-unfetch'
 
 const host = process.env.host
 
-interface IStateHistory {
+export interface IStateHistory {
   fetchedHistory: {
     error?: string
     data?: {
@@ -24,10 +22,12 @@ let initialState: IStateHistory = {
   fetchedHistory: null,
 }
 
-const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
+const stateManager = midboss.createMidboss('history', '1.0.0', initialState, {
   useLocalStorage: false,
 })
-export { stateManager }
+export function useSubscribe() {
+  return midboss.useSubscription(stateManager)
+}
 
 export async function fetchHistory() {
   const res = await fetch(host + '/cows-list')

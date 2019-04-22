@@ -48,7 +48,7 @@ const HistoryPage = (props: {
     minionHistory.stateManager.rehydrate(props.serverStateHistory)
   }
 
-  const history = midboss.useSubscription(minionHistory.stateManager)
+  const history = minionHistory.useSubscribe())
   let { fetchedHistory } = history
 
   if (!fetchedHistory || fetchedHistory.error) {

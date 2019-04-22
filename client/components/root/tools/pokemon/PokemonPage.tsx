@@ -21,7 +21,7 @@ const ToolsPokemon = () => {
 }
 
 const ToolsPokemonPage = () => {
-  const state = midboss.useSubscription(minionPokemon.stateManager)
+  const state = minionPokemon.useSubscribe()
 
   useEffect(() => {
     minionPokemon.fetch()

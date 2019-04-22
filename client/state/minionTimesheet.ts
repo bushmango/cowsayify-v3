@@ -1,7 +1,4 @@
 import * as midboss from 'midboss'
-const midbossKey = 'timesheet'
-export { midbossKey }
-
 import { _ } from '@lib/lodash'
 
 export interface IStateTimesheet {
@@ -24,10 +21,12 @@ let initialState: IStateTimesheet = {
   },
 }
 
-const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
+const stateManager = midboss.createMidboss('timesheet', '1.0.0', initialState, {
   useLocalStorage: true,
 })
-export { stateManager }
+export function useSubscribe() {
+  return midboss.useSubscription(stateManager)
+}
 
 let mongoUrl = 'http://localhost:3008/mongo-api/v1/'
 
@@ -45,6 +44,11 @@ export async function update() {
       line.minutes = total
       draftState.totals.minutes += total
     })
+  })
+}
+export function changeLine(idx, field, newVal) {
+  stateManager.produce((ds) => {
+    ds.lines[idx][field] = newVal
   })
 }
 

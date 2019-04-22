@@ -1,7 +1,4 @@
 import * as midboss from 'midboss'
-const midbossKey = 'pokemon'
-export { midbossKey }
-
 import { _ } from '@lib/lodash'
 
 export interface IPokemon {
@@ -28,10 +25,12 @@ let initialState: IStatePokemon = {
   pokemon: [],
 }
 
-const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
+const stateManager = midboss.createMidboss('pokemon', '1.0.0', initialState, {
   useLocalStorage: true,
 })
-export { stateManager }
+export function useSubscribe() {
+  return midboss.useSubscription(stateManager)
+}
 
 import Pokedex from 'pokedex'
 

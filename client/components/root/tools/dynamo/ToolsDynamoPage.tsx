@@ -167,7 +167,7 @@ const SelectedTable = (props: { state: minionDynamo.IStateDynamo }) => {
 }
 
 const ToolsDynamoPage = () => {
-  const state = midboss.useSubscription(minionDynamo.stateManager)
+  const state = minionDynamo.useSubscribe()
 
   return (
     <div>

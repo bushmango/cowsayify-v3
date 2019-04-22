@@ -17,7 +17,7 @@ const Cowsay = (props: any) => {
 }
 
 const CowsayPage = (props: any) => {
-  const cowsay = midboss.useSubscription(minionCowsay.stateManager)
+  const cowsay = minionCowsay.useSubscribe())
   let options = minionCowsay.calcOptions()
 
   return (

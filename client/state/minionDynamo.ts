@@ -1,6 +1,4 @@
 import * as midboss from 'midboss'
-const midbossKey = 'dynamo'
-export { midbossKey }
 
 import { _ } from '@lib/lodash'
 
@@ -46,10 +44,12 @@ var credentials = {
 
 const dyn = dynasty(credentials, 'http://localhost:8000')
 
-const stateManager = midboss.createMidboss(midbossKey, '1.0.0', initialState, {
+const stateManager = midboss.createMidboss('dynamo', '1.0.0', initialState, {
   useLocalStorage: true,
 })
-export { stateManager }
+export function useSubscribe() {
+  return midboss.useSubscription(stateManager)
+}
 
 export async function listTables() {
   let result = await dyn.list()

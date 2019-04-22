@@ -3,7 +3,7 @@ import Router from 'next/router'
 import * as _ from 'lodash'
 import * as log from './log'
 
-import * as midbossTheme from './midbossTheme'
+import * as midbossTheme from './minionTheme'
 import { reactTesting } from '@lib/reactTesting'
 
 const s3Bucket = 'https://serverless-cowsay-v3-dev-001.s3.amazonaws.com'

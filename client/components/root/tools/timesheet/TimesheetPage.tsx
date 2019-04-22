@@ -8,10 +8,7 @@ import * as midboss from 'midboss'
 import * as minionTimesheet from '@state/minionTimesheet'
 
 const onChange = (idx, field, ev) => {
-  let hasChange = false
-  minionTimesheet.stateManager.produce((ds) => {
-    ds.lines[idx][field] = ev.target.value
-  })
+  minionTimesheet.changeLine(idx, field, ev.target.value)
   minionTimesheet.update()
 }
 
@@ -75,8 +72,6 @@ const Input = ({ value, idx, field }) => {
 }
 
 const Timesheet = (props: {}) => {
-  const state = midboss.useSubscription(minionTimesheet.stateManager)
-
   return (
     <Layout title='timesheet tool'>
       <Head>
@@ -90,7 +85,7 @@ const Timesheet = (props: {}) => {
   )
 }
 const TimesheetPage = (props: {}) => {
-  const state = midboss.useSubscription(minionTimesheet.stateManager)
+  const state = minionTimesheet.useSubscribe()
 
   return (
     <div style={{ padding: '2em' }}>

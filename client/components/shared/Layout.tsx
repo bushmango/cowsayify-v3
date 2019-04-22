@@ -11,7 +11,7 @@ import * as router from '@state/router'
 import * as log from '@state/log'
 
 import * as midboss from 'midboss'
-import * as midbossTheme from '@state/midbossTheme'
+import * as midbossTheme from '@state/minionTheme'
 
 import { Pace } from './Pace'
 
@@ -20,7 +20,7 @@ const googleAnalyticsTrackingId = 'UA-135264357-1'
 
 let lastUrl = null
 const Layout = (props: { title: string; children: React.ReactNode }) => {
-  const stateTheme = midboss.useSubscription(midbossTheme.stateManager)
+  const stateTheme = midbossTheme.useSubscribe()
 
   useEffect(() => {
     ReactGA.initialize(googleAnalyticsTrackingId)
