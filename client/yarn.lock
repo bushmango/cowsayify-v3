@@ -1454,10 +1454,10 @@
   dependencies:
     moment "*"
 
-"@types/mongodb@3.1.24":
-  version "3.1.24"
-  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.1.24.tgz#5fc22ebdd675395632ed776c86ef8021b489eff8"
-  integrity sha512-X3VlTujSc9gzwc7zKwXIdazRnvxWijEOVWlJ8uStiYHuYs8rg+6NgpBQDS0niw1yO1TIqKumewK4i2mKnZYXtQ==
+"@types/mongodb@3.1.25":
+  version "3.1.25"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.1.25.tgz#1da0219b7d8c08859f811774673c803f906e5e05"
+  integrity sha512-BSrjY1J8Nf9hin6p0Tv8b8PIfpTq+Xp4TVSRxZbO3jhvIeu1EKZ4xk0t8tms5vA/qMIkfNX2iciOThFhXPL93g==
   dependencies:
     "@types/bson" "*"
     "@types/node" "*"
@@ -1466,14 +1466,14 @@
   version "11.10.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.10.5.tgz#fbaca34086bdc118011e1f05c47688d432f2d571"
 
-"@types/node@11.12.0", "@types/node@^11.11.0":
-  version "11.12.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.12.0.tgz#ec5594728811dc2797e42396cfcdf786f2052c12"
-
 "@types/node@11.13.6":
   version "11.13.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.6.tgz#37ec75690830acb0d74ce3c6c43caab787081e85"
   integrity sha512-Xoo/EBzEe8HxTSwaZNLZjaW6M6tA/+GmD3/DZ6uo8qSaolE/9Oarko0oV1fVfrLqOz0tx0nXJB4rdD5c+vixLw==
+
+"@types/node@^11.11.0":
+  version "11.12.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.12.0.tgz#ec5594728811dc2797e42396cfcdf786f2052c12"
 
 "@types/node@^11.11.3":
   version "11.12.1"
@@ -4436,10 +4436,10 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
 
-fork-ts-checker-webpack-plugin@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-1.1.1.tgz#caf2a210778fb1e171b6993ca0a40f9b6589e3b7"
-  integrity sha512-gqWAEMLlae/oeVnN6RWCAhesOJMswAN1MaKNqhhjXHV5O0/rTUjWI4UbgQHdlrVbCnb+xLotXmJbBlC66QmpFw==
+fork-ts-checker-webpack-plugin@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-1.2.0.tgz#2d0b0d94ef6a2479ac94f44cb9edfa9e8f1de160"
+  integrity sha512-JY+qctuwZkg25tt3GdX3q4MOAI4mddWTs4ugAZD3EhJ12P3K0xtg0wvU+MMRPNBP0zT1hvQXemT2xeeQ8DYSWg==
   dependencies:
     babel-code-frame "^6.22.0"
     chalk "^2.4.1"
@@ -5007,10 +5007,6 @@ immer@3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/immer/-/immer-3.1.1.tgz#eddd2c28403f494df604992c554eade8d9e5c2bb"
   integrity sha512-8mH3vMqkvCy0jADoJGJR/+RNsIJOsrVhN1/8NBSLGV+Y4S8bSQ5i2VsDHu+1fm+IFhd8cZFX0shms2nsTBJUbA==
-
-immer@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-2.1.4.tgz#92545e07c2c28b94afe0752364a35f5693b6ffaa"
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -6621,14 +6617,14 @@ micromatch@^3.1.0, micromatch@^3.1.10, micromatch@^3.1.4, micromatch@^3.1.8, mic
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-midboss@0.18.5:
-  version "0.18.5"
-  resolved "https://registry.yarnpkg.com/midboss/-/midboss-0.18.5.tgz#ab5ba5b75c46c3c23a0fcfeccade0f16e51c8ec9"
-  integrity sha512-Sgf+AGfnBy74jdTh+srlGjMJbDKhK/bPSLrP9QbzoSml5753ilw0NUkTZH122q77td/ZjXF8y/Y7q7jFOCk9RQ==
+midboss@0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/midboss/-/midboss-0.19.0.tgz#ff0ba715e1391cc77f509335b06bed0a65f62323"
+  integrity sha512-3NAIaasvMfMlmarXwYJPboOAsJZSchYKKw4h69K/jD4TIVMl0gbJtGy4FrrO+T5utAz38e0pUXnFMN1cpGQokw==
   dependencies:
-    "@types/node" "11.12.0"
+    "@types/node" "11.13.6"
     flavor-saver "0.14.0"
-    immer "^2.1.4"
+    immer "3.1.1"
     lodash "^4.17.11"
     pubsub-js "^1.7.0"
 
@@ -9756,10 +9752,10 @@ ts-jest@^24.0.2:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-loader@^5.3.3:
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.3.3.tgz#8b4af042e773132d86b3c99ef0acf3b4d325f473"
-  integrity sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
+ts-loader@5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.4.3.tgz#837f7f397799a665fc1774303c9fd0930d1c5947"
+  integrity sha512-pHwZFkZioL7Yi2su0bhW2/djxZ+0iGat1cxlAif4Eg9j5znVYuWGtW0YYY/5w8W+IzLcAlD5KwJDrs5unUKIRA==
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
