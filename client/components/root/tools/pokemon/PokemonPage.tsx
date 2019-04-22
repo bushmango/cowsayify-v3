@@ -2,13 +2,8 @@ import React, { useEffect } from 'react'
 
 import Layout from '@components/shared/Layout'
 import { _ } from '@lib/lodash'
-import { icons, Icon } from '@components/common/icon/Icon'
 
-import * as midboss from 'midboss'
 import * as minionPokemon from 'state/minionPokemon'
-import { Button } from '@components/common/button/Button'
-import { LinkButton } from '@components/common/link/LinkButton'
-import { Group } from '@components/common/group/Group'
 
 import styles from './Pokemon.scss'
 

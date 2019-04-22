@@ -10,7 +10,6 @@ import Header from './Header'
 import * as router from '@state/router'
 import * as log from '@state/log'
 
-import * as midboss from 'midboss'
 import * as midbossTheme from '@state/minionTheme'
 
 import { Pace } from './Pace'

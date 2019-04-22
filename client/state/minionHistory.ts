@@ -28,6 +28,21 @@ const stateManager = midboss.createMidboss('history', '1.0.0', initialState, {
 export function useSubscribe() {
   return midboss.useSubscription(stateManager)
 }
+export function dehydrate(fromServer: boolean) {
+  if (!fromServer) {
+    return null
+  }
+  return stateManager.getState()
+}
+let isHydrated = false
+export function rehydrate(state: Partial<IStateHistory>) {
+  if (!isHydrated) {
+    if (state) {
+      stateManager.setState(state)
+    }
+    isHydrated = true
+  }
+}
 
 export async function fetchHistory() {
   const res = await fetch(host + '/cows-list')

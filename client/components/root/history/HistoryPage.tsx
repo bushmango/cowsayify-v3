@@ -7,7 +7,6 @@ import Layout from '@components/shared/Layout'
 
 import DisplayCow from '@components/shared/DisplayCow'
 
-import * as midboss from 'midboss'
 import * as minionHistory from '@state/minionHistory'
 
 interface IDataListItem {
@@ -31,24 +30,14 @@ const History = (props: { fromServer: boolean; serverStateHistory: any }) => {
 History.getInitialProps = async ({ req }) => {
   const fromServer = !!req
   await minionHistory.fetchHistory()
-
   return {
-    fromServer,
-    serverStateHistory: fromServer
-      ? minionHistory.stateManager.getState()
-      : null,
+    serverStateHistory: minionHistory.dehydrate(fromServer),
   }
 }
 
-const HistoryPage = (props: {
-  fromServer: boolean
-  serverStateHistory: any
-}) => {
-  if (props.fromServer && props.serverStateHistory) {
-    minionHistory.stateManager.rehydrate(props.serverStateHistory)
-  }
-
-  const history = minionHistory.useSubscribe())
+const HistoryPage = (props: { serverStateHistory: any }) => {
+  minionHistory.rehydrate(props.serverStateHistory)
+  const history = minionHistory.useSubscribe()
   let { fetchedHistory } = history
 
   if (!fetchedHistory || fetchedHistory.error) {

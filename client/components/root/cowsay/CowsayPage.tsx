@@ -5,7 +5,6 @@ import CowsayOptions from '@components/shared/CowsayOptions'
 
 import Layout from '@components/shared/Layout'
 
-import * as midboss from 'midboss'
 import * as minionCowsay from '@state/minionCowsay'
 
 const Cowsay = (props: any) => {
@@ -17,7 +16,7 @@ const Cowsay = (props: any) => {
 }
 
 const CowsayPage = (props: any) => {
-  const cowsay = minionCowsay.useSubscribe())
+  const cowsay = minionCowsay.useSubscribe()
   let options = minionCowsay.calcOptions()
 
   return (

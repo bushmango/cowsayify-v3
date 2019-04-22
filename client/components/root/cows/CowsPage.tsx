@@ -5,7 +5,6 @@ import DisplayCow from '@components/shared/DisplayCow'
 
 import Layout from '@components/shared/Layout'
 
-import * as midboss from 'midboss'
 import * as minionCowsay from '@state/minionCowsay'
 
 const Cows = () => {
