@@ -1,0 +1,40 @@
+.dNdContainer {
+  position: relative;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  padding: 3px;
+  margin: 3px;
+}
+
+.dNdItem {
+  position: absolute;
+  padding: 3px;
+  margin: 3px;
+
+  border: solid 1px #ccc;
+  background-color: #aaa;
+  border-radius: 3px;
+  min-width: 300px;
+}
+
+.dndSelectedLine {
+  height: 3px;
+  // border: solid 2px #4286f4;
+  background-color: #4286f4;
+  border-radius: 3px;
+  position: absolute;
+  min-width: 312px;
+  z-index: 9000;
+}
+
+.dndSelected {
+  background-color: #4286f4;
+}
+
+// see: https://css-tricks.com/almanac/properties/u/user-select/
+.noTextSelect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
