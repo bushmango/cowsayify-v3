@@ -1,3 +1,11 @@
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
 .dNdContainer {
   position: relative;
   border: solid 1px #ccc;
@@ -6,15 +14,31 @@
   margin: 3px;
 }
 
+$color: #aaa;
+
 .dNdItem {
   position: absolute;
   padding: 3px;
   margin: 3px;
 
   border: solid 1px #ccc;
-  background-color: #aaa;
+  background-color: $color;
   border-radius: 3px;
   min-width: 300px;
+
+  @include transition(color 0.2s ease);
+  @include transition(background-color 0.2s ease);
+  background-color: $color;
+
+  &:hover {
+    background-color: darken($color, 10%);
+  }
+  &:active {
+    background-color: darken($color, 20%);
+  }
+  &.dndSelected {
+    background-color: #4286f4;
+  }
 }
 
 .dndSelectedLine {
@@ -25,10 +49,6 @@
   position: absolute;
   min-width: 312px;
   z-index: 9000;
-}
-
-.dndSelected {
-  background-color: #4286f4;
 }
 
 // see: https://css-tricks.com/almanac/properties/u/user-select/

@@ -1,8 +1,8 @@
 export interface Styles {
   'dNdContainer': string;
   'dNdItem': string;
-  'dndSelectedLine': string;
   'dndSelected': string;
+  'dndSelectedLine': string;
   'noTextSelect': string;
 }
 
