@@ -37,6 +37,6 @@ module.exports = {
   },
   coveragePathIgnorePatterns: ['/node_modules/'],
   verbose: false,
-
+  setupFiles: ['<rootDir>/jest/globals.js'],
   setupFilesAfterEnv: ['react-testing-library/cleanup-after-each']
 }
