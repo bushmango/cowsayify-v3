@@ -17,17 +17,24 @@ app.use(bodyParser.json())
 
 const port = 5000
 
-const watchDirectory = path.join(__dirname, '../client/src/')
-let watcher = watch([watchDirectory + '**/*.(ts|tsx)'], {
-  ignoreInitial: false,
+let dirs = [
+  '../client/state/',
+  '../client/components/',
+]
+_.forEach(dirs, c => {
+  const watchDirectory = path.join(__dirname, c)
+  let watcher = watch([watchDirectory + '**/*.(ts|tsx)'], {
+    ignoreInitial: false,
+  })
+  watcher.on('add', (_path: string, stat) => {
+    rebuildIndex(_path)
+  })
+  watcher.on('change', (_path, stat) => {
+    rebuildIndex(_path)
+  })
+  watcher.on('delete', (_path, stat) => {})
 })
-watcher.on('add', (_path: string, stat) => {
-  rebuildIndex(_path)
-})
-watcher.on('change', (_path, stat) => {
-  rebuildIndex(_path)
-})
-watcher.on('delete', (_path, stat) => {})
+
 
 const indexesToRebuild: string[] = []
 function rebuildIndex(_path: string) {
