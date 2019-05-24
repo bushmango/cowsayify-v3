@@ -1,0 +1,26 @@
+{
+  "name": "barreler",
+  "description": "create index files",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "@types/lodash": "^4.14.123",
+    "@types/node": "^11.13.0",
+    "chokidar": "^3.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "glob": "^7.1.4",
+    "glob-watcher": "^5.0.3",
+    "lodash": "^4.17.11",
+    "sorted-json": "^0.2.5",
+    "ts-node": "^8.0.3",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.4.1"
+  },
+  "scripts": {
+    "start": "ts-node server.ts --project tsconfig.json",
+    "dev": "ts-node-dev server.ts --project tsconfig.json"
+  }
+}

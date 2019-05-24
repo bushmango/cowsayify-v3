@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "name": "cowsayify-v3",
-  "builds": [{ "src": "package.json", "use": "@now/next" }],
-  "routes": [{ "src": "/cowsaid/(?<key>[^/]+)$", "dest": "/cowsaid?key=$key" }]
-}
