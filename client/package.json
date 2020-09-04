@@ -22,7 +22,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",
     "next-sass": "^1.0.3",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.18.10",
     "pubsub-js": "^1.7.0",
     "react": "^16.8.3",
